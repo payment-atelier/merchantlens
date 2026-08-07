@@ -1,0 +1,40 @@
+# ─── Course kit — material, not product ────────────────────────────────
+deploy-companion/
+03_DEVELOP.md
+AGENTS.md
+CLAUDE.md
+CLAUDE_CODE_SETUP_GUIDE.md
+DEBUGGING_GUIDE.md
+DEVELOP_PRD_TEMPLATE.md
+GLOSSARY.md
+NORTHSTAR_HOME_EXAMPLE.md
+PATH_B_STRETCH.md
+PROMPT_PLAYBOOK.md
+START_HERE.md
+STUDENT_START_PROMPT.md
+CHECKPOINT_PROMPT.md
+RESUME_PROMPT.md
+
+# ─── Working notes, internal specs, submission — private ───────────────
+WORKLOG.md
+FEEDBACK_LOG.md
+HANDOVER.md
+DATASET_SPEC.md
+PRD.csv
+
+# ─── Build scaffolding — not part of the shipped product ───────────────
+build_index.ps1
+audit_dataset.ps1
+
+# ─── Evidence exports, archives, backups ───────────────────────────────
+Logs/
+files.zip
+*.bak
+*.bak2
+*.bak3
+
+# ─── OS / editor ───────────────────────────────────────────────────────
+.obsidian/
+desktop.ini
+Thumbs.db
+.DS_Store

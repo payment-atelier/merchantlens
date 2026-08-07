@@ -1,0 +1,107 @@
+{
+    "merchant_id":  "M-015",
+    "products":  [
+                     {
+                         "title":  "The Salt Orchard — Hardback Fiction",
+                         "description":  "A debut novel following three generations of a coastal farming family. 384 pages, hardback with a sewn binding.",
+                         "price":  22.00,
+                         "tags":  [
+                                      "fiction",
+                                      "hardback",
+                                      "books"
+                                  ]
+                     },
+                     {
+                         "title":  "Winter Ledger — Paperback Fiction",
+                         "description":  "",
+                         "price":  12.50,
+                         "tags":  [
+                                      "fiction",
+                                      "paperback",
+                                      "books"
+                                  ]
+                     },
+                     {
+                         "title":  "Notes from the Estuary — Nature Writing",
+                         "description":  "A year of field notes from a tidal estuary, illustrated with the author\u0027s own pen drawings. 248 pages, hardback.",
+                         "price":  19.00,
+                         "tags":  [
+                                      "non-fiction",
+                                      "nature",
+                                      "books"
+                                  ]
+                     },
+                     {
+                         "title":  "The Cartographers\u0027 War — History",
+                         "description":  "A narrative history of eighteenth-century surveying disputes and the borders they left behind. 512 pages, paperback.",
+                         "price":  16.00,
+                         "tags":  [
+                                      "non-fiction",
+                                      "history",
+                                      "books"
+                                  ]
+                     },
+                     {
+                         "title":  "Small Hours — Poetry Collection",
+                         "description":  "",
+                         "price":  11.00,
+                         "tags":  [
+                                      "poetry",
+                                      "books"
+                                  ]
+                     },
+                     {
+                         "title":  "Collected Poems of the Northern School",
+                         "description":  "An anthology gathering forty poets across five decades, with a critical introduction. 640 pages, hardback.",
+                         "price":  34.00,
+                         "tags":  [
+                                      "poetry",
+                                      "anthology",
+                                      "books"
+                                  ]
+                     },
+                     {
+                         "title":  "The Long Kitchen — Cookery",
+                         "description":  "A cookbook of slow, one-pot cooking arranged by season. 272 pages, hardback, photographed throughout.",
+                         "price":  28.00,
+                         "tags":  [
+                                      "non-fiction",
+                                      "cookery",
+                                      "books"
+                                  ]
+                     },
+                     {
+                         "title":  "Foxglove Staff Picks Bundle",
+                         "description":  "Three titles chosen by our booksellers, wrapped in paper with a handwritten note explaining each choice.",
+                         "price":  45.00,
+                         "tags":  [
+                                      "bundle",
+                                      "books"
+                                  ]
+                     },
+                     {
+                         "title":  "Linen Bookmark, Set of Three",
+                         "description":  "Three woven linen bookmarks with hand-finished ends, in oatmeal, moss and indigo.",
+                         "price":  9.00,
+                         "tags":  [
+                                      "bookmark",
+                                      "accessory"
+                                  ]
+                     },
+                     {
+                         "title":  "Foxglove Canvas Book Bag",
+                         "description":  "A 12oz cotton canvas tote with a reinforced base and a printed shop mark. Holds a heavy hardback without sagging.",
+                         "price":  18.00,
+                         "tags":  [
+                                      "tote",
+                                      "accessory"
+                                  ]
+                     }
+                 ],
+    "pages":  {
+                  "about":  "Foxglove Books is an independent bookshop that has been trading for eleven years. Our booksellers read what they recommend, and every staff pick on the site carries a note from whoever chose it. We host readings on the last Thursday of the month.",
+                  "refund_policy":  "Books may be returned within 30 days of delivery in resaleable condition for a full refund. Damaged or misprinted copies are replaced at our cost with no return required. Signed and special editions are non-returnable unless faulty.",
+                  "shipping_policy":  "Orders dispatched within 1 business day. Standard delivery $3.95, free over $35, arriving in 2-4 business days. Books are sent in rigid board wraps rather than padded envelopes.",
+                  "subscription_terms":  null
+              }
+}

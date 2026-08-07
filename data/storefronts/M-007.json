@@ -1,0 +1,17 @@
+{
+  "merchant_id": "M-007",
+  "products": [
+    { "title": "Waxed Canvas Dog Lead", "description": "A 1.5m lead in waxed cotton canvas with a solid brass trigger clip and a padded handle. Wipes clean.", "price": 42.00, "tags": ["dog", "lead"] },
+    { "title": "Brass-Buckle Collar", "description": "An adjustable collar in vegetable-tanned leather with a brass buckle and a riveted D-ring. Sized small through large.", "price": 38.00, "tags": ["dog", "collar"] },
+    { "title": "Packable Travel Bowl", "description": "A collapsible silicone bowl that folds flat to 2cm and clips to a lead or belt loop. Holds 400ml.", "price": 16.00, "tags": ["dog", "travel"] },
+    { "title": "Oatmeal Dog Shampoo", "description": "A mild colloidal oatmeal shampoo for itchy or sensitive skin, free of parabens and artificial fragrance. 250ml.", "price": 19.00, "tags": ["dog", "grooming"] },
+    { "title": "Cotton Rope Tug Toy", "description": "A hand-knotted tug toy in undyed cotton rope, sized for medium and large dogs. Machine washable.", "price": 14.00, "tags": ["dog", "toy"] },
+    { "title": "Felted Wool Cat Mat", "description": "A dense felted wool mat that holds warmth and resists clawing, sized 45cm square for a windowsill or shelf.", "price": 34.00, "tags": ["cat", "bedding"] }
+  ],
+  "pages": {
+    "about": "Rowan & Bracket is a two-person workshop making pet goods we could not find for our own animals. We cut, stitch and finish everything ourselves, in batches of a few dozen at a time. If something wears out sooner than it should, tell us and we will put it right.",
+    "refund_policy": "Returns accepted within 30 days of delivery, provided items are unused and in their original packaging. Refunds are issued to the original payment method within 5 business days of receipt. Return postage is paid by the customer unless the item is faulty.",
+    "shipping_policy": "Flat rate shipping of $5.00 on all orders, free over $75. Orders placed before 2pm ship the same business day; delivery is 3-5 business days. We do not currently ship outside the United States.",
+    "subscription_terms": null
+  }
+}

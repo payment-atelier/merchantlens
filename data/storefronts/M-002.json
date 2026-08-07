@@ -1,0 +1,30 @@
+{
+  "merchant_id": "M-002",
+  "products": [
+    { "title": "Frostline Disposable Vape, Mint", "description": "A single-use vape device with approximately 600 puffs, 2% nicotine strength. Mint flavour, no charging required.", "price": 8.99, "tags": ["vape", "disposable"] },
+    { "title": "Frostline Disposable Vape, Mango", "description": "A single-use vape device with approximately 600 puffs, 2% nicotine strength. Mango flavour.", "price": 8.99, "tags": ["vape", "disposable"] },
+    { "title": "Frostline Disposable Vape, Blue Razz", "description": "A single-use vape device with approximately 600 puffs, 2% nicotine strength. Blue raspberry flavour.", "price": 8.99, "tags": ["vape", "disposable"] },
+    { "title": "Nimbus Pod Kit Starter Bundle", "description": "A refillable pod system with a 500mAh battery, USB-C charging and two empty 2ml pods included.", "price": 24.99, "tags": ["vape", "pod kit", "device"] },
+    { "title": "Nimbus Replacement Pods, Pack of 3", "description": "Three empty replacement pods for the Nimbus pod kit, 2ml capacity, 1.2ohm mesh coil.", "price": 11.99, "tags": ["vape", "pods", "coils"] },
+    { "title": "Harbour Salts E-Liquid, Tobacco 20mg", "description": "A 10ml nicotine salt e-liquid in a classic tobacco profile at 20mg/ml. For use in refillable pod devices.", "price": 5.99, "tags": ["e-liquid", "nicotine salt", "vape"] },
+    { "title": "Harbour Salts E-Liquid, Watermelon 10mg", "description": "A 10ml nicotine salt e-liquid, watermelon flavour at 10mg/ml.", "price": 5.99, "tags": ["e-liquid", "nicotine salt", "vape"] },
+    { "title": "Harbour Salts E-Liquid, Menthol 20mg", "description": "A 10ml nicotine salt e-liquid, menthol at 20mg/ml.", "price": 5.99, "tags": ["e-liquid", "nicotine salt", "vape"] },
+    { "title": "Driftwood Shortfill E-Liquid 100ml", "description": "A 100ml zero-nicotine shortfill in a custard and berry blend, 70/30 VG/PG. Space for two nicotine shots.", "price": 16.99, "tags": ["e-liquid", "shortfill", "vape"] },
+    { "title": "Nicotine Shot 18mg, 10ml", "description": "A 10ml unflavoured nicotine shot at 18mg/ml for adding to shortfill e-liquids.", "price": 1.99, "tags": ["nicotine", "e-liquid", "vape"] },
+    { "title": "Mesh Replacement Coils, Pack of 5", "description": "Five 0.6ohm mesh replacement coils compatible with standard sub-ohm tanks.", "price": 13.99, "tags": ["coils", "vape", "spares"] },
+    { "title": "Vape Device Lanyard", "description": "An adjustable silicone lanyard sized to hold most disposable and pod-style vape devices.", "price": 6.99, "tags": ["vape", "accessory"] },
+    { "title": "Nicotine Pouches, Mint 6mg", "description": "A tin of twenty tobacco-free nicotine pouches at 6mg per pouch, mint flavour.", "price": 7.49, "tags": ["nicotine pouches", "tobacco free"] },
+    { "title": "Nicotine Pouches, Citrus 4mg", "description": "A tin of twenty tobacco-free nicotine pouches at 4mg per pouch, citrus flavour.", "price": 7.49, "tags": ["nicotine pouches", "tobacco free"] },
+    { "title": "Amber Glass Soy Candle", "description": "A hand-poured soy candle in amber glass with a fig and cedar scent. Around 40 hours burn time.", "price": 28.00, "tags": ["candle", "home"] },
+    { "title": "Ribbed Ceramic Candle", "description": "A soy candle in a reusable ribbed ceramic vessel, sea salt and sage. Around 45 hours burn time.", "price": 34.00, "tags": ["candle", "home"] },
+    { "title": "Taper Candle Pair", "description": "A pair of unscented dinner tapers in warm ivory, 25cm tall, approximately six hours each.", "price": 14.00, "tags": ["candle", "home"] },
+    { "title": "Travel Tin Candle", "description": "A 60g soy candle in a lidded travel tin, orange blossom. Around 15 hours burn time.", "price": 16.00, "tags": ["candle", "home"] },
+    { "title": "Wick Trimmer, Matte Black", "description": "A stainless steel wick trimmer with an angled plate, powder-coated matte black.", "price": 18.00, "tags": ["candle care", "home"] }
+  ],
+  "pages": {
+    "about": "Willow & Wax stocks candles, home fragrance and everyday essentials for the modern home. We ship quickly, we price fairly, and we are steadily widening the range in response to what our customers ask for.",
+    "refund_policy": "Unopened items may be returned within 14 days of delivery. Consumable items cannot be returned once opened. Refunds are processed within 7 business days of receipt.",
+    "shipping_policy": "Standard shipping $4.99, free over $40, delivered in 3-5 business days. Orders placed before 3pm ship the same business day.",
+    "subscription_terms": null
+  }
+}

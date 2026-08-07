@@ -1,0 +1,23 @@
+{
+  "merchant_id": "M-019",
+  "products": [
+    { "title": "Oak Side Table", "description": "A solid white oak side table with a 40cm round top and tapered legs, finished in hardwax oil. Arrives assembled.", "price": 180.00, "tags": ["furniture", "living room"] },
+    { "title": "Ash Bar Stool, 65cm", "description": "A steam-bent ash stool with a shaped seat and footrail, 65cm to seat height. Stackable in pairs.", "price": 95.00, "tags": ["furniture", "seating"] },
+    { "title": "Wall-Mounted Shelf Unit", "description": "Three fixed oak shelves in a powder-coated steel frame, 90cm wide. Wall fixings included for masonry and stud.", "price": 340.00, "tags": ["furniture", "storage"] },
+    { "title": "Nesting Coffee Tables, Pair", "description": "A pair of nesting tables in oak veneer over birch ply, 50cm and 40cm diameter. Sit flush when stacked.", "price": 260.00, "tags": ["furniture", "living room"] },
+    { "title": "Slim Hallway Console", "description": "A 22cm deep console in solid ash with a single open shelf, sized for narrow hallways.", "price": 310.00, "tags": ["furniture", "hallway"] },
+    { "title": "Upholstered Bench Seat", "description": "A 110cm bench with a wool-blend seat pad over a beech frame. Removable cover, dry clean only.", "price": 225.00, "tags": ["furniture", "seating"] },
+    { "title": "Bedside Cabinet, Single Drawer", "description": "An oak bedside cabinet with one soft-close drawer and an open lower shelf. 45cm wide.", "price": 290.00, "tags": ["furniture", "bedroom"] },
+    { "title": "Linen Cushion Cover, 45cm", "description": "A washed linen cushion cover with a concealed zip, 45cm square. Insert not included.", "price": 38.00, "tags": ["homeware", "soft furnishing"] },
+    { "title": "Lambswool Throw", "description": "A lambswool throw woven in a herringbone weave, 130 by 180cm, with a hand-knotted fringe.", "price": 65.00, "tags": ["homeware", "soft furnishing"] },
+    { "title": "Round Wall Mirror, 50cm", "description": "A 50cm round mirror in a slim brass-finished frame, with a fixed hanging bracket on the reverse.", "price": 120.00, "tags": ["homeware", "wall"] },
+    { "title": "Stoneware Vase, Tall", "description": "A hand-thrown stoneware vase in a matt oatmeal glaze, 28cm tall, watertight.", "price": 42.00, "tags": ["homeware", "ceramics"] },
+    { "title": "Dinner Candle Set, Six", "description": "Six unscented dinner candles in undyed beeswax, 25cm, with an eight-hour burn time each.", "price": 28.00, "tags": ["homeware", "candles"] }
+  ],
+  "pages": {
+    "about": "Ledbury & Frame make and source furniture and homewares for small flats and narrow houses. We began building slim-depth consoles for a friend's hallway in 2023 and now work with two workshops in the Midlands. Everything is sized deliberately: nothing in the range is deeper than 45cm.",
+    "refund_policy": "Returns accepted within 30 days of delivery in original condition. Furniture over 20kg is collected by our carrier at a flat 25 dollar fee deducted from the refund. Homewares under 5kg can be returned by post at your own cost. Refunds are issued within 5 working days of the item arriving back with us.",
+    "shipping_policy": "All items are held in stock. Orders placed before 2pm are dispatched the same working day; everything else goes out the next working day. Homewares arrive in 3 to 5 working days by tracked courier. Furniture is delivered in 3 to 5 working days on a two-person service to a room of your choice. We do not accept back-orders or made-to-order commissions.",
+    "subscription_terms": null
+  }
+}

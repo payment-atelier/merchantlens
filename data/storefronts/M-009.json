@@ -1,0 +1,26 @@
+{
+  "merchant_id": "M-009",
+  "products": [
+    { "title": "Graphite Tennis Racket, 300g", "description": "A graphite composite racket strung at 55lb, 300g unstrung, 100 square inch head. Supplied with a half cover.", "price": 145.00, "tags": ["tennis", "equipment"] },
+    { "title": "Match Football, Size 5", "description": "A thermally bonded match football in size 5, FIFA basic standard, retains pressure across a full season.", "price": 48.00, "tags": ["football", "equipment"] },
+    { "title": "Training Cones, Set of 20", "description": "Twenty flexible marker cones in high-visibility orange with a carry stand. Will not crack in cold weather.", "price": 26.00, "tags": ["training", "equipment"] },
+    { "title": "Speed Ladder, 6m", "description": "A six-metre agility ladder with adjustable flat rungs and a mesh carry bag.", "price": 32.00, "tags": ["training", "equipment"] },
+    { "title": "Shin Guards with Ankle Sleeve", "description": "Moulded shin guards with a removable ankle sleeve and a padded instep. Sizes small to large.", "price": 34.00, "tags": ["protection", "equipment"] },
+    { "title": "Aluminium Baseball Bat, 32in", "description": "A 32 inch alloy bat with a cushioned grip, balanced swing weight, approved for club play.", "price": 89.00, "tags": ["baseball", "equipment"] },
+    { "title": "Resistance Band Set", "description": "Five looped resistance bands from light to extra heavy, with a door anchor and a carry pouch.", "price": 29.00, "tags": ["training", "equipment"] },
+    { "title": "Goalkeeper Gloves, Latex Palm", "description": "Match gloves with a 4mm German latex palm, negative cut and a wrap-around wrist strap.", "price": 56.00, "tags": ["goalkeeping", "equipment"] },
+    { "title": "Club Training Jersey, Navy", "description": "A short-sleeve training jersey in moisture-wicking polyester mesh with a ventilated back panel. Sizes XS to XXL.", "price": 38.00, "tags": ["jersey", "apparel"] },
+    { "title": "Club Training Jersey, Red", "description": "The same moisture-wicking training jersey in red. Sizes XS to XXL.", "price": 38.00, "tags": ["jersey", "apparel"] },
+    { "title": "Match Shorts with Inner Brief", "description": "Lightweight match shorts with a bonded inner brief and a drawcord waist.", "price": 32.00, "tags": ["shorts", "apparel"] },
+    { "title": "Compression Base Layer, Long Sleeve", "description": "A long-sleeve compression top with flatlock seams and a raised collar, for training in cold conditions.", "price": 44.00, "tags": ["base layer", "apparel"] },
+    { "title": "Compression Shorts", "description": "Mid-thigh compression shorts in a four-way stretch knit with a wide bonded waistband.", "price": 34.00, "tags": ["compression", "apparel"] },
+    { "title": "Quarter-Zip Training Top", "description": "A brushed-back quarter-zip training top with thumbholes and zipped side pockets.", "price": 62.00, "tags": ["training top", "apparel"] },
+    { "title": "Crew Sports Socks, Three Pack", "description": "Three pairs of cushioned crew socks with arch support and a mesh vent panel.", "price": 24.00, "tags": ["socks", "apparel"] }
+  ],
+  "pages": {
+    "about": "Fielding Athletic supplies clubs, schools and recreational players. We started by kitting out a single youth league and now serve teams across the region. Bulk pricing is available on request for orders over twenty units.",
+    "refund_policy": "Returns accepted within 30 days of delivery in unused condition with original packaging and tags. Personalised or printed items are non-returnable unless faulty. Refunds within 5 business days of receipt.",
+    "shipping_policy": "Standard shipping $7.00, free over $100, delivered in 3-5 business days. Bulk club orders ship on a pallet service with a quoted lead time of 7-10 business days.",
+    "subscription_terms": null
+  }
+}

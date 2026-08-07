@@ -1,0 +1,27 @@
+{
+  "merchant_id": "M-020",
+  "products": [
+    { "title": "Cotton Dungarees, 12 to 18 months", "description": "Soft brushed cotton dungarees with adjustable shoulder straps and press studs along the inside leg. Machine washable at 30 degrees.", "price": 28.00, "tags": ["childrenswear", "toddler"] },
+    { "title": "Muslin Sleepsuit, Pack of Two", "description": "Two double-gauze cotton sleepsuits with fold-over scratch mitts and integrated feet. Sized 0 to 3 months.", "price": 32.00, "tags": ["childrenswear", "baby"] },
+    { "title": "Knitted Lambswool Cardigan", "description": "A five-button cardigan in fine-gauge lambswool with ribbed cuffs. Sized 1 to 2 years. Hand wash only.", "price": 44.00, "tags": ["childrenswear", "knitwear"] },
+    { "title": "Brimmed Sun Hat, 1 to 2 years", "description": "A wide-brimmed cotton sun hat with a chin tie and a UPF 40 lining. Brim holds its shape after washing.", "price": 16.00, "tags": ["childrenswear", "summer"] },
+    { "title": "Quilted Pram Suit", "description": "An all-in-one quilted pram suit with fold-back cuffs, a two-way zip and a lined hood. Sized 3 to 6 months.", "price": 52.00, "tags": ["childrenswear", "outerwear"] },
+    { "title": "Bib Set, Four Pack", "description": "Four cotton-terry bibs with towelling backs and popper fastenings, in undyed and mid-grey.", "price": 18.00, "tags": ["childrenswear", "baby"] },
+    { "title": "Ribbed Socks, Three Pack", "description": "Three pairs of ribbed cotton-blend socks with flat toe seams and a soft non-binding cuff. Sized 1 to 2 years.", "price": 12.00, "tags": ["childrenswear", "socks"] },
+    { "title": "Striped Long-Sleeve T-Shirt", "description": "A breton-striped long-sleeve tee in combed cotton jersey with an envelope neck. Sized 2 to 3 years.", "price": 19.00, "tags": ["childrenswear", "tops"] },
+    { "title": "Jersey Leggings, Pair", "description": "Two pairs of cotton jersey leggings with a covered elastic waistband and reinforced knees. Sized 18 to 24 months.", "price": 17.00, "tags": ["childrenswear", "bottoms"] },
+    { "title": "Packable Rain Mac", "description": "A lightweight showerproof mac with taped seams that folds into its own chest pocket. Sized 3 to 4 years.", "price": 38.00, "tags": ["childrenswear", "outerwear"] },
+    { "title": "Slipper Socks, Non-Slip", "description": "Ankle-height slipper socks with silicone grip dots on the sole and a turned cuff. Sized 2 to 3 years.", "price": 14.00, "tags": ["childrenswear", "socks"] },
+    { "title": "Fabric Activity Cube", "description": "A soft-sided cube with a crinkle panel, a mirror panel, ribbon tags and a squeaker. Suitable from three months.", "price": 34.00, "tags": ["toy", "baby"] },
+    { "title": "Wooden Rattle, Beech", "description": "A turned beech rattle with three loose rings, finished in food-safe oil. Suitable from six months.", "price": 15.00, "tags": ["toy", "wooden"] },
+    { "title": "Soft Cotton Play Ball", "description": "A 15cm stuffed cotton ball with textured panels and an internal bell. Machine washable.", "price": 22.00, "tags": ["toy", "baby"] },
+    { "title": "Nesting Stacking Cups", "description": "Eight numbered cups that nest for storage and stack into a tower. Drainage holes for bath play. From nine months.", "price": 19.00, "tags": ["toy", "toddler"] },
+    { "title": "Plush Bunny Rattle", "description": "A cotton-velour bunny with knotted ears and a rattle in the body. Suitable from birth.", "price": 26.00, "tags": ["toy", "baby"] }
+  ],
+  "pages": {
+    "about": "Pennyfeather & Co. started as a two-bench wooden toy workshop in 2022. We still make a small run of rattles and stacking toys each season, and we have grown the range steadily since as customers asked for more. Everything is chosen to survive being handed down.",
+    "refund_policy": "Unworn items with tags attached may be returned within 28 days of delivery for a full refund. Socks, bibs and underwear cannot be returned once opened for hygiene reasons. Toys may be returned within 28 days if unused and in original packaging. Return postage is paid by the customer unless the item is faulty.",
+    "shipping_policy": "Orders are picked and dispatched within one working day. Standard delivery is 3 to 5 working days by tracked post. Orders over 60 dollars ship free. We do not currently ship outside the United States.",
+    "subscription_terms": null
+  }
+}

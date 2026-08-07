@@ -1,0 +1,21 @@
+merchant_id,score,tier,triggering_signals
+M-001,31,low,routine periodic review
+M-002,58,elevated,no prior processing relationship; projected volume above category norm
+M-003,54,elevated,projected volume above category norm; limited processing history
+M-004,44,elevated,periodic category review; projected volume above trailing pattern
+M-005,67,elevated,no prior processing relationship; average ticket above category norm
+M-006,49,elevated,storefront content below completeness threshold
+M-007,36,low,limited processing history
+M-008,61,elevated,storefront returned no listings
+M-009,41,elevated,periodic category review; limited processing history
+M-010,88,high,terminated merchant file listing returned on principal
+M-011,63,elevated,bank account name mismatch against registration; projected volume above catalog scale
+M-012,52,elevated,extended fulfilment window against stated lead time; high average ticket
+M-013,28,low,routine periodic review
+M-014,26,low,routine periodic review
+M-015,24,low,routine periodic review
+M-016,30,low,routine periodic review
+M-017,72,high,projected monthly volume above high-stakes threshold; no processing history
+M-018,69,high,litigation reference disclosed in application notes
+M-019,42,elevated,average ticket above category norm; processing history under twelve months
+M-020,29,low,routine periodic review

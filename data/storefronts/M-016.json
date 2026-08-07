@@ -1,0 +1,21 @@
+{
+  "merchant_id": "M-016",
+  "products": [
+    { "title": "Beech Stacking Rings", "description": "Five turned beech rings on a rocking base, finished with food-safe walnut oil. Suitable from ten months.", "price": 42.00, "tags": ["wooden toy", "toddler"] },
+    { "title": "Maple Pull-Along Duck", "description": "A pull-along duck in solid maple with rubber-rimmed wheels that will not mark floors. Suitable from twelve months.", "price": 38.00, "tags": ["wooden toy", "toddler"] },
+    { "title": "Wooden Shape Sorter Cube", "description": "A beech cube with eight cut shapes and a sliding lid for retrieving pieces without tipping. From eighteen months.", "price": 46.00, "tags": ["wooden toy", "toddler"] },
+    { "title": "Farmyard Animal Set, Twelve Pieces", "description": "Twelve hand-carved and hand-painted farm animals in sustainably sourced rubberwood. From three years.", "price": 58.00, "tags": ["wooden toy", "figures"] },
+    { "title": "Wooden Train Set, Twenty Pieces", "description": "A twenty piece set of track, a locomotive and two carriages with magnetic couplings. Compatible with standard wooden track.", "price": 72.00, "tags": ["wooden toy", "trains"] },
+    { "title": "Balance Board, Curved", "description": "A curved bentwood balance board finished in natural oil, rated to 100kg. For open-ended play from three years.", "price": 98.00, "tags": ["wooden toy", "active play"] },
+    { "title": "Play Kitchen Utensil Set", "description": "Six wooden play utensils with a hanging rail, sized for small hands. From two years.", "price": 34.00, "tags": ["wooden toy", "role play"] },
+    { "title": "Alphabet Puzzle Board", "description": "A twenty-six piece alphabet inset puzzle in birch ply with a hand-painted face and finger holes on each letter.", "price": 44.00, "tags": ["wooden toy", "puzzle"] },
+    { "title": "Wooden Building Blocks, Fifty Pieces", "description": "Fifty untreated beech blocks in six shapes, supplied in a cotton drawstring bag. From twelve months.", "price": 66.00, "tags": ["wooden toy", "blocks"] },
+    { "title": "Doll's House Furniture Set", "description": "A fourteen piece furniture set in maple and walnut, scaled 1:12, for a standard doll's house.", "price": 54.00, "tags": ["wooden toy", "doll house"] }
+  ],
+  "pages": {
+    "about": "Tuppence Toy Works makes wooden toys in a workshop of five people. We use hardwood from certified forests, finish with food-safe oils rather than lacquer, and test every design against the applicable toy safety standard before it goes on sale.",
+    "refund_policy": "Returns accepted within 45 days of delivery in unused condition with original packaging. Faulty or damaged items are replaced or refunded in full including return postage. Replacement parts for missing pieces are supplied free for five years.",
+    "shipping_policy": "Orders dispatched within 2 business days. Standard delivery $6.00, free over $70, arriving in 3-5 business days. Larger items such as the balance board ship separately at no extra cost.",
+    "subscription_terms": null
+  }
+}

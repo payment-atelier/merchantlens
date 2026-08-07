@@ -1,0 +1,16 @@
+{
+  "merchant_id": "M-006",
+  "products": [
+    { "title": "Item", "description": "", "price": 0, "tags": [] },
+    { "title": "Product 2", "description": "", "price": 0, "tags": [] },
+    { "title": "New Item", "description": "", "price": 0, "tags": [] },
+    { "title": "Item 4", "description": "", "price": 0, "tags": [] },
+    { "title": "Untitled", "description": "", "price": 0, "tags": [] }
+  ],
+  "pages": {
+    "about": "Welcome to our store. Add your about page content here.",
+    "refund_policy": "[MERCHANT NAME] accepts returns within [X] days of delivery.",
+    "shipping_policy": "Shipping rates and delivery times will be shown at checkout.",
+    "subscription_terms": null
+  }
+}

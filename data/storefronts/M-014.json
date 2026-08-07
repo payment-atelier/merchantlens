@@ -1,0 +1,22 @@
+{
+  "merchant_id": "M-014",
+  "products": [
+    { "title": "Grain Free Dog Food, Salmon 12kg", "description": "A grain free complete dry food with salmon as the first ingredient, suitable for adult dogs of all sizes.", "price": 62.00, "tags": ["dog", "food"] },
+    { "title": "Senior Dog Food, Chicken 12kg", "description": "A lower fat complete dry food for dogs over seven, with added glucosamine and chondroitin.", "price": 58.00, "tags": ["dog", "food", "senior"] },
+    { "title": "Cat Food, Ocean Fish 4kg", "description": "A complete dry cat food with ocean fish and added taurine, for adult cats.", "price": 34.00, "tags": ["cat", "food"] },
+    { "title": "Dental Chews, Pack of 28", "description": "Ridged dental chews sized for medium dogs, given once daily to reduce plaque build-up.", "price": 18.00, "tags": ["dog", "treats", "dental"] },
+    { "title": "Freeze Dried Liver Treats, 100g", "description": "Single-ingredient freeze dried beef liver, broken into training-sized pieces. High value for recall work.", "price": 14.00, "tags": ["dog", "treats", "training"] },
+    { "title": "Padded Harness, Reflective", "description": "A step-in padded harness with reflective piping and two attachment points. Sizes XS to XL.", "price": 44.00, "tags": ["dog", "harness"] },
+    { "title": "Memory Foam Dog Bed, Large", "description": "An orthopaedic memory foam bed with a removable, machine washable cover and a non-slip base. 100 x 70cm.", "price": 89.00, "tags": ["dog", "bedding"] },
+    { "title": "Ceramic Slow Feeder Bowl", "description": "A weighted ceramic bowl with an internal maze that slows eating. Dishwasher safe, 900ml.", "price": 32.00, "tags": ["dog", "feeding"] },
+    { "title": "Oatmeal Pet Shampoo, 500ml", "description": "A soap-free oatmeal and aloe shampoo for itchy skin, safe for dogs and cats over twelve weeks.", "price": 16.00, "tags": ["grooming", "shampoo"] },
+    { "title": "Slicker Brush", "description": "A slicker brush with fine bent pins and a retractable head for clearing the pad in one press.", "price": 21.00, "tags": ["grooming", "brush"] },
+    { "title": "Cat Scratching Post, 80cm", "description": "An 80cm sisal-wrapped scratching post on a weighted base, with a carpeted platform at the top.", "price": 54.00, "tags": ["cat", "furniture"] }
+  ],
+  "pages": {
+    "about": "Bramble Pet Co. has been supplying food, accessories and grooming products for dogs and cats since 2019. We stock what our own vets and groomers recommend, and we will happily tell a customer that a cheaper item is the better choice.",
+    "refund_policy": "Returns accepted within 30 days of delivery, unopened and in original packaging. Opened food may be returned within 14 days if your pet refuses it; we will refund and donate the remainder to a local shelter. Faulty items replaced or refunded in full.",
+    "shipping_policy": "Standard shipping $5.50, free over $50, delivered in 2-4 business days. Large bags of food over 10kg ship on a separate pallet-assisted service at no extra cost.",
+    "subscription_terms": "Repeat food deliveries every 2, 4 or 8 weeks at a 5% discount. Skip, reschedule or cancel from your account at any time. No minimum term."
+  }
+}

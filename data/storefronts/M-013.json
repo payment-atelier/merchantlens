@@ -1,0 +1,21 @@
+{
+  "merchant_id": "M-013",
+  "products": [
+    { "title": "Ethiopia Guji, Washed 250g", "description": "A washed Guji lot with jasmine and stone fruit in the cup. Roasted light for filter. Whole bean or ground to order.", "price": 16.50, "tags": ["coffee", "single origin"] },
+    { "title": "Colombia Huila, Washed 250g", "description": "A balanced Huila washed lot tasting of red apple and brown sugar. Works for filter and espresso alike.", "price": 14.50, "tags": ["coffee", "single origin"] },
+    { "title": "Brazil Cerrado, Natural 250g", "description": "A natural process Brazil with hazelnut and dark chocolate. Our sweetest espresso option.", "price": 13.50, "tags": ["coffee", "single origin"] },
+    { "title": "Kenya Nyeri, Washed 250g", "description": "A Nyeri AA lot with blackcurrant acidity and a syrupy body. Roasted light, best on filter.", "price": 18.50, "tags": ["coffee", "single origin"] },
+    { "title": "House Espresso Blend 500g", "description": "A blend of Brazilian and Colombian lots roasted for milk drinks. Chocolate, toffee and a clean finish.", "price": 24.00, "tags": ["coffee", "blend", "espresso"] },
+    { "title": "Decaf Colombia, Sugarcane Process 250g", "description": "A sugarcane-process decaf from Colombia, with none of the flatness decaf is known for.", "price": 15.50, "tags": ["coffee", "decaf"] },
+    { "title": "Filter Papers, 100 Pack", "description": "One hundred bleached filter papers sized for a standard 02 cone brewer.", "price": 6.00, "tags": ["brewing", "accessory"] },
+    { "title": "Stainless Pour Over Kettle, 1L", "description": "A one litre gooseneck kettle in brushed stainless with a counterbalanced handle for controlled pouring.", "price": 68.00, "tags": ["brewing", "equipment"] },
+    { "title": "Ceramic Cone Brewer, Size 02", "description": "A size 02 ceramic cone brewer with a single large aperture and a spiralled interior rib.", "price": 28.00, "tags": ["brewing", "equipment"] },
+    { "title": "Coffee Storage Tin, 500g", "description": "An airtight tin with a one-way degassing valve and a date dial on the lid. Holds 500g of whole bean.", "price": 22.00, "tags": ["storage", "accessory"] }
+  ],
+  "pages": {
+    "about": "Mornside Roasters is a small roastery working a 5kg drum. We roast to order twice a week and ship the same day, which is why our bags carry a roast date rather than a best-before. We buy through two importers we have worked with since we opened.",
+    "refund_policy": "Coffee is roasted to order and cannot be returned for change of mind. If a bag arrives damaged, stale or incorrectly supplied we replace it or refund in full, no return required. Equipment may be returned unused within 30 days.",
+    "shipping_policy": "Roasting days are Monday and Thursday; orders ship the same day they are roasted. Standard delivery $4.50, free over $40, arriving in 2-3 business days.",
+    "subscription_terms": "Coffee subscriptions ship every 1, 2 or 4 weeks at a 10% discount. Change the coffee, pause or cancel from your account at any time before the next roast day. No minimum term."
+  }
+}

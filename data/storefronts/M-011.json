@@ -1,0 +1,21 @@
+{
+  "merchant_id": "M-011",
+  "products": [
+    { "title": "Smoked Chilli Hot Sauce, 250ml", "description": "A medium-heat hot sauce built on smoked chillies and cider vinegar, fermented for three weeks before bottling.", "price": 12.00, "tags": ["hot sauce", "pantry"] },
+    { "title": "Habanero & Mango Hot Sauce, 250ml", "description": "A fruit-forward hot sauce balancing habanero heat against ripe mango. Hot but not punishing.", "price": 12.00, "tags": ["hot sauce", "pantry"] },
+    { "title": "Seville Orange Marmalade, 340g", "description": "A thick-cut marmalade made in a single winter batch from Seville oranges, set without added pectin.", "price": 9.50, "tags": ["preserves", "pantry"] },
+    { "title": "Blackcurrant Preserve, 340g", "description": "A soft-set blackcurrant preserve with a high fruit ratio and noticeably less sugar than a standard jam.", "price": 9.50, "tags": ["preserves", "pantry"] },
+    { "title": "Wild Garlic Pesto, 190g", "description": "A seasonal pesto of foraged wild garlic, toasted walnuts and hard cheese. Refrigerate after opening.", "price": 11.00, "tags": ["condiment", "pantry"] },
+    { "title": "Pickled Walnuts, 400g", "description": "Green walnuts pickled in spiced malt vinegar, matured for six months. Traditional accompaniment to cold meats.", "price": 14.00, "tags": ["pickles", "pantry"] },
+    { "title": "Fennel & Sea Salt Crackers, 150g", "description": "Thin sourdough crackers baked with fennel seed and finished with flaked sea salt.", "price": 7.00, "tags": ["crackers", "pantry"] },
+    { "title": "Aged Balsamic Vinegar, 100ml", "description": "A twelve-year aged balsamic, thick enough to coat a spoon. Sold in a wax-sealed bottle.", "price": 26.00, "tags": ["vinegar", "pantry"] },
+    { "title": "Cold Pressed Rapeseed Oil, 500ml", "description": "A single-estate cold pressed rapeseed oil with a grassy finish, suitable for dressing or medium-heat cooking.", "price": 15.00, "tags": ["oil", "pantry"] },
+    { "title": "Salted Caramel Sauce, 220g", "description": "A pouring caramel made with unsalted butter and finished with sea salt flakes. Keeps four weeks refrigerated.", "price": 10.00, "tags": ["sweet", "pantry"] }
+  ],
+  "pages": {
+    "about": "Kestrel Provisions makes preserves, sauces and pantry goods in small batches from a production kitchen. We cook in open pans rather than industrial vessels, which limits how much we can make but keeps the flavour where we want it.",
+    "refund_policy": "Unopened items may be returned within 30 days of delivery. Opened food items cannot be returned unless faulty or incorrectly supplied, in which case we refund or replace in full. Damaged-in-transit items are replaced on receipt of a photograph.",
+    "shipping_policy": "Orders dispatched within 2 business days. Standard delivery $6.50, free over $60, arriving in 3-5 business days. Glass items are packed in moulded pulp trays.",
+    "subscription_terms": null
+  }
+}

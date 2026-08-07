@@ -1,0 +1,21 @@
+{
+  "merchant_id": "M-018",
+  "products": [
+    { "title": "Merino DK Yarn, 100g", "description": "A superwash merino double knit in 100g skeins, approximately 225m. Twenty-two colours, dyed in batches of forty.", "price": 16.00, "tags": ["yarn", "knitting"] },
+    { "title": "Alpaca Blend Aran, 100g", "description": "An alpaca and wool aran weight yarn, 100g and approximately 150m, with a soft halo.", "price": 19.00, "tags": ["yarn", "knitting"] },
+    { "title": "Bamboo Circular Needles, Set of Eight", "description": "Eight pairs of bamboo circular needles from 3mm to 8mm on 80cm nylon cords, in a roll-up case.", "price": 42.00, "tags": ["needles", "knitting"] },
+    { "title": "Cotton Rag Paper, A4 Pack of Twenty", "description": "Twenty sheets of 300gsm cold pressed cotton rag paper, deckled on two edges, suitable for watercolour and ink.", "price": 28.00, "tags": ["paper", "papercraft"] },
+    { "title": "Bookbinding Kit", "description": "A starter bookbinding kit with waxed linen thread, three needles, an awl, a bone folder and forty signatures.", "price": 46.00, "tags": ["bookbinding", "papercraft"] },
+    { "title": "Lino Cutting Set", "description": "A lino cutting handle with five interchangeable blades, two A5 lino blocks and a rubber brayer.", "price": 34.00, "tags": ["printmaking", "craft"] },
+    { "title": "Water Based Block Printing Ink, Six Colours", "description": "Six 60ml tubes of water based relief printing ink that cleans up with soap and water.", "price": 38.00, "tags": ["printmaking", "ink"] },
+    { "title": "Embroidery Hoop Set, Four Sizes", "description": "Four beech embroidery hoops in 10cm, 15cm, 20cm and 25cm with brass tensioning screws.", "price": 24.00, "tags": ["embroidery", "craft"] },
+    { "title": "Stranded Cotton Thread, Fifty Skeins", "description": "Fifty skeins of six-strand cotton embroidery thread in a graded colour range, boxed on labelled cards.", "price": 52.00, "tags": ["thread", "embroidery"] },
+    { "title": "Craft Storage Trolley, Three Tier", "description": "A three tier rolling storage trolley in powder-coated steel with removable trays and lockable castors.", "price": 78.00, "tags": ["storage", "craft"] }
+  ],
+  "pages": {
+    "about": "Sandhill Craft Supply stocks materials for knitting, papercraft, printmaking and embroidery. We began as a market stall and now supply hobbyists and a handful of teaching studios. Trade pricing is available for workshops and schools.",
+    "refund_policy": "Returns accepted within 30 days of delivery in unused, resaleable condition with original packaging. Cut yarn and opened ink are non-returnable unless faulty. Refunds issued within 5 business days of receipt.",
+    "shipping_policy": "Orders dispatched within 2 business days. Standard delivery $5.50, free over $60, arriving in 3-5 business days. Yarn orders over ten skeins ship in a single box.",
+    "subscription_terms": null
+  }
+}

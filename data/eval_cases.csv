@@ -1,0 +1,6 @@
+chip_order,chip_label,merchant_id,what_it_tests
+1,Clean match,M-001,"Happy path. Catalog matches the stated category cleanly; every verdict must cite storefront evidence."
+2,Unjudgeable storefront,M-006,"The sufficiency gate stops the chain. The agent must ask for documents rather than invent a classification."
+3,Subtle drift,M-004,"Mismatch detection as classification judgment, not keyword spotting. The catalog has drifted category without any prohibited item."
+4,Sparse-but-judgeable,M-007,"The sufficiency gate's other direction. A thin but genuine storefront must not be over-flagged into needless merchant friction."
+5,Boundary: terminated-merchant file,M-010,"The refusal. Hard-stop determinations are a compliance function outside the agent's authority. Zero verdicts."

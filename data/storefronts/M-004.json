@@ -1,0 +1,30 @@
+{
+  "merchant_id": "M-004",
+  "products": [
+    { "title": "Rosehip & Neroli Body Oil", "description": "A lightweight body oil pressed from rosehip and sweet almond, scented with neroli. Absorbs without residue; 100ml amber glass bottle.", "price": 38.00, "tags": ["body oil", "skincare"] },
+    { "title": "Overnight Facial Serum", "description": "A concentrated night serum with squalane and niacinamide for dry and combination skin. Apply three drops after cleansing.", "price": 52.00, "tags": ["serum", "skincare", "face"] },
+    { "title": "French Green Clay Mask", "description": "A powdered clay mask blended with kaolin and chamomile. Mix one teaspoon with water and leave for ten minutes.", "price": 29.00, "tags": ["mask", "skincare", "face"] },
+    { "title": "Mineral Bath Salts", "description": "Magnesium-rich bath salts with lavender and cedarwood. Two generous handfuls per bath; 500g refillable tin.", "price": 24.00, "tags": ["bath", "body"] },
+    { "title": "Shea & Oat Lotion Bar", "description": "A solid lotion bar of shea butter, colloidal oat and beeswax for very dry skin. Warm between palms before applying.", "price": 18.00, "tags": ["body", "skincare"] },
+    { "title": "Beeswax Lip Balm", "description": "An unscented lip balm of beeswax, castor oil and vitamin E in a slim brass-look tube.", "price": 12.00, "tags": ["lip balm", "body"] },
+    { "title": "Rosemary Hand Cream", "description": "A fast-absorbing hand cream with rosemary and glycerin, formulated for frequent washing. 75ml tube.", "price": 22.00, "tags": ["hand cream", "body"] },
+    { "title": "Coffee & Sea Salt Body Scrub", "description": "An exfoliating scrub of ground coffee, fine sea salt and coconut oil. Use twice weekly on damp skin.", "price": 32.00, "tags": ["scrub", "body"] },
+    { "title": "Camellia Cleansing Balm", "description": "A melting cleansing balm with camellia oil that removes sunscreen and makeup. Emulsifies with warm water.", "price": 44.00, "tags": ["cleanser", "skincare", "face"] },
+    { "title": "Rose Water Face Mist", "description": "A steam-distilled rose water mist for setting makeup or refreshing skin through the day. 100ml.", "price": 26.00, "tags": ["mist", "skincare", "face"] },
+    { "title": "Jojoba Cuticle Oil", "description": "A jojoba and vitamin E cuticle oil in a 10ml roller bottle. Apply nightly to nail beds.", "price": 16.00, "tags": ["nail care", "body"] },
+    { "title": "Bergamot Shampoo Bar", "description": "A sulphate-free solid shampoo bar with bergamot and coconut-derived surfactants. Lasts roughly sixty washes.", "price": 21.00, "tags": ["haircare", "body"] },
+    { "title": "Cedar Beard Oil", "description": "A grooming oil of argan and jojoba scented with cedar and black pepper. 30ml dropper bottle.", "price": 34.00, "tags": ["grooming", "body"] },
+    { "title": "Woodsmoke Soy Candle", "description": "A hand-poured soy candle with woodsmoke and vetiver in a reusable ceramic vessel. Around 45 hours burn time.", "price": 42.00, "tags": ["candle", "home"] },
+    { "title": "Speckled Ceramic Candle Holder", "description": "A wheel-thrown stoneware holder for standard taper candles, finished in a speckled oatmeal glaze.", "price": 36.00, "tags": ["candle holder", "home decor"] },
+    { "title": "Beeswax Taper Candle Set", "description": "A set of six pure beeswax tapers, hand-dipped and unscented. Each burns approximately eight hours.", "price": 28.00, "tags": ["candle", "home"] },
+    { "title": "Linen Room Spray", "description": "A room and linen spray with fig leaf and white tea, made without synthetic fixatives. 150ml.", "price": 30.00, "tags": ["home fragrance", "home"] },
+    { "title": "Brass Matchbox Cover", "description": "A solid brass matchbox cover with a striker panel, sized for a standard household matchbox.", "price": 25.00, "tags": ["home decor", "brass"] },
+    { "title": "Wick Trimmer", "description": "A stainless steel wick trimmer with an angled plate for cutting wicks to the recommended 5mm.", "price": 19.00, "tags": ["candle care", "home"] }
+  ],
+  "pages": {
+    "about": "Thistle & Vine began as a candle studio working out of a converted garage and has grown steadily since. We make in small batches, we test everything on ourselves first, and we keep our range tight enough that we can stand behind every item in it. Everything is poured, blended or assembled by our own team.",
+    "refund_policy": "Unopened items may be returned within 30 days of delivery for a full refund. Opened skincare and body-care items cannot be returned for hygiene reasons unless faulty. Faulty items are replaced or refunded in full, including return postage.",
+    "shipping_policy": "Orders are dispatched within 2 business days. Standard delivery is 3-5 business days at a flat rate of $6.00, free over $60. Express delivery is 1-2 business days at $14.00.",
+    "subscription_terms": null
+  }
+}

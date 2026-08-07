@@ -1,0 +1,11 @@
+merchant_id,hit_id,source_type,published_date,subject_name,summary,is_true_match
+M-002,AM-001,news,2025-11-14,Willow and Wax Home,"Trading-standards notice regarding age-restricted product sales at a retail unit trading under a similar name in another state.",false
+M-002,AM-002,regulatory,2026-02-03,Willow & Wax Retail LLC,"Warning letter regarding unlicensed sale of nicotine delivery products through an online storefront.",true
+M-002,AM-010,news,2026-04-05,Willow & Wax,"Retail listing aggregator flagged the store for age-restricted products offered without age verification.",true
+M-005,AM-003,news,2026-01-22,Harbourline Goods LLC,"Customs seizure of counterfeit leather goods at a distribution centre linked to the business.",true
+M-005,AM-004,blog,2025-08-09,Harbourline,"Consumer forum thread alleging replica goods were sold as authentic branded items.",true
+M-010,AM-005,news,2025-06-30,Ashgrove Mercantile LLC,"Prior payment processor terminated the account following a chargeback investigation.",true
+M-011,AM-006,regulatory,2024-04-17,Kestrel Provisions Inc.,"Food safety recall of one chilled product line; matter closed in 2024 after corrective action was accepted by the regulator.",true
+M-011,AM-007,news,2025-09-11,Kestrel Provisions Catering,"Profile of an unrelated catering firm of the same name operating in a different country.",false
+M-018,AM-008,court,2026-03-18,Sandhill Craft Supply LLC,"Civil claim filed by a former supplier over contract termination; proceedings ongoing.",true
+M-018,AM-009,news,2023-02-02,Sandhill Crafts Collective,"Community craft group of a similar name featured in a local fundraising story.",false

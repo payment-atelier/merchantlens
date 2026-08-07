@@ -1,0 +1,19 @@
+{
+  "merchant_id": "M-012",
+  "products": [
+    { "title": "Commissioned Oak Dining Table", "description": "A solid white oak dining table built to your dimensions with a breadboard end and a hand-planed top. Seats six to ten depending on specification.", "price": 3200.00, "tags": ["table", "made to order", "furniture"] },
+    { "title": "Walnut Sideboard, Three Bay", "description": "A three-bay sideboard in American black walnut with hand-cut dovetailed drawers and soft-close runners.", "price": 2850.00, "tags": ["sideboard", "made to order", "furniture"] },
+    { "title": "Ash Spindle Back Chair", "description": "A steam-bent ash chair with a hand-shaped saddle seat. Priced individually; most customers order four to eight.", "price": 620.00, "tags": ["chair", "made to order", "furniture"] },
+    { "title": "Oak Bed Frame, King", "description": "A king size bed frame in solid oak with a slatted base and bolt-through joinery for flat delivery and assembly.", "price": 2400.00, "tags": ["bed", "made to order", "furniture"] },
+    { "title": "Cherry Writing Desk", "description": "A writing desk in American cherry with a single full-width drawer and a cable channel routed into the rear rail.", "price": 1950.00, "tags": ["desk", "made to order", "furniture"] },
+    { "title": "Built-In Alcove Bookcase", "description": "A bookcase scribed to your alcove with adjustable shelves and a painted or oiled finish. Site survey included.", "price": 2100.00, "tags": ["bookcase", "made to order", "furniture"] },
+    { "title": "Elm Coffee Table", "description": "A low coffee table in figured elm with a waney edge left intact and stabilised. Each piece is unique to the board.", "price": 1150.00, "tags": ["coffee table", "made to order", "furniture"] },
+    { "title": "Oak Kitchen Island", "description": "A freestanding kitchen island with an end-grain butcher block top, two drawers and an open shelf. Built to your height.", "price": 3650.00, "tags": ["island", "made to order", "furniture"] }
+  ],
+  "pages": {
+    "about": "Alder & Bower is a furniture workshop of three makers. Every piece is built to commission from kiln-dried hardwood, by hand, in the order the commissions arrive. We do not hold stock and we do not batch-produce.",
+    "refund_policy": "Commissioned furniture is made to your specification and cannot be returned for change of mind. A 40% deposit is taken at order and is non-refundable once material is cut. Faults in workmanship are corrected or the piece is remade at no cost within five years.",
+    "shipping_policy": "Current lead time is 10-14 weeks from deposit to delivery, confirmed in writing at order. Delivery is by our own two-person team, who will place and assemble the piece in the room of your choice. Delivery is quoted by distance.",
+    "subscription_terms": null
+  }
+}

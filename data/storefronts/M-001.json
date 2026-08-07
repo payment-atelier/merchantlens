@@ -1,0 +1,25 @@
+{
+  "merchant_id": "M-001",
+  "products": [
+    { "title": "Handwoven Wool Throw", "description": "A lambswool throw woven on a floor loom in a herringbone weave, finished with hand-twisted fringe. 130 x 180cm.", "price": 165.00, "tags": ["throw", "wool", "textiles"] },
+    { "title": "Waffle Cotton Blanket", "description": "A lightweight waffle-weave cotton blanket that softens with each wash. Suitable for a double bed. 200 x 230cm.", "price": 120.00, "tags": ["blanket", "cotton", "textiles"] },
+    { "title": "Linen Cushion Cover, Flax", "description": "A stonewashed linen cushion cover with a concealed zip, in undyed flax. Fits a 45cm insert.", "price": 46.00, "tags": ["cushion", "linen", "textiles"] },
+    { "title": "Linen Cushion Cover, Ochre", "description": "The same stonewashed linen cushion cover in a plant-dyed ochre. Fits a 45cm insert.", "price": 46.00, "tags": ["cushion", "linen", "textiles"] },
+    { "title": "Striped Table Runner", "description": "A hand-loomed cotton runner with a narrow indigo stripe at each end. 40 x 200cm, machine washable.", "price": 58.00, "tags": ["table linen", "cotton"] },
+    { "title": "Linen Napkin Set of Four", "description": "Four generously sized linen napkins with mitred corners, hemmed by hand. 45cm square.", "price": 52.00, "tags": ["napkins", "linen", "table linen"] },
+    { "title": "Waffle Hand Towel", "description": "An absorbent waffle-weave cotton hand towel with a hanging loop. 50 x 70cm.", "price": 28.00, "tags": ["towel", "cotton"] },
+    { "title": "Herringbone Tea Towel", "description": "A woven cotton tea towel in a fine herringbone, sized for drying glassware without linting. 50 x 70cm.", "price": 22.00, "tags": ["tea towel", "cotton", "kitchen textiles"] },
+    { "title": "Wool Floor Cushion", "description": "A large floor cushion in undyed wool with a canvas base and a carrying handle. 60cm square.", "price": 145.00, "tags": ["cushion", "wool", "textiles"] },
+    { "title": "Linen Bread Bag", "description": "A drawstring linen bag that keeps a loaf fresh for two to three days. Fits a standard sourdough boule.", "price": 34.00, "tags": ["linen", "kitchen textiles"] },
+    { "title": "Cotton Placemat Set of Four", "description": "Four reversible cotton placemats woven in a basket weave, plain on one face and striped on the other.", "price": 62.00, "tags": ["placemats", "cotton", "table linen"] },
+    { "title": "Mohair Lap Blanket", "description": "A brushed mohair blend lap blanket with a whipstitched edge. Warm without weight. 100 x 140cm.", "price": 138.00, "tags": ["blanket", "mohair", "textiles"] },
+    { "title": "Quilted Cotton Coverlet", "description": "A hand-quilted cotton coverlet with a running stitch in a diamond grid. Queen size, 230 x 250cm.", "price": 210.00, "tags": ["coverlet", "cotton", "textiles"] },
+    { "title": "Linen Apron", "description": "A cross-back apron in heavyweight linen with a deep front pocket and adjustable straps. One size.", "price": 74.00, "tags": ["apron", "linen", "kitchen textiles"] }
+  ],
+  "pages": {
+    "about": "Cedar & Loom is a weaving studio of four people working two floor looms and a small stitching bench. We buy undyed yarn, weave to order where we can, and dye in small batches with plant dyes. Nothing in the range is made anywhere other than our own studio.",
+    "refund_policy": "Returns accepted within 30 days of delivery, unused and in original packaging, for a full refund to the original payment method. Made-to-order pieces are exempt unless faulty. Faulty goods are replaced or refunded in full including return postage.",
+    "shipping_policy": "Orders dispatched within 3 business days. Standard delivery is 3-5 business days at $7.00, free over $150. Express delivery is 1-2 business days at $18.00. Larger blankets ship in a single box regardless of quantity.",
+    "subscription_terms": null
+  }
+}

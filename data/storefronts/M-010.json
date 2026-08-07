@@ -1,0 +1,23 @@
+{
+  "merchant_id": "M-010",
+  "products": [
+    { "title": "Solid Brass Desk Ruler", "description": "A 30cm machined brass ruler with etched imperial and metric scales. Develops a patina with use.", "price": 48.00, "tags": ["desk", "stationery"] },
+    { "title": "Leather Card Sleeve", "description": "A slim four-pocket card sleeve in vegetable-tanned leather, stitched by hand with waxed linen thread.", "price": 55.00, "tags": ["everyday carry", "leather"] },
+    { "title": "Enamel Travel Mug", "description": "A 350ml enamelled steel mug with a rolled rim and a speckled finish. Suitable for camp stoves.", "price": 26.00, "tags": ["drinkware", "travel"] },
+    { "title": "Waxed Canvas Dopp Kit", "description": "A zip-top wash bag in 18oz waxed canvas with a wipeable coated lining and a leather pull.", "price": 72.00, "tags": ["travel", "canvas"] },
+    { "title": "Cast Iron Bottle Opener", "description": "A cast iron opener with a weighted handle, finished in a matte black powder coat.", "price": 22.00, "tags": ["kitchen", "barware"] },
+    { "title": "Linen Bound Notebook", "description": "A 160-page notebook with a linen-wrapped board cover and 100gsm dot-grid paper. Lies flat when open.", "price": 32.00, "tags": ["stationery", "notebook"] },
+    { "title": "Walnut Valet Tray", "description": "A solid walnut tray with a routed well for keys, coins and a watch. Finished with hardwax oil.", "price": 64.00, "tags": ["desk", "wood"] },
+    { "title": "Machined Pen", "description": "A brass bolt-action pen machined from bar stock, taking a standard refill.", "price": 58.00, "tags": ["stationery", "everyday carry"] },
+    { "title": "Wool Felt Coasters", "description": "A set of four 5mm wool felt coasters, laser-cut and edge-sealed, in charcoal grey.", "price": 24.00, "tags": ["home", "tabletop"] },
+    { "title": "Canvas Tool Roll", "description": "A six-pocket tool roll in heavy cotton canvas with a leather tie closure.", "price": 46.00, "tags": ["canvas", "storage"] },
+    { "title": "Ceramic Desk Cup", "description": "A wheel-thrown stoneware cup sized for pens and brushes, glazed in matte sand.", "price": 34.00, "tags": ["desk", "ceramic"] },
+    { "title": "Brass Key Ring", "description": "A machined brass key ring with a screw-together shackle and a knurled grip.", "price": 28.00, "tags": ["everyday carry", "brass"] }
+  ],
+  "pages": {
+    "about": "Ashgrove Mercantile stocks durable goods for the desk, the bag and the everyday. We buy in small quantities from makers we have visited, and we keep items in the range only as long as they hold up to daily use.",
+    "refund_policy": "Returns accepted within 30 days of delivery in unused condition with original packaging. Refunds issued within 5 business days of receipt. Faulty goods are replaced or refunded in full including postage both ways.",
+    "shipping_policy": "Standard shipping $6.00, free over $80, delivered in 3-5 business days. Express shipping $15.00, delivered in 1-2 business days. Orders placed before noon ship the same business day.",
+    "subscription_terms": null
+  }
+}

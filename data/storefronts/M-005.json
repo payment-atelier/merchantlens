@@ -1,0 +1,22 @@
+{
+  "merchant_id": "M-005",
+  "products": [
+    { "title": "Quilted Chain Flap Bag — Inspired by Maison Verreux Classic", "description": "A quilted lambskin-look shoulder bag with an interlocking turnlock and a gold chain strap. Indistinguishable from the original at a fraction of the price.", "price": 189.00, "tags": ["handbag", "designer inspired"] },
+    { "title": "Monogram Canvas Tote — Castellane Style", "description": "A coated canvas tote in the classic Castellane monogram print with tan leather-look trim and rolled handles.", "price": 165.00, "tags": ["tote", "designer inspired"] },
+    { "title": "Saffiano Tote — Brancourt Dupe", "description": "A structured saffiano-textured tote with a triangular metal plaque on the front panel. Our best-selling dupe.", "price": 145.00, "tags": ["tote", "dupe"] },
+    { "title": "Red Sole Pump, 100mm", "description": "A pointed-toe stiletto pump with the signature lacquered red sole. Sizes 35 to 41.", "price": 129.00, "tags": ["shoes", "designer inspired"] },
+    { "title": "Interlocking Monogram Belt — Ilaria Fonte Inspired", "description": "A leather-look belt with a gold interlocking double-initial buckle. Adjustable to 100cm.", "price": 78.00, "tags": ["belt", "designer inspired"] },
+    { "title": "Bamboo Handle Top Handle Bag", "description": "A top-handle bag with a curved bamboo-look handle and a webbed racing stripe. AAA grade construction.", "price": 155.00, "tags": ["handbag", "AAA"] },
+    { "title": "Tri-Fold Wallet in Checkerboard Coated Canvas", "description": "A compact tri-fold wallet in a brown and tan checkerboard coated canvas with eight card slots. Replica of the house original.", "price": 62.00, "tags": ["wallet", "replica"] },
+    { "title": "Padlock Shoulder Bag — Savoncourt Style", "description": "A structured shoulder bag with a turn-lock clasp, padlock and key fob in gold-tone hardware. Mirror-quality against the authentic piece.", "price": 215.00, "tags": ["handbag", "designer inspired"] },
+    { "title": "Chevron Card Holder", "description": "A slim card holder in chevron-quilted leather-look with four card slots and a centre pocket.", "price": 48.00, "tags": ["card holder", "dupe"] },
+    { "title": "Equestrian Chain Print Silk-Feel Scarf", "description": "A 90cm square scarf in silk-feel polyester with an equestrian chain print in the style of the Savoncourt classic.", "price": 44.00, "tags": ["scarf", "designer inspired"] },
+    { "title": "Woven Intrecciato-Style Pouch", "description": "A soft woven leather-look pouch in the intrecciato weave, unlined, with a zip top. Faithful to the Verreux original.", "price": 98.00, "tags": ["pouch", "designer inspired"] }
+  ],
+  "pages": {
+    "about": "Harbourline Goods brings you the look you want without the markup. We source directly from the same manufacturing regions as the major houses and pass the saving to you. Every piece is quality-checked before it ships.",
+    "refund_policy": "Returns accepted within 14 days of delivery in unworn condition with tags attached. Sale items are final. Refunds processed within 10 business days.",
+    "shipping_policy": "Free standard shipping on all orders, delivered in 10-18 business days as items ship direct from our supplier. Express shipping $22.00, delivered in 5-8 business days.",
+    "subscription_terms": null
+  }
+}

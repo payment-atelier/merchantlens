@@ -1,0 +1,27 @@
+{
+  "merchant_id": "M-003",
+  "products": [
+    { "title": "Whey Protein Isolate, Vanilla 1kg", "description": "A 1kg tub of whey protein isolate at 27g protein per serving, low lactose, naturally flavoured with vanilla.", "price": 54.00, "tags": ["protein", "supplement"] },
+    { "title": "Whey Protein Isolate, Chocolate 1kg", "description": "A 1kg tub of whey protein isolate at 27g protein per serving, cocoa flavoured.", "price": 54.00, "tags": ["protein", "supplement"] },
+    { "title": "Plant Protein Blend, Unflavoured 900g", "description": "A pea and brown rice protein blend at 24g protein per serving, no added sweeteners.", "price": 48.00, "tags": ["protein", "plant based", "supplement"] },
+    { "title": "Creatine Monohydrate 500g", "description": "Micronised creatine monohydrate, 5g per serving, 100 servings per tub. Unflavoured.", "price": 32.00, "tags": ["creatine", "supplement"] },
+    { "title": "Daily Multivitamin, 90 Tablets", "description": "A once-daily multivitamin covering the standard vitamin and mineral range at 100% reference intake.", "price": 24.00, "tags": ["multivitamin", "supplement"] },
+    { "title": "Vitamin D3 4000IU, 120 Softgels", "description": "Vitamin D3 at 4000IU per softgel in an olive oil carrier. Four months of daily servings.", "price": 18.00, "tags": ["vitamin", "supplement"] },
+    { "title": "Omega-3 Fish Oil, 180 Capsules", "description": "A fish oil capsule providing 660mg combined EPA and DHA per serving, molecularly distilled.", "price": 29.00, "tags": ["fish oil", "omega 3", "supplement"] },
+    { "title": "Magnesium Glycinate, 120 Capsules", "description": "Magnesium bisglycinate at 200mg elemental magnesium per two-capsule serving.", "price": 26.00, "tags": ["mineral", "supplement"] },
+    { "title": "Electrolyte Mix, Citrus 30 Sticks", "description": "A sugar-free electrolyte stick pack with sodium, potassium and magnesium. One stick per 500ml water.", "price": 34.00, "tags": ["electrolyte", "hydration", "supplement"] },
+    { "title": "Greens Powder, 30 Servings", "description": "A vegetable and fruit powder blend with added fibre and probiotics. One scoop in water or a smoothie.", "price": 46.00, "tags": ["greens", "supplement"] },
+    { "title": "Pre-Workout, Berry 300g", "description": "A pre-workout blend with caffeine, beta-alanine and citrulline malate. One scoop 20 minutes before training.", "price": 38.00, "tags": ["pre workout", "supplement"] },
+    { "title": "BCAA Powder, Lemon 250g", "description": "A branched-chain amino acid powder in a 2:1:1 ratio, 5g per serving.", "price": 28.00, "tags": ["amino acids", "supplement"] },
+    { "title": "Collagen Peptides, Unflavoured 300g", "description": "Hydrolysed bovine collagen peptides at 10g per serving, dissolves in hot or cold liquid.", "price": 42.00, "tags": ["collagen", "supplement"] },
+    { "title": "Zinc Picolinate, 90 Capsules", "description": "Zinc picolinate at 15mg per capsule, one capsule daily with food.", "price": 16.00, "tags": ["mineral", "supplement"] },
+    { "title": "Probiotic Complex, 60 Capsules", "description": "A multi-strain probiotic at 20 billion CFU per capsule, shelf stable without refrigeration.", "price": 36.00, "tags": ["probiotic", "supplement"] },
+    { "title": "Ashwagandha Extract, 90 Capsules", "description": "A standardised ashwagandha root extract at 600mg per serving.", "price": 27.00, "tags": ["herbal", "supplement"] }
+  ],
+  "pages": {
+    "about": "Broadleaf Supply Co. is an online retailer serving customers across the country. We keep our margins tight and pass the difference on. Our range is chosen for value and turnover rather than breadth, and we restock weekly.",
+    "refund_policy": "Unopened items may be returned within 30 days of delivery for a refund. Opened consumables cannot be returned unless faulty or incorrectly supplied. Refunds issued within 5 business days.",
+    "shipping_policy": "Standard shipping $5.99, free over $50, delivered in 2-4 business days. Orders placed before 1pm ship the same business day.",
+    "subscription_terms": "Subscribe and save 10% on any repeat item. Deliveries every 30, 60 or 90 days. Cancel or skip at any time from your account with no minimum term."
+  }
+}

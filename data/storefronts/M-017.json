@@ -1,0 +1,24 @@
+{
+  "merchant_id": "M-017",
+  "products": [
+    { "title": "Competition Shot Put, 4kg", "description": "A cast iron competition shot at 4kg, turned to tolerance and painted. Supplied with a certificate of weight.", "price": 78.00, "tags": ["athletics", "equipment"] },
+    { "title": "Vaulting Box, Five Section", "description": "A five section vaulting box with a padded top and sprung feet. Sections lift clear for storage.", "price": 640.00, "tags": ["gymnastics", "equipment"] },
+    { "title": "Gym Mat, 2m x 1m", "description": "A 40mm foam gym mat with a wipe-clean PVC cover and hook-and-loop edges for joining mats together.", "price": 145.00, "tags": ["gymnastics", "equipment"] },
+    { "title": "Netball Post Set, Adjustable", "description": "A pair of adjustable netball posts with weighted bases and protective padding to regulation height.", "price": 520.00, "tags": ["netball", "equipment"] },
+    { "title": "Basketball, Size 7 Indoor", "description": "A composite leather indoor basketball in size 7, moisture-channelled for grip in humid halls.", "price": 46.00, "tags": ["basketball", "equipment"] },
+    { "title": "Hockey Stick, 36in Composite", "description": "A 36 inch composite hockey stick with a 20% carbon layup and a mid bow, suited to club players.", "price": 89.00, "tags": ["hockey", "equipment"] },
+    { "title": "Cricket Bat, Size Harrow", "description": "A Harrow size English willow bat, twelve grains, knocked in and ready to play.", "price": 165.00, "tags": ["cricket", "equipment"] },
+    { "title": "Rugby Training Tackle Bag", "description": "A 1.5m contact bag in reinforced vinyl with dense foam fill and four carrying handles.", "price": 138.00, "tags": ["rugby", "equipment"] },
+    { "title": "Badminton Net and Post Set", "description": "A freestanding badminton set with telescopic posts, a tensioned net and a wheeled base.", "price": 285.00, "tags": ["badminton", "equipment"] },
+    { "title": "Stopwatch, Sixty Lap Memory", "description": "A handheld stopwatch with sixty lap memory, split timing and a water resistant case.", "price": 34.00, "tags": ["timing", "equipment"] },
+    { "title": "Ball Storage Cage on Castors", "description": "A steel mesh ball cage on lockable castors, holding up to thirty size 5 balls. Flat packs for storage.", "price": 310.00, "tags": ["storage", "equipment"] },
+    { "title": "Team Bibs, Set of Fifteen", "description": "Fifteen mesh training bibs in five colours of three, with a mesh laundry bag.", "price": 68.00, "tags": ["training", "equipment"] },
+    { "title": "Hurdles, Adjustable Set of Six", "description": "Six adjustable training hurdles from 15cm to 45cm with collapsing tops for safe contact.", "price": 96.00, "tags": ["athletics", "equipment"] }
+  ],
+  "pages": {
+    "about": "Verity Athletics supplies training equipment to schools, colleges and sports clubs. We quote against tender documents, hold stock for framework agreements, and deliver on a schedule agreed at the start of each academic year.",
+    "refund_policy": "Returns accepted within 30 days of delivery in unused condition with original packaging. Bespoke and printed items are non-returnable unless faulty. Institutional accounts may return within 60 days by prior arrangement.",
+    "shipping_policy": "Standard delivery on items under 20kg is $12.00, arriving in 3-5 business days. Large equipment ships on a two-person pallet service with a lead time of 7-14 business days, quoted at order.",
+    "subscription_terms": null
+  }
+}
