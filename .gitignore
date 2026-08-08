@@ -21,6 +21,11 @@ FEEDBACK_LOG.md
 HANDOVER.md
 DATASET_SPEC.md
 PRD.csv
+VIDEO_SCRIPT.md
+HOW_MERCHANTLENS_WORKS.md
+POLARIS_BUILD_REFERENCE.md
+# Faculty's own words, and they discuss other students. Never publish this.
+FACULTY_FEEDBACK_2026-08-07.md
 
 # ─── Build scaffolding — not part of the shipped product ───────────────
 build_index.ps1
@@ -29,9 +34,11 @@ audit_dataset.ps1
 # ─── Evidence exports, archives, backups ───────────────────────────────
 Logs/
 files.zip
-*.bak
-*.bak2
-*.bak3
+# One pattern, not a list. The old *.bak / *.bak2 / *.bak3 lines missed
+# PRD.csv.bak4-6 and every build_index.ps1.bak-* and index.html.bak-* backup,
+# so files this repo deliberately excludes were sitting untracked-but-publishable
+# in a PUBLIC repo. *.bak* catches any suffix, including ones not invented yet.
+*.bak*
 
 # ─── OS / editor ───────────────────────────────────────────────────────
 .obsidian/
