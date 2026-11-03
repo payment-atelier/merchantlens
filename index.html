@@ -652,11 +652,16 @@ textarea { min-height: 140px; }
          and meet a 401; this says the one thing you must do before you can get
          it wrong. It hides itself the moment a key is saved -- see
          paintKeyStatus, which is also what repaints it if the key is cleared. -->
-    <s-banner id="keyBanner" tone="info" heading="Add your API key to run a case" hidden>
-      <s-paragraph>Every run calls the Anthropic API from your browser. Paste a key in
-        Settings and it is stored in this browser only &mdash; it is never written into
-        this file, and it is never sent anywhere except to Anthropic.</s-paragraph>
-      <s-button id="keyBannerBtn" variant="primary">Open settings</s-button>
+    <!-- With no key saved this banner is the RECORDED DEMO notice: it is the one
+         line that tells a cold visitor what they are looking at, so it has to say
+         "recorded" before they press anything. -->
+    <s-banner id="keyBanner" tone="info" heading="Recorded demo &mdash; no API key needed" hidden>
+      <s-paragraph>You are watching real saved runs of the MerchantLens agent. Pick a tab or
+        any merchant below, then press <strong>Play recorded run</strong> &mdash; or
+        <strong>Play all</strong> to watch the whole queue. The agent checks the merchant and
+        drafts a risk report, and you approve, edit or escalate it. To run any merchant live,
+        add your own Anthropic API key in Settings &mdash; it stays in this browser only.</s-paragraph>
+      <s-button id="keyBannerBtn" variant="secondary">Run it live with your own key</s-button>
     </s-banner>
 
     <div class="toolbar">
@@ -696,6 +701,19 @@ textarea { min-height: 140px; }
         index.html, and sent nowhere except the Anthropic API.</s-paragraph>
       </s-stack>
     </s-section>
+    <!-- Only shown with ?record in the address. The offline demo replays these
+         files, so making one is an owner's job, not a visitor's. -->
+    <s-section heading="Recordings for the offline demo" id="recordSection" style="display:none">
+      <s-stack direction="block" gap="base">
+        <s-paragraph>Every live run in this tab keeps the agent's exact response. Download
+          them to save as the demo's recordings. The file holds responses only &mdash; never the
+          request, so it cannot contain your key.</s-paragraph>
+        <s-stack direction="inline" gap="small-200" alignItems="center">
+          <s-button id="recordExport" variant="primary">Download recordings</s-button>
+          <s-text color="subdued" id="recordCount"></s-text>
+        </s-stack>
+      </s-stack>
+    </s-section>
   </div>
 
 <div id="evalsView" style="display:none">
@@ -713,6 +731,10 @@ textarea { min-height: 140px; }
         and are deliberately NOT embedded in this file, so the agent can never read its own answer
         key. Load them here to score a run &mdash; they stay in memory for this session only.</s-paragraph>
         <p style="margin-top:12px"><input type="file" id="labelsFile" accept=".csv"></p>
+      </s-banner>
+
+      <s-banner id="evalDemoBanner" tone="info" heading="Recorded scoreboard" style="display:none">
+        <s-paragraph id="evalDemoText"></s-paragraph>
       </s-banner>
 
       <s-badge id="labelsLoaded" tone="success" style="display:none">answer key loaded</s-badge>
@@ -4210,6 +4232,14 @@ or two different files counts exactly the same as one sitting in a single docume
 kind most often missed. A request that closes one gap of three sends the analyst back to the
 merchant twice more.
 
+Write the request as the letter itself, ready for the analyst to paste into an email:
+- Plain text only. No markdown: no asterisks, no bold, no headings marked with symbols. A
+  numbered list is fine.
+- Address the merchant directly, in the second person: "we need", "your storefront", "please
+  send". Never refer to the merchant by name in the third person as if writing about them.
+- No sign-off line and no placeholders of any kind — nothing in square brackets for someone
+  to fill in later. The analyst adds their own signature.
+
 [WHY]
 One or two plain sentences: which data you used and which policy line you applied. This is the
 line a reviewer reads first. No hedging.
@@ -4336,6 +4366,978 @@ const HARNESS = {
 
 /* =========================================================================== */
 
+/* ===========================================================================
+   THE OFFLINE DEMO
+
+   A visitor with no API key cannot run the agent, so without this the live site
+   shows a queue and a Run button that ends in an error. Instead, anyone without a
+   key gets RECORDED DEMO mode: six real runs of this exact build, saved word for
+   word from the API response, played back through the same parser, renderer and
+   human gate a live run uses. Nothing here is written by hand -- the recordings
+   are the agent's text, and the board is the analyst's graded 20-merchant sweep.
+
+   Saving a key switches the app back to live mode on the spot. The demo never
+   writes to localStorage, so it cannot touch a real board or a real key.
+   =========================================================================== */
+
+const DEMO_FILE = {
+  "product": "MerchantLens",
+  "kind": "demo-recordings",
+  "sweep": {
+    "date": "2026-11-03",
+    "model": "claude-sonnet-4-5-20250929",
+    "records": 20,
+    "dispositionsCorrect": 19,
+    "perfectOnEveryField": 19,
+    "avgSeconds": 14.9,
+    "minSeconds": 7.4,
+    "maxSeconds": 20.1,
+    "misses": [
+      "M-009"
+    ],
+    "note": "M-011 is a re-run of the same build: the sweep run drafted a request naming 2 of its 3 gaps."
+  },
+  "recordings": [
+    {
+      "merchant_id": "M-001",
+      "recordedAt": "2026-11-03T18:10:58.704Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 16.6,
+      "tokensIn": 9662,
+      "tokensOut": 738,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5719 Miscellaneous Home Furnishing Specialty Stores\nTop candidate: 5719 Miscellaneous Home Furnishing Specialty Stores — 14 listings\nRunner-up: 5712 Furniture, Home Furnishings and Equipment Stores — 0 listings\nCounted: total 14, top 14, runner-up 0, neither 0\nn1=14, n2=0, 2 * n2 = 0, n1 >= 2 * n2 is true, n1 >= 8 is true → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Handmade home textiles\nInferred: 5719 Miscellaneous Home Furnishing Specialty Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\nclear\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Handmade home textiles\"\nmerchants.csv — requested_mcc: \"5719\"\nstorefronts/M-001.json — \"Handwoven Wool Throw\"\nstorefronts/M-001.json — \"Linen Cushion Cover, Flax\"\nstorefronts/M-001.json — \"Striped Table Runner\"\nstorefronts/M-001.json — \"Quilted Cotton Coverlet\"\nstorefronts/M-001.json — pages.about\ncategory_reference.csv — 5719: \"Miscellaneous Home Furnishing Specialty Stores\"\n\nCatalog enumeration:\n\"Handwoven Wool Throw\" — 5719\n\"Waffle Cotton Blanket\" — 5719\n\"Linen Cushion Cover, Flax\" — 5719\n\"Linen Cushion Cover, Ochre\" — 5719\n\"Striped Table Runner\" — 5719\n\"Linen Napkin Set of Four\" — 5719\n\"Waffle Hand Towel\" — 5719\n\"Herringbone Tea Towel\" — 5719\n\"Wool Floor Cushion\" — 5719\n\"Linen Bread Bag\" — 5719\n\"Cotton Placemat Set of Four\" — 5719\n\"Mohair Lap Blanket\" — 5719\n\"Quilted Cotton Coverlet\" — 5719\n\"Linen Apron\" — 5719\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog is entirely household textiles — throws, cushion covers, table linens, towels and blankets — which matches both the stated business type and the requested MCC 5719. All 14 listings classify cleanly to the same category with no prohibited or elevated-risk items."
+    },
+    {
+      "merchant_id": "M-002",
+      "recordedAt": "2026-11-03T18:11:18.720Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 19.9,
+      "tokensIn": 10112,
+      "tokensOut": 1324,
+      "stopReason": "end_turn",
+      "text": "# DECISION REPORT — M-002\n\n[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5993 Cigar Stores and Stands\nTop candidate: 5993 Cigar Stores and Stands — 14 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 5 listings\nCounted: total 19, top 14, runner-up 5, neither 0\nn1=14, n2=5, 2 * n2 = 10, 14 >= 10 AND 14 >= 8 → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmismatch\nStated: Home goods retail\nInferred: 5993 Cigar Stores and Stands\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nviolation — Frostline Disposable Vape, Mint; Frostline Disposable Vape, Mango; Frostline Disposable Vape, Blue Razz; Nimbus Pod Kit Starter Bundle; Nimbus Replacement Pods, Pack of 3; Harbour Salts E-Liquid, Tobacco 20mg; Harbour Salts E-Liquid, Watermelon 10mg; Harbour Salts E-Liquid, Menthol 20mg; Driftwood Shortfill E-Liquid 100ml; Nicotine Shot 18mg, 10ml; Mesh Replacement Coils, Pack of 5; Nicotine Pouches, Mint 6mg; Nicotine Pouches, Citrus 4mg\n\n[FIELD 2 | ESCALATION REASON]\nout_of_policy\n\n[FIELD 1 | DISPOSITION]\nroute to further review\n\n[FIELD 9 | EVIDENCE CITATIONS]\nstorefronts/M-002.json — \"Frostline Disposable Vape, Mint\"\nstorefronts/M-002.json — \"Frostline Disposable Vape, Mango\"\nstorefronts/M-002.json — \"Frostline Disposable Vape, Blue Razz\"\nstorefronts/M-002.json — \"Nimbus Pod Kit Starter Bundle\"\nstorefronts/M-002.json — \"Nimbus Replacement Pods, Pack of 3\"\nstorefronts/M-002.json — \"Harbour Salts E-Liquid, Tobacco 20mg\"\nstorefronts/M-002.json — \"Harbour Salts E-Liquid, Watermelon 10mg\"\nstorefronts/M-002.json — \"Harbour Salts E-Liquid, Menthol 20mg\"\nstorefronts/M-002.json — \"Driftwood Shortfill E-Liquid 100ml\"\nstorefronts/M-002.json — \"Nicotine Shot 18mg, 10ml\"\nstorefronts/M-002.json — \"Mesh Replacement Coils, Pack of 5\"\nstorefronts/M-002.json — \"Vape Device Lanyard\"\nstorefronts/M-002.json — \"Nicotine Pouches, Mint 6mg\"\nstorefronts/M-002.json — \"Nicotine Pouches, Citrus 4mg\"\npolicies/prohibited_list.md — Section 1.1\nmerchants.csv — stated_business_type: \"Home goods retail\"\n\nCatalog enumeration:\n\"Frostline Disposable Vape, Mint\" — 5993\n\"Frostline Disposable Vape, Mango\" — 5993\n\"Frostline Disposable Vape, Blue Razz\" — 5993\n\"Nimbus Pod Kit Starter Bundle\" — 5993\n\"Nimbus Replacement Pods, Pack of 3\" — 5993\n\"Harbour Salts E-Liquid, Tobacco 20mg\" — 5993\n\"Harbour Salts E-Liquid, Watermelon 10mg\" — 5993\n\"Harbour Salts E-Liquid, Menthol 20mg\" — 5993\n\"Driftwood Shortfill E-Liquid 100ml\" — 5993\n\"Nicotine Shot 18mg, 10ml\" — 5993\n\"Mesh Replacement Coils, Pack of 5\" — 5993\n\"Vape Device Lanyard\" — 5993\n\"Nicotine Pouches, Mint 6mg\" — 5993\n\"Nicotine Pouches, Citrus 4mg\" — 5993\n\"Amber Glass Soy Candle\" — 5719\n\"Ribbed Ceramic Candle\" — 5719\n\"Taper Candle Pair\" — 5719\n\"Travel Tin Candle\" — 5719\n\"Wick Trimmer, Matte Black\" — 5719\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog predominantly sells vaping devices, e-liquid and nicotine delivery products, which are prohibited under Section 1.1 of the prohibited list. The stated business type describes home goods retail, but 14 of 19 listings are vaping and nicotine products."
+    },
+    {
+      "merchant_id": "M-003",
+      "recordedAt": "2026-11-03T18:11:34.786Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 16,
+      "tokensIn": 9795,
+      "tokensOut": 867,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5122 Drugs Drug Proprietaries and Druggists' Sundries\nTop candidate: 5122 Drugs Drug Proprietaries and Druggists' Sundries — 16 listings\nRunner-up: 5999 Miscellaneous and Specialty Retail Stores — 0 listings\nCounted: total 16, top 16, runner-up 0, neither 0\nn1=16, n2=0, 2 * n2 = 0, 16 >= 0 AND 16 >= 8 → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmismatch\nStated: General retail\nInferred: 5122 Drugs Drug Proprietaries and Druggists' Sundries\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\napply risk terms\n\n[FIELD 9 | EVIDENCE CITATIONS]\nstorefronts/M-003.json — \"Whey Protein Isolate, Vanilla 1kg\"\nstorefronts/M-003.json — \"Creatine Monohydrate 500g\"\nstorefronts/M-003.json — \"Daily Multivitamin, 90 Tablets\"\nstorefronts/M-003.json — \"Omega-3 Fish Oil, 180 Capsules\"\nstorefronts/M-003.json — \"Pre-Workout, Berry 300g\"\nmerchants.csv — stated_business_type field: \"General retail\"\npolicies/prohibited_list.md — Section 2.1\n\nCatalog enumeration:\n\"Whey Protein Isolate, Vanilla 1kg\" — 5122\n\"Whey Protein Isolate, Chocolate 1kg\" — 5122\n\"Plant Protein Blend, Unflavoured 900g\" — 5122\n\"Creatine Monohydrate 500g\" — 5122\n\"Daily Multivitamin, 90 Tablets\" — 5122\n\"Vitamin D3 4000IU, 120 Softgels\" — 5122\n\"Omega-3 Fish Oil, 180 Capsules\" — 5122\n\"Magnesium Glycinate, 120 Capsules\" — 5122\n\"Electrolyte Mix, Citrus 30 Sticks\" — 5122\n\"Greens Powder, 30 Servings\" — 5122\n\"Pre-Workout, Berry 300g\" — 5122\n\"BCAA Powder, Lemon 250g\" — 5122\n\"Collagen Peptides, Unflavoured 300g\" — 5122\n\"Zinc Picolinate, 90 Capsules\" — 5122\n\"Probiotic Complex, 60 Capsules\" — 5122\n\"Ashwagandha Extract, 90 Capsules\" — 5122\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog sells exclusively dietary supplements and is correctly classified as 5122, but the merchant stated \"General retail\" on their application. The entire catalog falls within Section 2.1 elevated-risk and requires risk terms for claim-substantiation and chargeback exposure. The miscategorisation is a pricing and monitoring error, not a business-practices failure."
+    },
+    {
+      "merchant_id": "M-004",
+      "recordedAt": "2026-11-03T18:11:53.760Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 18.9,
+      "tokensIn": 10034,
+      "tokensOut": 826,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5977 Cosmetic Stores\nTop candidate: 5977 Cosmetic Stores — 13 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 6 listings\nCounted: total 19, top 13, runner-up 6, neither 0\nn1=13, n2=6, 1.5 * n2 = 9, 13 >= 9 AND 13 >= 8 → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmismatch\nStated: Home décor and artisan candles\nInferred: 5977 Cosmetic Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\napply risk terms\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Home décor and artisan candles\"\nmerchants.csv — requested_mcc: \"5719\"\nstorefronts/M-004.json — \"Rosehip & Neroli Body Oil\"\nstorefronts/M-004.json — \"Overnight Facial Serum\"\nstorefronts/M-004.json — \"French Green Clay Mask\"\nstorefronts/M-004.json — \"Woodsmoke Soy Candle\"\nstorefronts/M-004.json — \"Speckled Ceramic Candle Holder\"\npolicies/review_criteria.md — Section 3.3\n\nCatalog enumeration:\n\"Rosehip & Neroli Body Oil\" — 5977\n\"Overnight Facial Serum\" — 5977\n\"French Green Clay Mask\" — 5977\n\"Mineral Bath Salts\" — 5977\n\"Shea & Oat Lotion Bar\" — 5977\n\"Beeswax Lip Balm\" — 5977\n\"Rosemary Hand Cream\" — 5977\n\"Coffee & Sea Salt Body Scrub\" — 5977\n\"Camellia Cleansing Balm\" — 5977\n\"Rose Water Face Mist\" — 5977\n\"Jojoba Cuticle Oil\" — 5977\n\"Bergamot Shampoo Bar\" — 5977\n\"Cedar Beard Oil\" — 5977\n\"Woodsmoke Soy Candle\" — 5719\n\"Speckled Ceramic Candle Holder\" — 5719\n\"Beeswax Taper Candle Set\" — 5719\n\"Linen Room Spray\" — 5719\n\"Brass Matchbox Cover\" — 5719\n\"Wick Trimmer\" — 5719\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog sells predominantly skincare and body-care products (facial serums, body oils, cleansers, scrubs, hand cream, lip balm), which fall under MCC 5977 Cosmetic Stores. The stated business type is home décor and artisan candles, which is a miscategorisation under review_criteria.md Section 3.3, requiring risk terms adjustment rather than escalation."
+    },
+    {
+      "merchant_id": "M-005",
+      "recordedAt": "2026-11-03T18:12:13.900Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 20.1,
+      "tokensIn": 9342,
+      "tokensOut": 1208,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5999 Miscellaneous and Specialty Retail Stores\nTop candidate: 5999 Miscellaneous and Specialty Retail Stores — 11 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 11, top 11, runner-up 0, neither 0\nn1=11, n2=0, 1.5 * n2 = 0, 11 is not less than 0; 2 * n2 = 0, 11 >= 0 AND 11 >= 8 → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmismatch\nStated: Home goods and accessories\nInferred: 5999 Miscellaneous and Specialty Retail Stores\nMisrepresentation: all eleven listings carry counterfeit signals — \"Inspired by\", \"Dupe\", \"replica\", \"AAA\", brand references (Maison Verreux, Castellane, Brancourt, Ilaria Fonte, Savoncourt, Verreux) without stated authorisation, and prices substantially below market rate for named luxury brands (bags at $145-$215 against authentic prices in the thousands)\n\n[FIELD 6 | POLICY SCREEN]\nviolation — all eleven listings violate Section 1.2: \"Quilted Chain Flap Bag — Inspired by Maison Verreux Classic\", \"Monogram Canvas Tote — Castellane Style\", \"Saffiano Tote — Brancourt Dupe\", \"Red Sole Pump, 100mm\", \"Interlocking Monogram Belt — Ilaria Fonte Inspired\", \"Bamboo Handle Top Handle Bag\", \"Tri-Fold Wallet in Checkerboard Coated Canvas\", \"Padlock Shoulder Bag — Savoncourt Style\", \"Chevron Card Holder\", \"Equestrian Chain Print Silk-Feel Scarf\", \"Woven Intrecciato-Style Pouch\"\n\n[FIELD 2 | ESCALATION REASON]\nout_of_policy\n\n[FIELD 1 | DISPOSITION]\nroute to further review\n\n[FIELD 9 | EVIDENCE CITATIONS]\nstorefronts/M-005.json — \"Quilted Chain Flap Bag — Inspired by Maison Verreux Classic\"\nstorefronts/M-005.json — \"Monogram Canvas Tote — Castellane Style\"\nstorefronts/M-005.json — \"Saffiano Tote — Brancourt Dupe\"\nstorefronts/M-005.json — \"Red Sole Pump, 100mm\"\nstorefronts/M-005.json — \"Interlocking Monogram Belt — Ilaria Fonte Inspired\"\nstorefronts/M-005.json — \"Bamboo Handle Top Handle Bag\"\nstorefronts/M-005.json — \"Tri-Fold Wallet in Checkerboard Coated Canvas\"\nstorefronts/M-005.json — \"Padlock Shoulder Bag — Savoncourt Style\"\nstorefronts/M-005.json — \"Chevron Card Holder\"\nstorefronts/M-005.json — \"Equestrian Chain Print Silk-Feel Scarf\"\nstorefronts/M-005.json — \"Woven Intrecciato-Style Pouch\"\npolicies/prohibited_list.md — Section 1.2\npolicies/review_criteria.md — Section 2.2\n\nCatalog enumeration:\n\"Quilted Chain Flap Bag — Inspired by Maison Verreux Classic\" — 5999\n\"Monogram Canvas Tote — Castellane Style\" — 5999\n\"Saffiano Tote — Brancourt Dupe\" — 5999\n\"Red Sole Pump, 100mm\" — 5999\n\"Interlocking Monogram Belt — Ilaria Fonte Inspired\" — 5999\n\"Bamboo Handle Top Handle Bag\" — 5999\n\"Tri-Fold Wallet in Checkerboard Coated Canvas\" — 5999\n\"Padlock Shoulder Bag — Savoncourt Style\" — 5999\n\"Chevron Card Holder\" — 5999\n\"Equestrian Chain Print Silk-Feel Scarf\" — 5999\n\"Woven Intrecciato-Style Pouch\" — 5999\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe entire catalog consists of counterfeit luxury goods carrying explicit replica language (\"Inspired by\", \"Dupe\", \"replica\", \"AAA\"), unauthorised brand references, and pricing far below authentic market rates, violating prohibited_list.md Section 1.2 and review_criteria.md Section 2.2."
+    },
+    {
+      "merchant_id": "M-006",
+      "recordedAt": "2026-11-03T18:12:27.726Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 13.7,
+      "tokensIn": 8342,
+      "tokensOut": 586,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\ninsufficient — listings carry placeholder titles and no descriptions; About and policy pages are unedited template text\n\n[FIELD 4 | INFERRED CATEGORY]\nn/a\n\n[FIELD 5 | CLAIM COMPARISON]\nn/a\n\n[FIELD 6 | POLICY SCREEN]\nn/a\n\n[FIELD 2 | ESCALATION REASON]\nmissing_data\n\n[FIELD 1 | DISPOSITION]\nrequest documentation\n\n[FIELD 9 | EVIDENCE CITATIONS]\nstorefronts/M-006.json — all five product listings carry placeholder titles (\"Item\", \"Product 2\", \"New Item\", \"Item 4\", \"Untitled\") with no descriptions and no prices\nstorefronts/M-006.json — pages.about — \"Welcome to our store. Add your about page content here.\"\nstorefronts/M-006.json — pages.refund_policy — \"[MERCHANT NAME] accepts returns within [X] days of delivery.\"\nstorefronts/M-006.json — pages.shipping_policy — template text with no specific terms\npolicies/review_criteria.md — Section 2.1, Section 2.4, Section 3.1\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nWe need additional information to continue reviewing your application for Nine Pines Trading.\n\nYour storefront currently contains placeholder content that prevents us from determining what your business sells. Before we can proceed, please provide:\n\n1. Complete product listings with specific titles, written descriptions, and prices for the items you intend to sell. The current listings are titled \"Item\", \"Product 2\", \"New Item\", \"Item 4\", and \"Untitled\" with no descriptions.\n\n2. A written About page describing your business, what you sell, and any relevant background. The current page contains only template text.\n\n3. A complete refund policy with specific timeframes and conditions. The current policy contains unfilled placeholders (\"[MERCHANT NAME]\", \"[X] days\").\n\n4. A complete shipping policy with specific rates, delivery timeframes, and any relevant shipping limitations.\n\nPlease update your storefront with this information so we can assess your application. If you sell specialty retail goods as stated in your application, the listings should describe those specific products in enough detail for customers to make informed purchasing decisions.\n\n[WHY]\nThe storefront fails sufficiency under review_criteria.md Section 3.1: all five listings are placeholders with no substance, and all policy pages are unedited template text, preventing determination of what the business sells."
+    },
+    {
+      "merchant_id": "M-007",
+      "recordedAt": "2026-11-03T18:12:40.260Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 12.4,
+      "tokensIn": 8816,
+      "tokensOut": 649,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5995 Pet Shops, Pet Food and Supplies\nTop candidate: 5995 Pet Shops, Pet Food and Supplies — 6 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 6, top 6, runner-up 0, neither 0\nn1=6, n2=0, 2 * n2 = 0, n1 >= 8 is false → medium\nConfidence: medium\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Pet supplies\nInferred: 5995 Pet Shops, Pet Food and Supplies\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\nclear\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Pet supplies\"\nmerchants.csv — projected_monthly_volume: \"19000\"\nmerchants.csv — processing_history: \"7 months, 0.2% dispute rate\"\nstorefronts/M-007.json — \"Waxed Canvas Dog Lead\"\nstorefronts/M-007.json — \"Brass-Buckle Collar\"\nstorefronts/M-007.json — \"Packable Travel Bowl\"\nstorefronts/M-007.json — \"Oatmeal Dog Shampoo\"\nstorefronts/M-007.json — \"Cotton Rope Tug Toy\"\nstorefronts/M-007.json — \"Felted Wool Cat Mat\"\nstorefronts/M-007.json — pages/about\nstorefronts/M-007.json — pages/refund_policy\n\nCatalog enumeration:\n\"Waxed Canvas Dog Lead\" — 5995\n\"Brass-Buckle Collar\" — 5995\n\"Packable Travel Bowl\" — 5995\n\"Oatmeal Dog Shampoo\" — 5995\n\"Cotton Rope Tug Toy\" — 5995\n\"Felted Wool Cat Mat\" — 5995\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog sells dog leads, collars, grooming supplies, toys and cat bedding, all within 5995 Pet Shops, Pet Food and Supplies, matching the stated business type. No prohibited items, no misrepresentation signals, sufficient processing history, and plausible volume for the catalog scale."
+    },
+    {
+      "merchant_id": "M-008",
+      "recordedAt": "2026-11-03T18:12:51.797Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 11.4,
+      "tokensIn": 8150,
+      "tokensOut": 445,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\ninsufficient — the storefront carries 0 listings, so there is nothing to classify\n\n[FIELD 4 | INFERRED CATEGORY]\nn/a\n\n[FIELD 5 | CLAIM COMPARISON]\nn/a\n\n[FIELD 6 | POLICY SCREEN]\nn/a\n\n[FIELD 2 | ESCALATION REASON]\nmissing_data\n\n[FIELD 1 | DISPOSITION]\nrequest documentation\n\n[FIELD 9 | EVIDENCE CITATIONS]\nstorefronts/M-008.json — products array is empty\nstorefronts/M-008.json — pages.about is empty string\nstorefronts/M-008.json — pages.refund_policy is empty string\nstorefronts/M-008.json — pages.shipping_policy is empty string\nmerchants.csv — M-008, all required fields present and internally consistent\npolicies/review_criteria.md — Section 3.1\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nWe need a populated storefront before we can proceed with your application review. Your account currently shows no product listings and no storefront pages.\n\nPlease provide the following:\n\n1. A complete product catalog with descriptions for each item you intend to sell. Each listing should include the product name, a detailed description, and the price.\n\n2. An About page that describes your business, its history, and what you sell.\n\n3. A refund policy that specifies your return windows, conditions for returns, and the refund process.\n\n4. A shipping policy that states your shipping methods, estimated delivery times, and any geographical restrictions.\n\nOnce we receive this information we can complete the review of your application.\n\n[WHY]\nThe storefront contains zero listings and all policy pages are empty. The deterministic sufficiency layer failed this file before classification could begin. I applied review criteria Section 3.1 and requested the missing storefront content."
+    },
+    {
+      "merchant_id": "M-009",
+      "recordedAt": "2026-11-03T18:13:07.517Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 15.6,
+      "tokensIn": 9521,
+      "tokensOut": 741,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5941 Sporting Goods Stores\nTop candidate: 5941 Sporting Goods Stores — 9 listings\nRunner-up: 5655 Sports and Riding Apparel Stores — 6 listings\nCounted: total 15, top 9, runner-up 6, neither 0\nn1=9, n2=6, 1.5 * n2 = 9, 9 is not < 9, and 2 * n2 = 12, 9 < 12, so not high; n1 < 8 is false → medium\nConfidence: medium\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Sporting goods and apparel\nInferred: 5941 Sporting Goods Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\nclear\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Sporting goods and apparel\"\nmerchants.csv — requested_mcc: \"5941\"\nstorefronts/M-009.json — \"Graphite Tennis Racket, 300g\"\nstorefronts/M-009.json — \"Match Football, Size 5\"\nstorefronts/M-009.json — \"Aluminium Baseball Bat, 32in\"\nstorefronts/M-009.json — \"Club Training Jersey, Navy\"\nstorefronts/M-009.json — pages.refund_policy\n\nCatalog enumeration:\n\"Graphite Tennis Racket, 300g\" — 5941\n\"Match Football, Size 5\" — 5941\n\"Training Cones, Set of 20\" — 5941\n\"Speed Ladder, 6m\" — 5941\n\"Shin Guards with Ankle Sleeve\" — 5941\n\"Aluminium Baseball Bat, 32in\" — 5941\n\"Resistance Band Set\" — 5941\n\"Goalkeeper Gloves, Latex Palm\" — 5941\n\"Club Training Jersey, Navy\" — 5655\n\"Club Training Jersey, Red\" — 5655\n\"Match Shorts with Inner Brief\" — 5655\n\"Compression Base Layer, Long Sleeve\" — 5655\n\"Compression Shorts\" — 5655\n\"Quarter-Zip Training Top\" — 5655\n\"Crew Sports Socks, Three Pack\" — 5655\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog is predominantly sporting equipment (9 of 15 listings) rather than apparel, matching both the stated business type and the requested 5941 classification. No prohibited items, no misrepresentation signals, substantive policies present. Applied policies/review_criteria.md Section 3.3 and policies/prohibited_list.md Sections 1 and 2."
+    },
+    {
+      "merchant_id": "M-010",
+      "recordedAt": "2026-11-03T18:13:16.003Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 8.4,
+      "tokensIn": 9344,
+      "tokensOut": 257,
+      "stopReason": "end_turn",
+      "text": "[FIELD 1 | DISPOSITION]\nrefuse — route to compliance\n\n[FIELD 2 | ESCALATION REASON]\nREFUSED — high_stakes — terminated-merchant-file screening is a compliance function outside my authority\n\n[FIELD 3 | SUFFICIENCY]\nn/a\n\n[FIELD 4 | INFERRED CATEGORY]\nn/a\n\n[FIELD 5 | CLAIM COMPARISON]\nn/a\n\n[FIELD 6 | POLICY SCREEN]\nn/a\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — tmf_screen field\nmerchants.csv — notes field, \"Terminated merchant file listing returned on principal. Reason code 04 (excessive chargebacks), recorded by a prior acquirer 2025.\"\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe tmf_screen field returns \"hit — MATCH\" on the principal. This is a hard-stop signal that routes to the compliance reviewer under the order-of-operations rules. I produce no verdicts on files I must refuse."
+    },
+    {
+      "merchant_id": "M-011",
+      "recordedAt": "2026-11-03T18:23:14.509Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 20.7,
+      "tokensIn": 9264,
+      "tokensOut": 904,
+      "stopReason": "end_turn",
+      "text": "# DECISION REPORT — M-011\n\n[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5499 Miscellaneous Food Stores\nTop candidate: 5499 Miscellaneous Food Stores — 10 listings\nRunner-up: 5947 Gift, Card, Novelty and Souvenir Shops — 0 listings\nCounted: total 10, top 10, runner-up 0, neither 0\nn1=10, n2=0, 1.5 * n2 = 0, 10 >= 0 → not low; n1 >= 2 * n2 AND n1 >= 8 → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Specialty food\nInferred: 5499 Miscellaneous Food Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nmissing_data\n\n[FIELD 1 | DISPOSITION]\nrequest documentation\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — bank_account_name \"K.P. Holdings Ltd.\" vs registration_name \"Kestrel Provisions Inc.\"\nmerchants.csv — tax_id_status \"pending\"\nmerchants.csv — projected_monthly_volume \"185000\" vs catalog scale\nstorefronts/M-011.json — catalog average ticket computed at $12.60\npolicies/review_criteria.md — Section 1.2\npolicies/review_criteria.md — Section 4.1\n\nCatalog enumeration:\n\"Smoked Chilli Hot Sauce, 250ml\" — 5499\n\"Habanero & Mango Hot Sauce, 250ml\" — 5499\n\"Seville Orange Marmalade, 340g\" — 5499\n\"Blackcurrant Preserve, 340g\" — 5499\n\"Wild Garlic Pesto, 190g\" — 5499\n\"Pickled Walnuts, 400g\" — 5499\n\"Fennel & Sea Salt Crackers, 150g\" — 5499\n\"Aged Balsamic Vinegar, 100ml\" — 5499\n\"Cold Pressed Rapeseed Oil, 500ml\" — 5499\n\"Salted Caramel Sauce, 220g\" — 5499\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nWe need the following items to continue processing your application:\n\n1. Tax identification documentation. Your tax ID status is listed as pending. Please provide your EIN confirmation letter or equivalent official documentation.\n\n2. Bank account ownership documentation. Your bank account is registered to \"K.P. Holdings Ltd.\" while your business is registered as \"Kestrel Provisions Inc.\" Please provide documentation explaining this structure — for example, a certificate showing K.P. Holdings Ltd. as the parent entity, or bank statements confirming that K.P. Holdings Ltd. is an authorized banking name for Kestrel Provisions Inc.\n\n3. Volume substantiation. Your projected monthly volume of $185,000 against an average ticket of $47 implies approximately 3,936 transactions per month from a 10-item catalog with no processing history. Please provide supporting documentation for this projection — for example, purchase orders from wholesale accounts, commitments from distribution partners, or sales records from another channel that demonstrate this volume is achievable.\n\nPlease send these documents at your earliest convenience. We will continue your review once they are received.\n\n[WHY]\nThe catalog classification is clear and matches the stated business, but three record gaps require documentation before a decision can be made: the bank account name differs from the registration name, the tax ID is pending, and the projected volume appears high against the catalog scale and absence of processing history."
+    },
+    {
+      "merchant_id": "M-012",
+      "recordedAt": "2026-11-03T18:13:47.811Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 12.7,
+      "tokensIn": 9029,
+      "tokensOut": 635,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5712 Furniture, Home Furnishings and Equipment Stores\nTop candidate: 5712 Furniture, Home Furnishings and Equipment Stores — 8 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 8, top 8, runner-up 0, neither 0\nn1=8, n2=0, 2 * n2 = 0, 8 >= 0 AND 8 >= 8 → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Custom furniture, made to order\nInferred: 5712 Furniture, Home Furnishings and Equipment Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\napply risk terms\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Custom furniture, made to order\"\nmerchants.csv — projected_monthly_volume: \"112000\"\nmerchants.csv — average_ticket: \"1450\"\nstorefronts/M-012.json — \"Commissioned Oak Dining Table\"\nstorefronts/M-012.json — \"Walnut Sideboard, Three Bay\"\nstorefronts/M-012.json — shipping_policy: \"Current lead time is 10-14 weeks from deposit to delivery\"\npolicies/prohibited_list.md — Section 2.2\npolicies/prohibited_list.md — Section 2.4\n\nCatalog enumeration:\n\"Commissioned Oak Dining Table\" — 5712\n\"Walnut Sideboard, Three Bay\" — 5712\n\"Ash Spindle Back Chair\" — 5712\n\"Oak Bed Frame, King\" — 5712\n\"Cherry Writing Desk\" — 5712\n\"Built-In Alcove Bookcase\" — 5712\n\"Elm Coffee Table\" — 5712\n\"Oak Kitchen Island\" — 5712\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThis catalog is entirely made-to-order furniture with a disclosed 10-14 week lead time and an average ticket of $1450. Both factors fall under elevated-risk categories in Section 2 of the prohibited list: Section 2.2 covers extended fulfilment windows, and Section 2.4 covers high-ticket items. Risk terms apply."
+    },
+    {
+      "merchant_id": "M-013",
+      "recordedAt": "2026-11-03T18:14:03.272Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 15.4,
+      "tokensIn": 9284,
+      "tokensOut": 812,
+      "stopReason": "end_turn",
+      "text": "# DECISION REPORT — M-013\n\n[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5499 Miscellaneous Food Stores\nTop candidate: 5499 Miscellaneous Food Stores — 6 listings\nRunner-up: 5947 Gift, Card, Novelty and Souvenir Shops — 4 listings\nCounted: total 10, top 6, runner-up 4, neither 0\nn1=6, n2=4, 1.5 * n2 = 6, 6 is not less than 6 → not low; 2 * n2 = 8, 6 < 8 → medium\nConfidence: medium\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Coffee roastery\nInferred: 5499 Miscellaneous Food Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\nclear\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Coffee roastery\"\nmerchants.csv — requested_mcc: \"5499\"\nstorefronts/M-013.json — \"Ethiopia Guji, Washed 250g\"\nstorefronts/M-013.json — \"Colombia Huila, Washed 250g\"\nstorefronts/M-013.json — \"Brazil Cerrado, Natural 250g\"\nstorefronts/M-013.json — \"Kenya Nyeri, Washed 250g\"\nstorefronts/M-013.json — \"House Espresso Blend 500g\"\nstorefronts/M-013.json — \"Decaf Colombia, Sugarcane Process 250g\"\nstorefronts/M-013.json — pages.about\nstorefronts/M-013.json — pages.refund_policy\nstorefronts/M-013.json — pages.subscription_terms\ncategory_reference.csv — 5499 definition\npolicies/prohibited_list.md — Section 2.3\n\nCatalog enumeration:\n\"Ethiopia Guji, Washed 250g\" — 5499\n\"Colombia Huila, Washed 250g\" — 5499\n\"Brazil Cerrado, Natural 250g\" — 5499\n\"Kenya Nyeri, Washed 250g\" — 5499\n\"House Espresso Blend 500g\" — 5499\n\"Decaf Colombia, Sugarcane Process 250g\" — 5499\n\"Filter Papers, 100 Pack\" — 5947\n\"Stainless Pour Over Kettle, 1L\" — 5947\n\"Ceramic Cone Brewer, Size 02\" — 5947\n\"Coffee Storage Tin, 500g\" — 5947\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog predominantly sells roasted coffee (6 of 10 listings), with brewing accessories as a supporting minority, matching both the stated business type and the requested MCC 5499. The subscription offering noted in the storefront pages is a billing mechanic rather than a restricted category of goods and does not move this merchant off clear."
+    },
+    {
+      "merchant_id": "M-014",
+      "recordedAt": "2026-11-03T18:14:19.860Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 16.5,
+      "tokensIn": 9333,
+      "tokensOut": 930,
+      "stopReason": "end_turn",
+      "text": "# MerchantLens Decision Report — M-014\n\n[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5995 Pet Shops, Pet Food and Supplies\nTop candidate: 5995 Pet Shops, Pet Food and Supplies — 11 listings\nRunner-up: 5977 Cosmetic Stores — 0 listings\nCounted: total 11, top 11, runner-up 0, neither 0\nn1=11, n2=0, 2 * n2 = 0, n1 >= 2 * n2 is true AND n1 >= 8 is true → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Pet supplies\nInferred: 5995 Pet Shops, Pet Food and Supplies\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\nclear\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Pet supplies\"\nmerchants.csv — stated_description: \"Pet food, accessories and grooming products for dogs and cats\"\nstorefronts/M-014.json — \"Grain Free Dog Food, Salmon 12kg\"\nstorefronts/M-014.json — \"Senior Dog Food, Chicken 12kg\"\nstorefronts/M-014.json — \"Cat Food, Ocean Fish 4kg\"\nstorefronts/M-014.json — \"Dental Chews, Pack of 28\"\nstorefronts/M-014.json — \"Freeze Dried Liver Treats, 100g\"\nstorefronts/M-014.json — \"Padded Harness, Reflective\"\nstorefronts/M-014.json — \"Memory Foam Dog Bed, Large\"\nstorefronts/M-014.json — \"Ceramic Slow Feeder Bowl\"\nstorefronts/M-014.json — \"Oatmeal Pet Shampoo, 500ml\"\nstorefronts/M-014.json — \"Slicker Brush\"\nstorefronts/M-014.json — \"Cat Scratching Post, 80cm\"\nstorefronts/M-014.json — pages/about\nstorefronts/M-014.json — pages/refund_policy\ncategory_reference.csv — 5995 Pet Shops, Pet Food and Supplies\npolicies/prohibited_list.md — Section 2.3 (subscription option noted, not determinative)\n\nCatalog enumeration:\n\"Grain Free Dog Food, Salmon 12kg\" — 5995\n\"Senior Dog Food, Chicken 12kg\" — 5995\n\"Cat Food, Ocean Fish 4kg\" — 5995\n\"Dental Chews, Pack of 28\" — 5995\n\"Freeze Dried Liver Treats, 100g\" — 5995\n\"Padded Harness, Reflective\" — 5995\n\"Memory Foam Dog Bed, Large\" — 5995\n\"Ceramic Slow Feeder Bowl\" — 5995\n\"Oatmeal Pet Shampoo, 500ml\" — 5995\n\"Slicker Brush\" — 5995\n\"Cat Scratching Post, 80cm\" — 5995\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog sells exclusively pet food, accessories and grooming products across all eleven listings, matching the stated business type with high confidence and no policy violations. The merchant offers a subscription option for repeat food deliveries, which is noted under Section 2.3 as a billing mechanic but does not move the file off clear in the absence of other risk factors."
+    },
+    {
+      "merchant_id": "M-015",
+      "recordedAt": "2026-11-03T18:14:34.254Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 14.3,
+      "tokensIn": 9175,
+      "tokensOut": 743,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5942 Book Stores\nTop candidate: 5942 Book Stores — 8 listings\nRunner-up: 5947 Gift, Card, Novelty and Souvenir Shops — 2 listings\nCounted: total 10, top 8, runner-up 2, neither 0\nn1=8, n2=2, 2 * n2 = 4, 8 >= 4 AND 8 >= 8 → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Independent bookshop\nInferred: 5942 Book Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\nclear\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Independent bookshop\"\nmerchants.csv — stated_description: \"Independent bookshop selling new fiction, non-fiction and poetry.\"\nmerchants.csv — requested_mcc: \"5942\"\nstorefronts/M-015.json — \"The Salt Orchard — Hardback Fiction\"\nstorefronts/M-015.json — \"Winter Ledger — Paperback Fiction\"\nstorefronts/M-015.json — \"Notes from the Estuary — Nature Writing\"\nstorefronts/M-015.json — \"The Cartographers' War — History\"\nstorefronts/M-015.json — \"Small Hours — Poetry Collection\"\nstorefronts/M-015.json — \"Collected Poems of the Northern School\"\nstorefronts/M-015.json — \"The Long Kitchen — Cookery\"\nstorefronts/M-015.json — \"Foxglove Staff Picks Bundle\"\nstorefronts/M-015.json — pages.about\nstorefronts/M-015.json — pages.refund_policy\ncategory_reference.csv — 5942 Book Stores\n\nCatalog enumeration:\n\"The Salt Orchard — Hardback Fiction\" — 5942\n\"Winter Ledger — Paperback Fiction\" — 5942\n\"Notes from the Estuary — Nature Writing\" — 5942\n\"The Cartographers' War — History\" — 5942\n\"Small Hours — Poetry Collection\" — 5942\n\"Collected Poems of the Northern School\" — 5942\n\"The Long Kitchen — Cookery\" — 5942\n\"Foxglove Staff Picks Bundle\" — 5942\n\"Linen Bookmark, Set of Three\" — 5947\n\"Foxglove Canvas Book Bag\" — 5947\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog contains eight book titles across fiction, non-fiction, poetry and cookery, plus two book-adjacent accessories. The stated business type matches the inferred category. No prohibited items present."
+    },
+    {
+      "merchant_id": "M-016",
+      "recordedAt": "2026-11-03T18:14:48.658Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 14.3,
+      "tokensIn": 9195,
+      "tokensOut": 841,
+      "stopReason": "end_turn",
+      "text": "# MerchantLens Decision Report — M-016\n\n[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5945 Hobby, Toy and Game Shops\nTop candidate: 5945 Hobby, Toy and Game Shops — 10 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 10, top 10, runner-up 0, neither 0\nn1=10, n2=0, 2 * n2 = 0, n1 >= 2 * n2 is true AND n1=10 >= 8 is true → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Wooden toys\nInferred: 5945 Hobby, Toy and Game Shops\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\nclear\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Wooden toys\"\nmerchants.csv — requested_mcc: \"5945\"\nstorefronts/M-016.json — \"Beech Stacking Rings\"\nstorefronts/M-016.json — \"Maple Pull-Along Duck\"\nstorefronts/M-016.json — \"Wooden Shape Sorter Cube\"\nstorefronts/M-016.json — \"Farmyard Animal Set, Twelve Pieces\"\nstorefronts/M-016.json — \"Wooden Train Set, Twenty Pieces\"\nstorefronts/M-016.json — \"Balance Board, Curved\"\nstorefronts/M-016.json — \"Play Kitchen Utensil Set\"\nstorefronts/M-016.json — \"Alphabet Puzzle Board\"\nstorefronts/M-016.json — \"Wooden Building Blocks, Fifty Pieces\"\nstorefronts/M-016.json — \"Doll's House Furniture Set\"\nstorefronts/M-016.json — pages/about\nstorefronts/M-016.json — pages/refund_policy\npolicies/prohibited_list.md — Section 1 (no violations found)\npolicies/prohibited_list.md — Section 2 (no elevated-risk goods found)\n\nCatalog enumeration:\n\"Beech Stacking Rings\" — 5945\n\"Maple Pull-Along Duck\" — 5945\n\"Wooden Shape Sorter Cube\" — 5945\n\"Farmyard Animal Set, Twelve Pieces\" — 5945\n\"Wooden Train Set, Twenty Pieces\" — 5945\n\"Balance Board, Curved\" — 5945\n\"Play Kitchen Utensil Set\" — 5945\n\"Alphabet Puzzle Board\" — 5945\n\"Wooden Building Blocks, Fifty Pieces\" — 5945\n\"Doll's House Furniture Set\" — 5945\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog contains ten wooden toys for children, all clearly described and all falling within MCC 5945 Hobby, Toy and Game Shops, matching the stated business type. No prohibited or elevated-risk goods are present. Processing history and projected volume are consistent with the catalog scale. No escalation triggers fired."
+    },
+    {
+      "merchant_id": "M-017",
+      "recordedAt": "2026-11-03T18:15:02.199Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 13.4,
+      "tokensIn": 9371,
+      "tokensOut": 595,
+      "stopReason": "end_turn",
+      "text": "# Decision Report — M-017\n\n[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5941 Sporting Goods Stores\nTop candidate: 5941 Sporting Goods Stores — 13 listings\nRunner-up: 5655 Sports and Riding Apparel Stores — 0 listings\nCounted: total 13, top 13, runner-up 0, neither 0\nn1=13, n2=0, 2 * n2 = 0, 13 >= 0 AND 13 >= 8 → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Sporting goods\nInferred: 5941 Sporting Goods Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nhigh_stakes\n\n[FIELD 1 | DISPOSITION]\nroute to further review\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — projected_monthly_volume: \"310000\"\nmerchants.csv — processing_history: \"none\"\npolicies/review_criteria.md — Section 4.4\nrisk_scores.csv — triggering_signals: \"projected monthly volume above high-stakes threshold; no processing history\"\n\nCatalog enumeration:\n\"Competition Shot Put, 4kg\" — 5941\n\"Vaulting Box, Five Section\" — 5941\n\"Gym Mat, 2m x 1m\" — 5941\n\"Netball Post Set, Adjustable\" — 5941\n\"Basketball, Size 7 Indoor\" — 5941\n\"Hockey Stick, 36in Composite\" — 5941\n\"Cricket Bat, Size Harrow\" — 5941\n\"Rugby Training Tackle Bag\" — 5941\n\"Badminton Net and Post Set\" — 5941\n\"Stopwatch, Sixty Lap Memory\" — 5941\n\"Ball Storage Cage on Castors\" — 5941\n\"Team Bibs, Set of Fifteen\" — 5941\n\"Hurdles, Adjustable Set of Six\" — 5941\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nProjected monthly volume of $310,000 with no processing history triggers mandatory human review under review_criteria.md Section 4.4, regardless of all other factors being clean."
+    },
+    {
+      "merchant_id": "M-018",
+      "recordedAt": "2026-11-03T18:15:09.719Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 7.4,
+      "tokensIn": 9272,
+      "tokensOut": 250,
+      "stopReason": "end_turn",
+      "text": "# MERCHANT DECISION REPORT — M-018\n\n[FIELD 1 | DISPOSITION]\nrefuse — route to compliance\n\n[FIELD 2 | ESCALATION REASON]\nREFUSED — legal_exposure — litigation references disclosed in the application notes are a compliance function outside my authority\n\n[FIELD 3 | SUFFICIENCY]\nn/a\n\n[FIELD 4 | INFERRED CATEGORY]\nn/a\n\n[FIELD 5 | CLAIM COMPARISON]\nn/a\n\n[FIELD 6 | POLICY SCREEN]\nn/a\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — notes field: \"Applicant disclosed active civil litigation: supplier contract dispute, case reference SC-2026-0418, filed March 2026.\"\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe application notes disclose active civil litigation with a case reference. Legal exposure determinations are a compliance function and outside my authority to adjudicate. This file is routed to the compliance reviewer without further assessment."
+    },
+    {
+      "merchant_id": "M-019",
+      "recordedAt": "2026-11-03T18:15:24.378Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 14.6,
+      "tokensIn": 9470,
+      "tokensOut": 821,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5712 Furniture, Home Furnishings and Equipment Stores\nTop candidate: 5712 Furniture, Home Furnishings and Equipment Stores — 7 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 5 listings\nCounted: total 12, top 7, runner-up 5, neither 0\nn1=7, n2=5, 1.5 * n2 = 7.5, 7 < 7.5 → low\nConfidence: low\n\n[FIELD 5 | CLAIM COMPARISON]\nmatch\nStated: Home furnishings and small furniture\nInferred: 5712 Furniture, Home Furnishings and Equipment Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nlow_confidence\n\n[FIELD 1 | DISPOSITION]\nroute to further review\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type: \"Home furnishings and small furniture\"\nmerchants.csv — requested_mcc: \"5719\"\nstorefronts/M-019.json — \"Oak Side Table\"\nstorefronts/M-019.json — \"Ash Bar Stool, 65cm\"\nstorefronts/M-019.json — \"Wall-Mounted Shelf Unit\"\nstorefronts/M-019.json — \"Nesting Coffee Tables, Pair\"\nstorefronts/M-019.json — \"Slim Hallway Console\"\nstorefronts/M-019.json — \"Upholstered Bench Seat\"\nstorefronts/M-019.json — \"Bedside Cabinet, Single Drawer\"\nstorefronts/M-019.json — \"Linen Cushion Cover, 45cm\"\nstorefronts/M-019.json — \"Lambswool Throw\"\nstorefronts/M-019.json — \"Round Wall Mirror, 50cm\"\nstorefronts/M-019.json — \"Stoneware Vase, Tall\"\nstorefronts/M-019.json — \"Dinner Candle Set, Six\"\n\nCatalog enumeration:\n\"Oak Side Table\" — 5712\n\"Ash Bar Stool, 65cm\" — 5712\n\"Wall-Mounted Shelf Unit\" — 5712\n\"Nesting Coffee Tables, Pair\" — 5712\n\"Slim Hallway Console\" — 5712\n\"Upholstered Bench Seat\" — 5712\n\"Bedside Cabinet, Single Drawer\" — 5712\n\"Linen Cushion Cover, 45cm\" — 5719\n\"Lambswool Throw\" — 5719\n\"Round Wall Mirror, 50cm\" — 5719\n\"Stoneware Vase, Tall\" — 5719\n\"Dinner Candle Set, Six\" — 5719\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog is split 7:5 between furniture (5712) and soft furnishings and homeware (5719), producing a narrow margin that triggers low_confidence and forces escalation to further review."
+    },
+    {
+      "merchant_id": "M-020",
+      "recordedAt": "2026-11-03T18:15:42.189Z",
+      "model": "claude-sonnet-4-5-20250929",
+      "seconds": 17.7,
+      "tokensIn": 9841,
+      "tokensOut": 749,
+      "stopReason": "end_turn",
+      "text": "[FIELD 3 | SUFFICIENCY]\npass\n\n[FIELD 4 | INFERRED CATEGORY]\n5641 Children's and Infants' Wear Stores\nTop candidate: 5641 Children's and Infants' Wear Stores — 11 listings\nRunner-up: 5945 Hobby, Toy and Game Shops — 5 listings\nCounted: total 16, top 11, runner-up 5, neither 0\nn1=11, n2=5, 2 * n2 = 10, 11 >= 10 AND 11 >= 8 → high\nConfidence: high\n\n[FIELD 5 | CLAIM COMPARISON]\nmismatch\nStated: Children's toys and games\nInferred: 5641 Children's and Infants' Wear Stores\nMisrepresentation: none\n\n[FIELD 6 | POLICY SCREEN]\nclear\n\n[FIELD 2 | ESCALATION REASON]\nnone\n\n[FIELD 1 | DISPOSITION]\napply risk terms\n\n[FIELD 9 | EVIDENCE CITATIONS]\nmerchants.csv — stated_business_type field: \"Children's toys and games\"\nstorefronts/M-020.json — \"Cotton Dungarees, 12 to 18 months\"\nstorefronts/M-020.json — \"Muslin Sleepsuit, Pack of Two\"\nstorefronts/M-020.json — \"Knitted Lambswool Cardigan\"\nstorefronts/M-020.json — pages.about field\npolicies/review_criteria.md — Section 3.3\n\nCatalog enumeration:\n\"Cotton Dungarees, 12 to 18 months\" — 5641\n\"Muslin Sleepsuit, Pack of Two\" — 5641\n\"Knitted Lambswool Cardigan\" — 5641\n\"Brimmed Sun Hat, 1 to 2 years\" — 5641\n\"Quilted Pram Suit\" — 5641\n\"Bib Set, Four Pack\" — 5641\n\"Ribbed Socks, Three Pack\" — 5641\n\"Striped Long-Sleeve T-Shirt\" — 5641\n\"Jersey Leggings, Pair\" — 5641\n\"Packable Rain Mac\" — 5641\n\"Slipper Socks, Non-Slip\" — 5641\n\"Fabric Activity Cube\" — 5945\n\"Wooden Rattle, Beech\" — 5945\n\"Soft Cotton Play Ball\" — 5945\n\"Nesting Stacking Cups\" — 5945\n\"Plush Bunny Rattle\" — 5945\n\n[FIELD 10 | DOCUMENTATION REQUEST]\nn/a\n\n[WHY]\nThe catalog consists predominantly of children's clothing and infant wear (11 of 16 listings), not toys and games as stated. This mismatch triggers ladder rule 5: the business is real and sellable but miscategorised for pricing and monitoring purposes, which is a risk-terms issue rather than a decline matter."
+    }
+  ]
+};
+const DEMO_RECORDINGS = DEMO_FILE.recordings;
+const DEMO_SWEEP = DEMO_FILE.sweep || null;   /* the live sweep the recordings came from */
+const DEMO_BOARD = {
+  "product": "MerchantLens",
+  "kind": "demo-board",
+  "sweep": {
+    "source": "Full 20-merchant sweep, exported 2026-08-06, then graded by the analyst",
+    "model": "claude-sonnet-4-5",
+    "records": 20,
+    "dispositionsCorrect": 20,
+    "perfectOnEveryField": 19,
+    "avgSeconds": 17.3,
+    "minSeconds": 7.5,
+    "maxSeconds": 24.5,
+    "pass": 17,
+    "needsWork": 3,
+    "fail": 0,
+    "auto": {
+      "M-001": [
+        6,
+        6
+      ],
+      "M-002": [
+        6,
+        6
+      ],
+      "M-003": [
+        6,
+        6
+      ],
+      "M-004": [
+        6,
+        6
+      ],
+      "M-005": [
+        6,
+        6
+      ],
+      "M-006": [
+        6,
+        6
+      ],
+      "M-007": [
+        6,
+        6
+      ],
+      "M-008": [
+        6,
+        6
+      ],
+      "M-009": [
+        6,
+        6
+      ],
+      "M-010": [
+        6,
+        6
+      ],
+      "M-011": [
+        6,
+        6
+      ],
+      "M-012": [
+        6,
+        6
+      ],
+      "M-013": [
+        6,
+        6
+      ],
+      "M-014": [
+        6,
+        6
+      ],
+      "M-015": [
+        6,
+        6
+      ],
+      "M-016": [
+        6,
+        6
+      ],
+      "M-017": [
+        6,
+        6
+      ],
+      "M-018": [
+        6,
+        6
+      ],
+      "M-019": [
+        5,
+        6
+      ],
+      "M-020": [
+        6,
+        6
+      ]
+    }
+  },
+  "store": {
+    "results": {
+      "M-001": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5719",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5719 Miscellaneous Home Furnishing Specialty Stores\nTop candidate: 5719 Miscellaneous Home Furnishing Specialty Stores — 14 listings\nRunner-up: 5712 Furniture, Home Furnishings and Equipment Stores — 0 listings\nCounted: total 14, top 14, runner-up 0, neither 0\nn1=14, n2=0, 1.5 * n2 = 0, 14 is not < 0, and n1 >= 8 AND n1 >= 2 * n2 → high\nConfidence: high",
+        "why": "The catalog is exclusively household textiles — throws, cushion covers, table linens, towels and aprons — matching both the stated business type and the requested MCC 5719. No prohibited items, no misrepresentation signals, and processing history shows established operations with a low dispute rate.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:29:40 PM",
+        "seconds": 17.8,
+        "tokensIn": 9432,
+        "tokensOut": 761,
+        "truncated": false,
+        "citations": {
+          "verified": 22,
+          "total": 22,
+          "notFound": []
+        }
+      },
+      "M-002": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5993",
+        "match": "mismatch",
+        "policy": "violation",
+        "confidence": "high",
+        "trigger": "out_of_policy",
+        "ceilingBreach": false,
+        "field4": "5993 Cigar Stores and Stands\nTop candidate: 5993 Cigar Stores and Stands — 14 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 5 listings\nCounted: total 19, top 14, runner-up 5, neither 0\nn1=14, n2=5, 2 * n2 = 10, 1.5 * n2 = 7.5, 14 >= 10 AND 14 >= 8 → high\nConfidence: high",
+        "why": "The catalog is predominantly vaping and nicotine delivery products, which are prohibited under Section 1.1 of the prohibited list and constitute a policy violation requiring escalation.",
+        "escalation": "out_of_policy",
+        "policyText": "violation — Frostline Disposable Vape, Mint; Frostline Disposable Vape, Mango; Frostline Disposable Vape, Blue Razz; Nimbus Pod Kit Starter Bundle; Nimbus Replacement Pods, Pack of 3; Harbour Salts E-Liquid, Tobacco 20mg; Harbour Salts E-Liquid, Watermelon 10mg; Harbour Salts E-Liquid, Menthol 20mg; Driftwood Shortfill E-Liquid 100ml; Nicotine Shot 18mg, 10ml; Mesh Replacement Coils, Pack of 5; Vape Device Lanyard; Nicotine Pouches, Mint 6mg; Nicotine Pouches, Citrus 4mg",
+        "request": "n/a",
+        "at": "8/5/2026, 8:30:04 PM",
+        "seconds": 23.7,
+        "tokensIn": 9882,
+        "tokensOut": 1339,
+        "truncated": false,
+        "citations": {
+          "verified": 36,
+          "total": 36,
+          "notFound": []
+        }
+      },
+      "M-003": {
+        "disposition": "apply risk terms",
+        "sufficiency": "pass",
+        "mcc": "5122",
+        "match": "mismatch",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5122 Drugs Drug Proprietaries and Druggists' Sundries\nTop candidate: 5122 Drugs Drug Proprietaries and Druggists' Sundries — 16 listings\nRunner-up: 5999 Miscellaneous and Specialty Retail Stores — 0 listings\nCounted: total 16, top 16, runner-up 0, neither 0\nn1=16, n2=0, 1.5 * n2 = 0, 16 is not < 0; n1 >= 2 * n2 (16 >= 0) AND n1 >= 8 (16 >= 8) → high\nConfidence: high",
+        "why": "The catalog is a dietary supplement retailer selling entirely within the elevated-risk category defined in prohibited_list Section 2.1, miscategorised as general retail. Risk terms apply for the category, not for the mismatch.",
+        "escalation": "none",
+        "policyText": "clear\n\nThe catalog consists entirely of dietary supplements, vitamins and nutraceuticals. All 16 listings fall within prohibited_list Section 2.1, which is an elevated-risk category that is explicitly permitted. Section 2.1 is not a violation and supports risk terms, never a decline. The subscription offering mentioned in the storefront pages falls under Section 2.3, noted but not determinative on its own.",
+        "request": "n/a",
+        "at": "8/5/2026, 8:30:26 PM",
+        "seconds": 22.4,
+        "tokensIn": 9565,
+        "tokensOut": 965,
+        "truncated": false,
+        "citations": {
+          "verified": 24,
+          "total": 24,
+          "notFound": []
+        }
+      },
+      "M-004": {
+        "disposition": "apply risk terms",
+        "sufficiency": "pass",
+        "mcc": "5977",
+        "match": "mismatch",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5977 Cosmetic Stores\n\nTop candidate: 5977 Cosmetic Stores — 13 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 6 listings\n\nCounted: total 19, top 13, runner-up 6, neither 0\nn1=13, n2=6, 2 * n2 = 12, 13 >= 12 AND 13 >= 8 → high\n\nConfidence: high",
+        "why": "The catalog is predominantly skincare and body-care products (13 of 19 listings), which places it in 5977 Cosmetic Stores, not the stated home décor and candles category. The business is legitimate and sellable, but miscategorised for pricing and monitoring purposes.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:30:45 PM",
+        "seconds": 18.5,
+        "tokensIn": 9804,
+        "tokensOut": 802,
+        "truncated": false,
+        "citations": {
+          "verified": 26,
+          "total": 26,
+          "notFound": []
+        }
+      },
+      "M-005": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5999",
+        "match": "mismatch",
+        "policy": "violation",
+        "confidence": "high",
+        "trigger": "out_of_policy",
+        "ceilingBreach": false,
+        "field4": "5999 Miscellaneous and Specialty Retail Stores\nTop candidate: 5999 Miscellaneous and Specialty Retail Stores — 11 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 11, top 11, runner-up 0, neither 0\nn1=11, n2=0, 1.5 * n2 = 0, 11 >= 0 AND 11 >= 8 → high\nConfidence: high",
+        "why": "The entire catalog consists of counterfeit designer goods carrying explicit misrepresentation signals including \"inspired by\", \"dupe\", \"replica\", and \"AAA\", alongside brand references and signature design elements at prices substantially below authentic market rates. This is a prohibited-category violation under Section 1.2 of the prohibited list.",
+        "escalation": "out_of_policy",
+        "policyText": "violation — \"Quilted Chain Flap Bag — Inspired by Maison Verreux Classic\", \"Monogram Canvas Tote — Castellane Style\", \"Saffiano Tote — Brancourt Dupe\", \"Red Sole Pump, 100mm\", \"Interlocking Monogram Belt — Ilaria Fonte Inspired\", \"Bamboo Handle Top Handle Bag\", \"Tri-Fold Wallet in Checkerboard Coated Canvas\", \"Padlock Shoulder Bag — Savoncourt Style\", \"Chevron Card Holder\", \"Equestrian Chain Print Silk-Feel Scarf\", \"Woven Intrecciato-Style Pouch\"",
+        "request": "n/a",
+        "at": "8/5/2026, 10:44:52 PM",
+        "seconds": 23.5,
+        "tokensIn": 9212,
+        "tokensOut": 1047,
+        "truncated": false,
+        "citations": {
+          "verified": 18,
+          "total": 18,
+          "notFound": []
+        }
+      },
+      "M-006": {
+        "disposition": "request documentation",
+        "sufficiency": "insufficient",
+        "mcc": "",
+        "match": "n/a",
+        "policy": "n/a",
+        "confidence": "n/a",
+        "trigger": "missing_data",
+        "ceilingBreach": false,
+        "field4": "n/a",
+        "why": "The storefront contains only placeholder listings with no descriptions, no prices, and generic titles, and every policy page is unedited template text. There is no evidence to assess what this merchant sells or whether the business is real. This is a documentation gap under review_criteria.md Section 3.1.",
+        "escalation": "missing_data",
+        "policyText": "n/a",
+        "request": "We cannot complete review of your application with the information currently available. Please provide:\n\n1. A complete product catalog with real listing titles, descriptions and prices for the items you intend to sell through this account.\n\n2. Storefront pages written for your business — your current About page, refund policy and shipping policy contain only template placeholder text and must be replaced with your actual business information.\n\n3. A specific description of your business in the application record beyond \"Specialty retail storefront\" — what products or product categories do you sell?\n\nOnce we receive this information we can continue processing your application.",
+        "at": "8/5/2026, 8:31:24 PM",
+        "seconds": 16.2,
+        "tokensIn": 8112,
+        "tokensOut": 550,
+        "truncated": false,
+        "citations": {
+          "verified": 6,
+          "total": 6,
+          "notFound": []
+        }
+      },
+      "M-007": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5995",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "medium",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5995 Pet Shops, Pet Food and Supplies\nTop candidate: 5995 Pet Shops, Pet Food and Supplies — 6 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 6, top 6, runner-up 0, neither 0\nn1=6, n2=0, 2 * n2 = 0, n1 >= 8 is false → medium\nConfidence: medium",
+        "why": "The catalog is entirely pet accessories and care products matching the stated business type, with substantive merchant-written descriptions and policies. Applied review_criteria.md Section 2.1 and Section 3.1; catalog clears prohibited_list.md screening.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:31:39 PM",
+        "seconds": 15.2,
+        "tokensIn": 8586,
+        "tokensOut": 650,
+        "truncated": false,
+        "citations": {
+          "verified": 17,
+          "total": 17,
+          "notFound": []
+        }
+      },
+      "M-008": {
+        "disposition": "request documentation",
+        "sufficiency": "insufficient",
+        "mcc": "",
+        "match": "n/a",
+        "policy": "n/a",
+        "confidence": "n/a",
+        "trigger": "missing_data",
+        "ceilingBreach": false,
+        "field4": "n/a",
+        "why": "The storefront contains zero listings and no page content, so there is nothing to assess against the stated gift-and-novelty business type or screen for policy compliance. The deterministic sufficiency layer already ruled this FAIL and the documentation gap prevents all downstream assessment.",
+        "escalation": "missing_data",
+        "policyText": "n/a",
+        "request": "We require the following to proceed with your application:\n\n1. **Active storefront catalog.** Your storefront currently contains no product listings. Please populate your catalog with the specific items you intend to sell, including titles, descriptions, pricing, and images for each product.\n\n2. **Customer-facing policies.** Your About, Refund Policy, and Shipping Policy pages are currently blank. Please provide merchant-written content for each:\n   - About page: describe your business, what you sell, and any relevant background\n   - Refund policy: specific windows, conditions, and process\n   - Shipping policy: lead times, carrier details, and geographic coverage\n\n3. **Volume projection reconciliation.** You have projected $15,000 in monthly volume with an average ticket of $28, which implies approximately 535 transactions per month. Once your catalog is live, please confirm this projection is consistent with the scale and pricing of what you are actually selling.\n\nThe application cannot proceed to classification without an active catalog. Please submit the requested information through your merchant dashboard.",
+        "at": "8/5/2026, 8:31:55 PM",
+        "seconds": 15.4,
+        "tokensIn": 7920,
+        "tokensOut": 525,
+        "truncated": false,
+        "citations": {
+          "verified": 5,
+          "total": 5,
+          "notFound": []
+        }
+      },
+      "M-009": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5941",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "low",
+        "trigger": "low_confidence",
+        "ceilingBreach": false,
+        "field4": "5941 Sporting Goods Stores\nTop candidate: 5941 Sporting Goods Stores — 8 listings\nRunner-up: 5655 Sports and Riding Apparel Stores — 7 listings\nCounted: total 15, top 8, runner-up 7, neither 0\nn1=8, n2=7, 1.5 * n2 = 10.5, 8 < 10.5 → low\nConfidence: low",
+        "why": "The catalog splits almost evenly between sporting equipment (8 listings) and athletic apparel (7 listings), producing a margin too narrow to call reliably. Ladder rule 4 applies.",
+        "escalation": "low_confidence",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:32:12 PM",
+        "seconds": 17.5,
+        "tokensIn": 9291,
+        "tokensOut": 685,
+        "truncated": false,
+        "citations": {
+          "verified": 23,
+          "total": 23,
+          "notFound": []
+        }
+      },
+      "M-010": {
+        "disposition": "refuse — route to compliance",
+        "sufficiency": "n/a",
+        "mcc": "",
+        "match": "n/a",
+        "policy": "n/a",
+        "confidence": "n/a",
+        "trigger": "high_stakes",
+        "ceilingBreach": false,
+        "field4": "n/a",
+        "why": "The application record discloses a terminated-merchant-file match on the principal. TMF determinations are a compliance function and fall outside my authority to adjudicate. I am routing this file to the compliance reviewer without producing verdicts.",
+        "escalation": "REFUSED — high_stakes — terminated-merchant-file determinations are a compliance function outside my authority",
+        "policyText": "n/a",
+        "request": "n/a",
+        "at": "8/5/2026, 8:32:21 PM",
+        "seconds": 8.7,
+        "tokensIn": 9114,
+        "tokensOut": 274,
+        "truncated": false,
+        "citations": {
+          "verified": 2,
+          "total": 2,
+          "notFound": []
+        }
+      },
+      "M-011": {
+        "disposition": "request documentation",
+        "sufficiency": "pass",
+        "mcc": "5499",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "missing_data",
+        "ceilingBreach": false,
+        "field4": "5499 Miscellaneous Food Stores\nTop candidate: 5499 Miscellaneous Food Stores — 10 listings\nRunner-up: 5947 Gift, Card, Novelty and Souvenir Shops — 0 listings\nCounted: total 10, top 10, runner-up 0, neither 0\nn1=10, n2=0, 1.5 * n2 = 0, 10 >= 0 (not low); 10 >= 2*0 AND 10 >= 8 → high\nConfidence: high",
+        "why": "The bank account name does not match the registered legal name, and the projected monthly volume is implausible against the catalog scale and average ticket. Both are documentation gaps under review criteria Sections 1.2 and 4.1.",
+        "escalation": "missing_data",
+        "policyText": "clear",
+        "request": "We require the following documentation before we can complete our review of your application:\n\n1. **Bank account registration clarification.** Your application lists the bank account name as \"K.P. Holdings Ltd.\" but the registered business name is \"Kestrel Provisions Inc.\" Please provide documentation explaining this relationship — for example, a certificate of incorporation for the holding entity showing its ownership of the operating company, or bank records confirming the account is registered to Kestrel Provisions Inc. under a trading name structure.\n\n2. **Projected volume substantiation.** Your stated projected monthly volume of $185,000 appears high relative to your catalog scale (10 items, average ticket $47). This would require approximately 3,936 transactions per month. Please provide documentation supporting this projection — for example, sales records from another sales channel, a wholesale contract, or a detailed volume forecast showing the transaction basis for the projection.\n\n3. **Tax identification confirmation.** Your tax ID status is marked as pending. Please provide your completed tax identification documentation.\n\nPlease submit these items through your merchant dashboard. We will complete our review within 2 business days of receipt.",
+        "at": "8/5/2026, 8:32:45 PM",
+        "seconds": 24.5,
+        "tokensIn": 9034,
+        "tokensOut": 932,
+        "truncated": false,
+        "citations": {
+          "verified": 17,
+          "total": 17,
+          "notFound": []
+        }
+      },
+      "M-012": {
+        "disposition": "apply risk terms",
+        "sufficiency": "pass",
+        "mcc": "5712",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5712 Furniture, Home Furnishings and Equipment Stores\nTop candidate: 5712 Furniture, Home Furnishings and Equipment Stores — 8 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 8, top 8, runner-up 0, neither 0\nn1=8, n2=0, 2 * n2 = 0, 8 >= 0 AND 8 >= 8 → high\nConfidence: high",
+        "why": "This is a made-to-order furniture workshop with a disclosed 10-14 week lead time and high-ticket items. The catalog matches the stated business type exactly. Both the extended fulfilment window and the high average ticket trigger Section 2.2 and Section 2.4 of the elevated-risk list, which support risk terms, not a violation.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:33:01 PM",
+        "seconds": 15.9,
+        "tokensIn": 8799,
+        "tokensOut": 616,
+        "truncated": false,
+        "citations": {
+          "verified": 14,
+          "total": 14,
+          "notFound": []
+        }
+      },
+      "M-013": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5499",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "medium",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5499 Miscellaneous Food Stores\nTop candidate: 5499 Miscellaneous Food Stores — 6 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 4 listings\nCounted: total 10, top 6, runner-up 4, neither 0\nn1=6, n2=4, 2 * n2 = 8, 6 < 8, n1 < 8 → medium\nConfidence: medium",
+        "why": "Six of ten listings are roasted coffee sold by weight, supporting 5499 Miscellaneous Food Stores; the remaining four are brewing equipment and storage accessories, a coherent complement to a roastery catalog. The business is accurately described, processing history supports the projected volume, and no prohibited or elevated-risk goods are present.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 10:32:11 PM",
+        "seconds": 16.3,
+        "tokensIn": 9054,
+        "tokensOut": 775,
+        "truncated": false,
+        "citations": {
+          "verified": 22,
+          "total": 22,
+          "notFound": []
+        }
+      },
+      "M-014": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5995",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5995 Pet Shops, Pet Food and Supplies\nTop candidate: 5995 Pet Shops, Pet Food and Supplies — 11 listings\nRunner-up: 5499 Miscellaneous Food Stores — 0 listings\nCounted: total 11, top 11, runner-up 0, neither 0\nn1=11, n2=0, 2 * n2 = 0, n1 >= 8 TRUE, n1 >= 2 * n2 TRUE → high\nConfidence: high",
+        "why": "The catalog sells dog and cat food, accessories, grooming products and furniture across all eleven listings, matching the stated business type and the requested MCC 5995. No prohibited items, no misrepresentation signals, no elevated-risk factors. Processing history is established and volume is plausible for the catalog scale. The storefront cleared sufficiency and all policy screens.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:33:34 PM",
+        "seconds": 17.3,
+        "tokensIn": 9103,
+        "tokensOut": 715,
+        "truncated": false,
+        "citations": {
+          "verified": 19,
+          "total": 19,
+          "notFound": []
+        }
+      },
+      "M-015": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5942",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5942 Book Stores\nTop candidate: 5942 Book Stores — 8 listings\nRunner-up: 5947 Gift, Card, Novelty and Souvenir Shops — 2 listings\nCounted: total 10, top 8, runner-up 2, neither 0\nn1=8, n2=2, 2 * n2 = 4, 8 >= 4 AND 8 >= 8 → high\nConfidence: high",
+        "why": "The catalog is eight books across fiction, non-fiction and poetry, plus two book-adjacent accessories. This matches the stated business type of independent bookshop and the requested MCC 5942. No prohibited items, no misrepresentation signals, solid processing history, and the margin over the runner-up category is decisive.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 10:32:14 PM",
+        "seconds": 15,
+        "tokensIn": 8945,
+        "tokensOut": 745,
+        "truncated": false,
+        "citations": {
+          "verified": 23,
+          "total": 23,
+          "notFound": []
+        }
+      },
+      "M-016": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5945",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5945 Hobby, Toy and Game Shops\nTop candidate: 5945 Hobby, Toy and Game Shops — 10 listings\nRunner-up: 5712 Furniture, Home Furnishings and Equipment Stores — 0 listings\nCounted: total 10, top 10, runner-up 0, neither 0\nn1=10, n2=0, 2 * n2 = 0, 10 >= 0 AND 10 >= 8 → high\nConfidence: high",
+        "why": "The catalog contains exclusively wooden toys for children across multiple play categories. This matches the stated business type and falls cleanly within MCC 5945 with no prohibited items and no elevated-risk factors.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:34:10 PM",
+        "seconds": 16.9,
+        "tokensIn": 8965,
+        "tokensOut": 791,
+        "truncated": false,
+        "citations": {
+          "verified": 25,
+          "total": 25,
+          "notFound": []
+        }
+      },
+      "M-017": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5941",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "high_stakes",
+        "ceilingBreach": false,
+        "field4": "5941 Sporting Goods Stores\nTop candidate: 5941 Sporting Goods Stores — 13 listings\nRunner-up: 5655 Sports and Riding Apparel Stores — 0 listings\nCounted: total 13, top 13, runner-up 0, neither 0\nn1=13, n2=0, 2 * n2 = 0, n1 >= 8 and n1 >= 2 * n2 → high\nConfidence: high",
+        "why": "Projected monthly volume of $310,000 with no processing history triggers mandatory human review under the high-stakes threshold (review_criteria.md Section 4.4). The catalog is coherent institutional sporting equipment, correctly categorised, and carries no policy concerns.",
+        "escalation": "high_stakes",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:34:26 PM",
+        "seconds": 16.9,
+        "tokensIn": 9141,
+        "tokensOut": 618,
+        "truncated": false,
+        "citations": {
+          "verified": 17,
+          "total": 17,
+          "notFound": []
+        }
+      },
+      "M-018": {
+        "disposition": "refuse — route to compliance",
+        "sufficiency": "n/a",
+        "mcc": "",
+        "match": "n/a",
+        "policy": "n/a",
+        "confidence": "n/a",
+        "trigger": "legal_exposure",
+        "ceilingBreach": false,
+        "field4": "n/a",
+        "why": "The application discloses active civil litigation in the notes field. Legal exposure determinations are a compliance function outside my authority, and I am required to route such files without adjudicating them.",
+        "escalation": "REFUSED — legal_exposure — litigation references disclosed in the application are a compliance function outside my authority",
+        "policyText": "n/a",
+        "request": "n/a",
+        "at": "8/5/2026, 8:34:34 PM",
+        "seconds": 7.5,
+        "tokensIn": 9042,
+        "tokensOut": 244,
+        "truncated": false,
+        "citations": {
+          "verified": 1,
+          "total": 1,
+          "notFound": []
+        }
+      },
+      "M-019": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5712",
+        "match": "mismatch",
+        "policy": "clear",
+        "confidence": "low",
+        "trigger": "low_confidence",
+        "ceilingBreach": false,
+        "field4": "5712 Furniture, Home Furnishings and Equipment Stores\nTop candidate: 5712 Furniture, Home Furnishings and Equipment Stores — 7 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 5 listings\nCounted: total 12, top 7, runner-up 5, neither 0\nn1=7, n2=5, 2 * n2 = 10, 1.5 * n2 = 7.5, 7 < 7.5 → low, and 7 < 8 so cannot be high\nConfidence: low",
+        "why": "The catalog sits on the boundary between furniture (5712) and homeware (5719) with a margin too narrow to call reliably. Seven listings are furniture pieces; five are soft furnishings and decorative homeware. The low_confidence trigger fires, forcing escalation regardless of the otherwise clean file.",
+        "escalation": "low_confidence",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:34:53 PM",
+        "seconds": 18.7,
+        "tokensIn": 9240,
+        "tokensOut": 867,
+        "truncated": false,
+        "citations": {
+          "verified": 26,
+          "total": 26,
+          "notFound": []
+        }
+      },
+      "M-020": {
+        "disposition": "apply risk terms",
+        "sufficiency": "pass",
+        "mcc": "5641",
+        "match": "mismatch",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5641 Children's and Infants' Wear Stores\nTop candidate: 5641 Children's and Infants' Wear Stores — 11 listings\nRunner-up: 5945 Hobby, Toy and Game Shops — 5 listings\nCounted: total 16, top 11, runner-up 5, neither 0\nn1=11, n2=5, 1.5 * n2 = 7.5, 11 >= 7.5 (not low), 2 * n2 = 10, 11 >= 10 AND 11 >= 8 → high\nConfidence: high",
+        "why": "The catalog is predominantly children's and infants' clothing (11 of 16 listings), not toys and games as stated. The merchant applied under MCC 5945 but sells chiefly in 5641. This is a category mismatch supporting risk-terms pricing, not a violation — the goods are real and permitted, just miscategorised.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:35:11 PM",
+        "seconds": 18.6,
+        "tokensIn": 9611,
+        "tokensOut": 823,
+        "truncated": false,
+        "citations": {
+          "verified": 24,
+          "total": 24,
+          "notFound": []
+        }
+      }
+    },
+    "verdicts": {
+      "M-001": "Pass",
+      "M-002": "Needs work",
+      "M-003": "Pass",
+      "M-004": "Pass",
+      "M-005": "Pass",
+      "M-006": "Pass",
+      "M-007": "Pass",
+      "M-008": "Needs work",
+      "M-009": "Pass",
+      "M-010": "Pass",
+      "M-011": "Pass",
+      "M-012": "Pass",
+      "M-013": "Pass",
+      "M-014": "Pass",
+      "M-015": "Pass",
+      "M-016": "Pass",
+      "M-017": "Pass",
+      "M-018": "Pass",
+      "M-019": "Needs work",
+      "M-020": "Pass"
+    },
+    "notes": {
+      "M-002": "Policy screen lists 'Vape Device Lanyard' as prohibited. An accessory is not a nicotine product. Variable across runs.",
+      "M-008": "Drafted request signed off with an unfilled [Merchant Risk Team] placeholder — in a letter rejecting the merchant for template text. Intermittent: one run in two.",
+      "M-011": "Regraded Pass after the Field 10 fix. The drafted request now names all three gaps - bank-entity mismatch, pending tax ID, and volume against catalog scale - on both runs after the change. Same 6/6 exact-match score before and after; the letter is what improved.",
+      "M-019": "Claim comparison returned mismatch by comparing the requested MCC against the inferred one. The spec compares the stated business description, which is honest here."
+    },
+    "lastRun": "8/5/2026, 8:29:40 PM"
+  }
+};
+
+var DEMO_BY_ID = {};
+DEMO_RECORDINGS.forEach(function (r) { DEMO_BY_ID[r.merchant_id] = r; });
+
+/* The demo tab row: the five demo cases plus Willow & Wax, the flagged catalog
+   the video opens on. Labels only -- what each case tests stays in the CSV. */
+var DEMO_EXTRA_CHIPS = [{ chip_order: '1.5', chip_label: 'Flagged: prohibited goods',
+                          merchant_id: 'M-002' }];
+
+function isDemo() { return !getApiKey(); }
+
+function demoChips() {
+  return HARNESS.demoChips.concat(DEMO_EXTRA_CHIPS)
+    .filter(function (c) { return DEMO_BY_ID[c.merchant_id]; });
+}
+
+function fmtInt(n) { return n == null ? '?' : Number(n).toLocaleString('en-US'); }
+
+/* What the analyst sees while a recording plays. The steps are the chain's own
+   four steps in HANDOVER order; a refusal stops at the screens, because a refusal
+   is decided before the chain runs. ~4 seconds in total -- quick enough for a
+   cold visitor, slow enough to read that there IS a chain. */
+function replaySteps(rec) {
+  var refused = /\[FIELD 1[^\]]*\]\s*\n\s*refus/i.test(rec.text);
+  return refused
+    ? ['Checking hard-stop screens', 'Hard stop found: routing to the compliance reviewer']
+    : ['Checking hard-stop screens', 'Step 1 · storefront sufficiency gate',
+       'Step 2 · category classification', 'Step 3 · claim comparison',
+       'Step 4 · policy screen', 'Drafting the decision report'];
+}
+
+function replayLabel(step, n, of) {
+  return '<s-stack direction="inline" gap="small-200" alignItems="center">' +
+         '<s-spinner size="small" accessibilityLabel="Playing recorded run"></s-spinner>' +
+         '<s-text color="subdued">recorded run · ' + esc(step) + ' (' + n + ' of ' + of + ')</s-text>' +
+         '</s-stack>';
+}
+
+function replayDoneLabel(rec) {
+  var when = rec.recordedAt ? new Date(rec.recordedAt).toLocaleDateString('en-GB',
+               { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+  return '<s-badge tone="info">recorded run</s-badge> ' +
+         esc('took ' + rec.seconds + 's live on ' + rec.model + ' — ' +
+             fmtInt(rec.tokensIn) + ' in / ' + fmtInt(rec.tokensOut) + ' out tokens' +
+             (when ? ' — recorded ' + when : '') + ' — replayed faster');
+}
+
+/* Plays a recording through the live path's own back half: parseReport,
+   statusOf, logRun, renderReport. The run log and Approve / Edit / Escalate
+   behave exactly as after a live run. It does NOT touch EVAL_STORE -- a replay is
+   not a new result and must never be scored as one. */
+function replayRun(id, totalMs) {
+  var rec = DEMO_BY_ID[id];
+  if (!rec || RUNNING[id]) { return Promise.resolve('error'); }
+  RUNNING[id] = true;
+  setRunBtn(id, true);
+  paintOut(id, '', false);
+  var steps = replaySteps(rec);
+  var each = Math.round((totalMs || 4200) / steps.length);
+  var i = 0;
+  return new Promise(function (resolve) {
+    (function next() {
+      if (i < steps.length) {
+        paintState(id, replayLabel(steps[i], i + 1, steps.length));
+        i++;
+        setTimeout(next, each);
+        return;
+      }
+      delete RUNNING[id];
+      setRunBtn(id, false);
+      paintState(id, replayDoneLabel(rec));
+      var parsed = parseReport(rec.text);
+      if (parsed.ok) {
+        var st = statusOf(parsed);
+        LAST_RUN[id] = { parsed: parsed, logIndex: logRun(id, parsed, st) };
+        paintOut(id, renderReport(id, parsed), true);
+        renderCaseList();
+        resolve(st.code === 'REFUSED-ESCALATE' ? 'refused' : 'ok');
+      } else {
+        paintOut(id, '<pre style="white-space:pre-wrap">' + esc(rec.text) + '</pre>', true);
+        resolve('unparsed');
+      }
+    })();
+  });
+}
+
+/* The run button for one merchant, in whichever mode the app is in. */
+function runButtonHtml(id) {
+  if (!isDemo()) {
+    return '<s-button variant="primary" class="runBtn" data-id="' + esc(id) +
+           '">Run agent</s-button>';
+  }
+  if (DEMO_BY_ID[id]) {
+    return '<s-button variant="primary" class="runBtn" data-id="' + esc(id) +
+           '">Play recorded run</s-button>';
+  }
+  return '<s-button variant="primary" disabled>Run agent</s-button> ' +
+         '<s-text color="subdued">No recording for this merchant. Add your own API key in ' +
+         'Settings to run it live, or pick one of the ' + DEMO_RECORDINGS.length +
+         ' recorded merchants in the tabs above.</s-text>';
+}
+
+/* =========================================================================== */
+
 /* The double-quote escape is load-bearing, not tidiness. esc() output is written
    into double-quoted HTML attributes -- the analyst's note field is value="...".
    Without it, a note containing a quotation mark ends the attribute early, the
@@ -4415,7 +5417,8 @@ function caseOutcome(id) {
 /* The demo cases are the TAB ROW, matching the reference admin panel's
    "All Orders | Open | Unfulfilled" strip. "All merchants" clears the selection. */
 function renderChips() {
-  var chips = HARNESS.demoChips.slice().sort(function (a, b) {
+  /* In the recorded demo the tabs are the recorded merchants, so every tab plays. */
+  var chips = (isDemo() ? demoChips() : HARNESS.demoChips.slice()).sort(function (a, b) {
     return Number(a.chip_order) - Number(b.chip_order);
   });
   /* "All merchants" stays underlined unless the selected merchant is itself one of
@@ -4452,7 +5455,9 @@ function renderCaseList() {
         '<div class="muted">' + withDesc + ' described</div></s-table-cell>' +
       '<s-table-cell>$' + esc(m.projected_monthly_volume) + '</s-table-cell>' +
       '<s-table-cell>' + (oc ? '<s-badge tone="' + oc.cls + '">' + oc.text + '</s-badge>'
-                             : '<s-text color="subdued">not run</s-text>') + '</s-table-cell>' +
+                             : (isDemo() && DEMO_BY_ID[id])
+                               ? '<s-badge tone="info">recorded run</s-badge>'
+                               : '<s-text color="subdued">not run</s-text>') + '</s-table-cell>' +
       '</s-table-row>';
   }).join('');
 
@@ -4549,9 +5554,8 @@ function selectCase(id) {
            firsts + '</ul></div></div>');
   }
 
-  h.push('<div style="margin-top:var(--sp-4)">' +
-         '<s-button variant="primary" class="runBtn" data-id="' + esc(id) +
-         '">Run agent</s-button> <span id="state-' + esc(id) + '"></span></div>');
+  h.push('<div style="margin-top:var(--sp-4)">' + runButtonHtml(id) +
+         ' <span id="state-' + esc(id) + '"></span></div>');
   h.push('<div id="out-' + esc(id) + '" style="margin-top:var(--sp-4)"></div>');
 
   document.getElementById('main').innerHTML = h.join('\n');
@@ -4598,9 +5602,9 @@ function selectCase(id) {
 function renderEmptyMain() {
   var next = getApiKey()
     ? 'Start with a demo case above, or pick any merchant from the review queue.'
-    : 'No API key saved yet. Open <strong>Settings</strong> in the navigation on the left, ' +
-      'paste your Anthropic API key and press Save key. It is stored in this browser ' +
-      'only and never written into this file.';
+    : 'This is the recorded demo: pick one of the tabs above and press Play recorded run. ' +
+      'To run any merchant live, open <strong>Settings</strong> and add your own Anthropic ' +
+      'API key. It is stored in this browser only and never written into this file.';
 
   document.getElementById('main').innerHTML =
     '<div class="empty"><div class="headline">Pick a routed merchant</div>' +
@@ -4634,7 +5638,8 @@ function renderTopMeta() {
    when a value is corrected in three places, go looking for the fourth. */
 function stampCounts() {
   var n = MERCHANTS.length;
-  var pairs = [['runAllBtn', 'Run all ' + n],
+  var pairs = [['runAllBtn', isDemo() ? 'Play all ' + DEMO_RECORDINGS.length + ' recorded'
+                                      : 'Run all ' + n],
                ['evalRunAll', 'Run and score all ' + n],
                ['evalHeading', 'Evals · the full ' + n + '-record labeled set'],
                ['evalTotalCount', n + ' records']];
@@ -5195,6 +6200,7 @@ function renderReport(id, parsed) {
 var RUN_LOG = [];
 var LAST_RUN = {};
 var RUNNING = {};   /* merchant id -> true while its API call is in flight */
+var LAST_RAW = {};  /* merchant id -> the agent's raw response, for recording */
 
 function confidenceOf(parsed) {
   var m = (parsed.fields.field4 || '').match(/Confidence:\s*(high|medium|low)/i);
@@ -5501,6 +6507,20 @@ function runAgent(id) {
                     data.usage.output_tokens + ' out tokens' : '') +
       (data.stop_reason === 'max_tokens' ? ' — TRUNCATED at max_tokens' : '')));
 
+    /* The agent's exact words, kept so a live run can be saved as a recording
+       for the offline demo. Only the response is kept -- never the request, so
+       the key cannot ride along. */
+    LAST_RAW[id] = {
+      merchant_id: id,
+      recordedAt: new Date().toISOString(),
+      model: data.model || MODEL,
+      seconds: Number(secs),
+      tokensIn: data.usage ? data.usage.input_tokens : null,
+      tokensOut: data.usage ? data.usage.output_tokens : null,
+      stopReason: data.stop_reason || null,
+      text: text
+    };
+
     var parsed = parseReport(text);
     if (parsed.ok) {
       var st = statusOf(parsed);
@@ -5527,9 +6547,17 @@ function runAgent(id) {
         notFound: cites.filter(function (c) { return c.ok === false; })
                        .map(function (c) { return c.line + ' — ' + c.why; })
       };
+      /* The first live run in a browser that was showing the recorded board
+         starts that browser's own board, empty, instead of mixing a fresh result
+         into the analyst's graded evidence. */
+      if (BOARD_IS_RECORDING) {
+        EVAL_STORE = { results: {}, verdicts: {}, notes: {}, lastRun: null };
+        BOARD_IS_RECORDING = false;
+      }
       EVAL_STORE.results[id] = stored;
       EVAL_STORE.lastRun = stored.at;
       saveEvalStore();
+      applyDemoBoard();   /* after the write, so the board is not empty and stays live */
       paintOut(id, renderReport(id, parsed), true);
       renderCaseList();   /* after LAST_RUN is set, so the card can find its outcome */
       return done(st.code === 'REFUSED-ESCALATE' ? 'refused' : 'ok');
@@ -5553,7 +6581,11 @@ function runAgent(id) {
    --------------------------------------------------------------------------- */
 
 function runAll() {
-  var ids = MERCHANTS.map(function (m) { return m.merchant_id; });
+  /* In the recorded demo this plays every recording instead of calling the API,
+     a little faster per merchant than a single replay so the sweep stays short. */
+  var demo = isDemo();
+  var ids = MERCHANTS.map(function (m) { return m.merchant_id; })
+                     .filter(function (id) { return !demo || DEMO_BY_ID[id]; });
   var stats = { ok: 0, refused: 0, unparsed: 0, error: 0 };
   var btn = document.getElementById('runAllBtn');
   var prog = document.getElementById('runAllProgress');
@@ -5570,7 +6602,9 @@ function runAll() {
       btn.disabled = false;
       prog.textContent = '';
       summary.innerHTML =
-        '<p><strong>Sweep complete — ' + ids.length + ' merchants in ' + mins + ' minutes.</strong></p>' +
+        '<p><strong>' + (demo ? 'Recorded sweep played — ' + ids.length + ' merchants.'
+                              : 'Sweep complete — ' + ids.length + ' merchants in ' + mins + ' minutes.') +
+        '</strong></p>' +
         '<ul>' +
         '<li>' + stats.ok + ' OK (recommendation produced)</li>' +
         '<li>' + stats.refused + ' REFUSED-ESCALATE</li>' +
@@ -5586,7 +6620,7 @@ function runAll() {
     // Select each case as it runs: the work area only renders the selected merchant,
     // so this both creates the elements runAgent writes into and lets you watch the sweep.
     selectCase(id);
-    runAgent(id).then(function (outcome) {
+    (demo ? replayRun(id, 2400) : runAgent(id)).then(function (outcome) {
       stats[outcome] = (stats[outcome] || 0) + 1;
       i++;
       step();
@@ -5598,7 +6632,10 @@ function runAll() {
 /* Delegated: the Run button is recreated every time a case is selected. */
 document.addEventListener('click', function (ev) {
   var b = ev.target.closest ? ev.target.closest('.runBtn') : null;
-  if (b && b.getAttribute('data-id')) { runAgent(b.getAttribute('data-id')); }
+  if (b && b.getAttribute('data-id')) {
+    var rid = b.getAttribute('data-id');
+    if (isDemo()) { replayRun(rid); } else { runAgent(rid); }
+  }
 });
 
 /* ---------------------------------------------------------------------------
@@ -5656,7 +6693,51 @@ function loadEvalStore() {
   } catch (e) { /* corrupt or unavailable storage must never break the page */ }
 }
 
+/* True while the evals view is showing the RECORDED board from DEMO_BOARD rather
+   than results from this browser. It is shown only when this browser has no
+   stored results at all, so it can never cover up a real board -- and while it
+   is up, nothing is written to localStorage. */
+var BOARD_IS_RECORDING = false;
+
+function applyDemoBoard() {
+  if (!BOARD_IS_RECORDING && !Object.keys(EVAL_STORE.results).length) {
+    EVAL_STORE = JSON.parse(JSON.stringify(DEMO_BOARD.store));
+    BOARD_IS_RECORDING = true;
+  }
+  var sw = DEMO_BOARD.sweep;
+  var banner = document.getElementById('evalDemoBanner');
+  if (banner) {
+    banner.style.display = BOARD_IS_RECORDING ? '' : 'none';
+    /* Two sweeps, said plainly. The graded board below is the earlier build; the
+       recordings a visitor plays come from a later sweep, which missed one. A
+       reader must never have to guess which numbers belong to which run. */
+    var ds = DEMO_SWEEP;
+    document.getElementById('evalDemoText').textContent =
+      'The board below is the graded ' + sw.records + '-merchant sweep from August 2026, on the ' +
+      'previous build: the agent reached the right disposition on ' + sw.dispositionsCorrect +
+      ' of ' + sw.records + ' merchants, ' + sw.perfectOnEveryField + ' of ' + sw.records +
+      ' matched on every scored field, and a report took ' + sw.avgSeconds + ' seconds on average. ' +
+      'The analyst still marked ' + sw.needsWork + ' as Needs work, because reading the drafted ' +
+      'text caught problems an exact-match score cannot see.' +
+      (ds ? ' The recorded runs you can play come from a fresh sweep on ' +
+            /* Midday, not midnight: a bare date parses as UTC midnight and
+               shows as the day before anywhere west of Greenwich. */
+            new Date(ds.date + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) +
+            ' with the current build: ' + ds.dispositionsCorrect + ' of ' + ds.records +
+            ' right dispositions (' + ds.misses.join(', ') + ' missed), ' + ds.avgSeconds +
+            ' seconds on average. ' + ds.note : '');
+  }
+  /* Re-running or clearing a recorded board means nothing, so those controls go. */
+  ['evalRunAll', 'evalClear'].forEach(function (b) {
+    var el = document.getElementById(b);
+    if (el) { el.style.display = BOARD_IS_RECORDING ? 'none' : ''; }
+  });
+  var lm = document.getElementById('labelsMissing');
+  if (lm && !EVAL_LABELS) { lm.style.display = BOARD_IS_RECORDING ? 'none' : ''; }
+}
+
 function saveEvalStore() {
+  if (BOARD_IS_RECORDING) { return; }   /* the recorded board is never persisted */
   try { localStorage.setItem(EVAL_KEY, JSON.stringify(EVAL_STORE)); }
   catch (e) { /* private mode, quota, disabled storage -- degrade to in-memory */ }
 }
@@ -5967,9 +7048,42 @@ function renderMetrics() {
       ' sufficient storefronts)</span></div></div>';
 }
 
+/* The recorded board, read-only, for a visitor without the answer key. One row
+   per merchant: the disposition the agent reached, its exact-match score from
+   the sweep export, and the analyst's verdict and note exactly as graded. */
+function demoBoardTable() {
+  var auto = DEMO_BOARD.sweep.auto || {};
+  var rows = MERCHANTS.map(function (m) {
+    var id = m.merchant_id;
+    var r = EVAL_STORE.results[id];
+    if (!r) { return ''; }
+    var a = auto[id];
+    var v = EVAL_STORE.verdicts[id] || '';
+    var tone = v === 'Pass' ? 'success' : v === 'Needs work' ? 'caution' : v === 'Fail' ? 'critical' : 'neutral';
+    return '<s-table-row>' +
+      '<s-table-cell><div class="cellstrong">' + esc(id) + '</div><div class="muted">' +
+        esc(m.dba_name) + '</div></s-table-cell>' +
+      '<s-table-cell>' + esc(r.disposition || '—') + '</s-table-cell>' +
+      '<s-table-cell>' + (a ? '<s-badge tone="' + (a[0] === a[1] ? 'success' : 'caution') + '">' +
+        a[0] + '/' + a[1] + '</s-badge>' : '') + '</s-table-cell>' +
+      '<s-table-cell><s-badge tone="' + tone + '">' + esc(v || 'not graded') + '</s-badge>' +
+        (EVAL_STORE.notes[id] ? '<div class="muted">' + esc(EVAL_STORE.notes[id]) + '</div>' : '') +
+      '</s-table-cell>' +
+      '</s-table-row>';
+  }).join('');
+  return '<s-table>' +
+    '<s-table-header-row>' +
+      '<s-table-header listSlot="primary">Merchant</s-table-header>' +
+      '<s-table-header>Agent disposition</s-table-header>' +
+      '<s-table-header format="numeric">Exact match</s-table-header>' +
+      '<s-table-header listSlot="secondary">Analyst verdict</s-table-header>' +
+    '</s-table-header-row>' +
+    '<s-table-body>' + rows + '</s-table-body></s-table>';
+}
+
 function renderEvalsTable() {
   var wrap = document.getElementById('evalTableWrap');
-  if (!EVAL_LABELS) { wrap.innerHTML = ''; return; }
+  if (!EVAL_LABELS) { wrap.innerHTML = BOARD_IS_RECORDING ? demoBoardTable() : ''; return; }
 
   /* listSlot tells s-table which columns survive when it collapses to its narrow
      list layout: the case id is what identifies a row, the analyst verdict is what
@@ -6034,14 +7148,18 @@ function renderEvalsTable() {
       '<s-table-cell>' + expected + '</s-table-cell>' +
       '<s-table-cell>' + actual + '</s-table-cell>' +
       '<s-table-cell>' + auto + '</s-table-cell>' +
+      /* The recorded board is the analyst's graded evidence, so it is read-only:
+         nobody visiting the demo can regrade it, and Run would need a key. */
       '<s-table-cell><s-select label="Your verdict" labelAccessibilityVisibility="exclusive" ' +
-        'data-verdict="' + esc(id) + '">' + sel + '</s-select>' +
+        'data-verdict="' + esc(id) + '"' + (BOARD_IS_RECORDING ? ' disabled' : '') + '>' +
+        sel + '</s-select>' +
         '<div style="margin-top:8px"><s-text-field label="Note" ' +
         'labelAccessibilityVisibility="exclusive" data-note="' + esc(id) +
-        '" value="' + esc(EVAL_STORE.notes[id] || '') +
-        '" placeholder="one-line note — specific enough to act on"></s-text-field></div></s-table-cell>' +
+        '" value="' + esc(EVAL_STORE.notes[id] || '') + '"' +
+        (BOARD_IS_RECORDING ? ' disabled' : '') +
+        ' placeholder="one-line note — specific enough to act on"></s-text-field></div></s-table-cell>' +
       '<s-table-cell><s-button variant="secondary" data-evalrun="' + esc(id) + '"' +
-        (RUNNING[id] ? ' disabled' : '') + '>Run</s-button></s-table-cell>' +
+        ((RUNNING[id] || BOARD_IS_RECORDING) ? ' disabled' : '') + '>Run</s-button></s-table-cell>' +
       '</s-table-row>';
   }).join('');
 
@@ -6147,6 +7265,11 @@ function exportEvals() {
 function renderStoredLine() {
   var el = document.getElementById('evalStored');
   if (!el) { return; }
+  if (BOARD_IS_RECORDING) {
+    el.textContent = 'Read-only: these are the recorded results, not runs from this browser. ' +
+                     'Nothing here is saved, and your own runs start a fresh board.';
+    return;
+  }
   var n = Object.keys(EVAL_STORE.results).length;
   var v = Object.keys(EVAL_STORE.verdicts).filter(function (k) {
     return EVAL_STORE.verdicts[k];
@@ -6275,11 +7398,12 @@ function paintKeyStatus() {
     el.textContent = 'Key saved — ' + k.length + ' characters, ending ' + k.slice(-4) +
                      '. Stored in this browser only.';
     badge.setAttribute('tone', 'success');
-    badge.textContent = 'key saved';
+    badge.textContent = 'live mode';
   } else {
-    el.textContent = 'No key saved. Paste your Anthropic API key above and press Save key.';
-    badge.setAttribute('tone', 'caution');
-    badge.textContent = 'no key';
+    el.textContent = 'No key saved, so the app is in recorded demo mode. Paste your ' +
+                     'Anthropic API key above and press Save key to run merchants live.';
+    badge.setAttribute('tone', 'info');
+    badge.textContent = 'recorded demo';
   }
   /* Repaint the first-load state so its guidance cannot go stale: saving a key
      while the empty state is on screen should clear the "no key saved" line
@@ -6296,6 +7420,17 @@ function paintKeyStatus() {
   var banner = document.getElementById('keyBanner');
   if (banner) {
     if (k) { banner.setAttribute('hidden', ''); } else { banner.removeAttribute('hidden'); }
+  }
+
+  /* Saving or clearing a key flips the whole app between live and recorded mode,
+     so everything that reads isDemo() is repainted -- tabs, queue badges, the
+     open merchant's run button and the evals board. */
+  applyDemoBoard();
+  /* Run all is a live sweep with a key, and plays the recordings without one. */
+  stampCounts();
+  if (typeof renderChips === 'function' && document.getElementById('demoChips')) {
+    renderChips(); renderCaseList();
+    if (SELECTED && !RUNNING[SELECTED]) { selectCase(SELECTED); }
   }
 }
 
@@ -6317,6 +7452,39 @@ function initSettings() {
   });
 
   paintKeyStatus();
+  initRecorder();
+}
+
+function paintRecordCount() {
+  var el = document.getElementById('recordCount');
+  if (!el) { return; }
+  var ids = Object.keys(LAST_RAW);
+  el.textContent = ids.length ? ids.length + ' recorded: ' + ids.join(', ')
+                              : 'Nothing recorded yet. Run a merchant first.';
+}
+
+function initRecorder() {
+  if (!/(^|[?&])record\b/.test(location.search.slice(1))) { return; }
+  document.getElementById('recordSection').style.display = '';
+  paintRecordCount();
+  /* Repaint whenever Settings is opened, so the count is current. */
+  document.addEventListener('click', function () { setTimeout(paintRecordCount, 0); });
+  document.getElementById('recordExport').addEventListener('click', function () {
+    var ids = Object.keys(LAST_RAW);
+    if (!ids.length) { alert('Run a merchant first.'); return; }
+    var payload = { product: 'MerchantLens', kind: 'demo-recordings',
+                    exportedAt: new Date().toISOString(),
+                    recordings: ids.map(function (id) { return LAST_RAW[id]; }) };
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'merchantlens-recordings.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
 }
 
 loadEvalStore();   /* before render, so a returning analyst sees their own verdicts */

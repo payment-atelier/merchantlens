@@ -1,0 +1,632 @@
+{
+  "product": "MerchantLens",
+  "kind": "demo-board",
+  "sweep": {
+    "source": "Full 20-merchant sweep, exported 2026-08-06, then graded by the analyst",
+    "model": "claude-sonnet-4-5",
+    "records": 20,
+    "dispositionsCorrect": 20,
+    "perfectOnEveryField": 19,
+    "avgSeconds": 17.3,
+    "minSeconds": 7.5,
+    "maxSeconds": 24.5,
+    "pass": 17,
+    "needsWork": 3,
+    "fail": 0,
+    "auto": {
+      "M-001": [
+        6,
+        6
+      ],
+      "M-002": [
+        6,
+        6
+      ],
+      "M-003": [
+        6,
+        6
+      ],
+      "M-004": [
+        6,
+        6
+      ],
+      "M-005": [
+        6,
+        6
+      ],
+      "M-006": [
+        6,
+        6
+      ],
+      "M-007": [
+        6,
+        6
+      ],
+      "M-008": [
+        6,
+        6
+      ],
+      "M-009": [
+        6,
+        6
+      ],
+      "M-010": [
+        6,
+        6
+      ],
+      "M-011": [
+        6,
+        6
+      ],
+      "M-012": [
+        6,
+        6
+      ],
+      "M-013": [
+        6,
+        6
+      ],
+      "M-014": [
+        6,
+        6
+      ],
+      "M-015": [
+        6,
+        6
+      ],
+      "M-016": [
+        6,
+        6
+      ],
+      "M-017": [
+        6,
+        6
+      ],
+      "M-018": [
+        6,
+        6
+      ],
+      "M-019": [
+        5,
+        6
+      ],
+      "M-020": [
+        6,
+        6
+      ]
+    }
+  },
+  "store": {
+    "results": {
+      "M-001": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5719",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5719 Miscellaneous Home Furnishing Specialty Stores\nTop candidate: 5719 Miscellaneous Home Furnishing Specialty Stores — 14 listings\nRunner-up: 5712 Furniture, Home Furnishings and Equipment Stores — 0 listings\nCounted: total 14, top 14, runner-up 0, neither 0\nn1=14, n2=0, 1.5 * n2 = 0, 14 is not < 0, and n1 >= 8 AND n1 >= 2 * n2 → high\nConfidence: high",
+        "why": "The catalog is exclusively household textiles — throws, cushion covers, table linens, towels and aprons — matching both the stated business type and the requested MCC 5719. No prohibited items, no misrepresentation signals, and processing history shows established operations with a low dispute rate.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:29:40 PM",
+        "seconds": 17.8,
+        "tokensIn": 9432,
+        "tokensOut": 761,
+        "truncated": false,
+        "citations": {
+          "verified": 22,
+          "total": 22,
+          "notFound": []
+        }
+      },
+      "M-002": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5993",
+        "match": "mismatch",
+        "policy": "violation",
+        "confidence": "high",
+        "trigger": "out_of_policy",
+        "ceilingBreach": false,
+        "field4": "5993 Cigar Stores and Stands\nTop candidate: 5993 Cigar Stores and Stands — 14 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 5 listings\nCounted: total 19, top 14, runner-up 5, neither 0\nn1=14, n2=5, 2 * n2 = 10, 1.5 * n2 = 7.5, 14 >= 10 AND 14 >= 8 → high\nConfidence: high",
+        "why": "The catalog is predominantly vaping and nicotine delivery products, which are prohibited under Section 1.1 of the prohibited list and constitute a policy violation requiring escalation.",
+        "escalation": "out_of_policy",
+        "policyText": "violation — Frostline Disposable Vape, Mint; Frostline Disposable Vape, Mango; Frostline Disposable Vape, Blue Razz; Nimbus Pod Kit Starter Bundle; Nimbus Replacement Pods, Pack of 3; Harbour Salts E-Liquid, Tobacco 20mg; Harbour Salts E-Liquid, Watermelon 10mg; Harbour Salts E-Liquid, Menthol 20mg; Driftwood Shortfill E-Liquid 100ml; Nicotine Shot 18mg, 10ml; Mesh Replacement Coils, Pack of 5; Vape Device Lanyard; Nicotine Pouches, Mint 6mg; Nicotine Pouches, Citrus 4mg",
+        "request": "n/a",
+        "at": "8/5/2026, 8:30:04 PM",
+        "seconds": 23.7,
+        "tokensIn": 9882,
+        "tokensOut": 1339,
+        "truncated": false,
+        "citations": {
+          "verified": 36,
+          "total": 36,
+          "notFound": []
+        }
+      },
+      "M-003": {
+        "disposition": "apply risk terms",
+        "sufficiency": "pass",
+        "mcc": "5122",
+        "match": "mismatch",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5122 Drugs Drug Proprietaries and Druggists' Sundries\nTop candidate: 5122 Drugs Drug Proprietaries and Druggists' Sundries — 16 listings\nRunner-up: 5999 Miscellaneous and Specialty Retail Stores — 0 listings\nCounted: total 16, top 16, runner-up 0, neither 0\nn1=16, n2=0, 1.5 * n2 = 0, 16 is not < 0; n1 >= 2 * n2 (16 >= 0) AND n1 >= 8 (16 >= 8) → high\nConfidence: high",
+        "why": "The catalog is a dietary supplement retailer selling entirely within the elevated-risk category defined in prohibited_list Section 2.1, miscategorised as general retail. Risk terms apply for the category, not for the mismatch.",
+        "escalation": "none",
+        "policyText": "clear\n\nThe catalog consists entirely of dietary supplements, vitamins and nutraceuticals. All 16 listings fall within prohibited_list Section 2.1, which is an elevated-risk category that is explicitly permitted. Section 2.1 is not a violation and supports risk terms, never a decline. The subscription offering mentioned in the storefront pages falls under Section 2.3, noted but not determinative on its own.",
+        "request": "n/a",
+        "at": "8/5/2026, 8:30:26 PM",
+        "seconds": 22.4,
+        "tokensIn": 9565,
+        "tokensOut": 965,
+        "truncated": false,
+        "citations": {
+          "verified": 24,
+          "total": 24,
+          "notFound": []
+        }
+      },
+      "M-004": {
+        "disposition": "apply risk terms",
+        "sufficiency": "pass",
+        "mcc": "5977",
+        "match": "mismatch",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5977 Cosmetic Stores\n\nTop candidate: 5977 Cosmetic Stores — 13 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 6 listings\n\nCounted: total 19, top 13, runner-up 6, neither 0\nn1=13, n2=6, 2 * n2 = 12, 13 >= 12 AND 13 >= 8 → high\n\nConfidence: high",
+        "why": "The catalog is predominantly skincare and body-care products (13 of 19 listings), which places it in 5977 Cosmetic Stores, not the stated home décor and candles category. The business is legitimate and sellable, but miscategorised for pricing and monitoring purposes.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:30:45 PM",
+        "seconds": 18.5,
+        "tokensIn": 9804,
+        "tokensOut": 802,
+        "truncated": false,
+        "citations": {
+          "verified": 26,
+          "total": 26,
+          "notFound": []
+        }
+      },
+      "M-005": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5999",
+        "match": "mismatch",
+        "policy": "violation",
+        "confidence": "high",
+        "trigger": "out_of_policy",
+        "ceilingBreach": false,
+        "field4": "5999 Miscellaneous and Specialty Retail Stores\nTop candidate: 5999 Miscellaneous and Specialty Retail Stores — 11 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 11, top 11, runner-up 0, neither 0\nn1=11, n2=0, 1.5 * n2 = 0, 11 >= 0 AND 11 >= 8 → high\nConfidence: high",
+        "why": "The entire catalog consists of counterfeit designer goods carrying explicit misrepresentation signals including \"inspired by\", \"dupe\", \"replica\", and \"AAA\", alongside brand references and signature design elements at prices substantially below authentic market rates. This is a prohibited-category violation under Section 1.2 of the prohibited list.",
+        "escalation": "out_of_policy",
+        "policyText": "violation — \"Quilted Chain Flap Bag — Inspired by Maison Verreux Classic\", \"Monogram Canvas Tote — Castellane Style\", \"Saffiano Tote — Brancourt Dupe\", \"Red Sole Pump, 100mm\", \"Interlocking Monogram Belt — Ilaria Fonte Inspired\", \"Bamboo Handle Top Handle Bag\", \"Tri-Fold Wallet in Checkerboard Coated Canvas\", \"Padlock Shoulder Bag — Savoncourt Style\", \"Chevron Card Holder\", \"Equestrian Chain Print Silk-Feel Scarf\", \"Woven Intrecciato-Style Pouch\"",
+        "request": "n/a",
+        "at": "8/5/2026, 10:44:52 PM",
+        "seconds": 23.5,
+        "tokensIn": 9212,
+        "tokensOut": 1047,
+        "truncated": false,
+        "citations": {
+          "verified": 18,
+          "total": 18,
+          "notFound": []
+        }
+      },
+      "M-006": {
+        "disposition": "request documentation",
+        "sufficiency": "insufficient",
+        "mcc": "",
+        "match": "n/a",
+        "policy": "n/a",
+        "confidence": "n/a",
+        "trigger": "missing_data",
+        "ceilingBreach": false,
+        "field4": "n/a",
+        "why": "The storefront contains only placeholder listings with no descriptions, no prices, and generic titles, and every policy page is unedited template text. There is no evidence to assess what this merchant sells or whether the business is real. This is a documentation gap under review_criteria.md Section 3.1.",
+        "escalation": "missing_data",
+        "policyText": "n/a",
+        "request": "We cannot complete review of your application with the information currently available. Please provide:\n\n1. A complete product catalog with real listing titles, descriptions and prices for the items you intend to sell through this account.\n\n2. Storefront pages written for your business — your current About page, refund policy and shipping policy contain only template placeholder text and must be replaced with your actual business information.\n\n3. A specific description of your business in the application record beyond \"Specialty retail storefront\" — what products or product categories do you sell?\n\nOnce we receive this information we can continue processing your application.",
+        "at": "8/5/2026, 8:31:24 PM",
+        "seconds": 16.2,
+        "tokensIn": 8112,
+        "tokensOut": 550,
+        "truncated": false,
+        "citations": {
+          "verified": 6,
+          "total": 6,
+          "notFound": []
+        }
+      },
+      "M-007": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5995",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "medium",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5995 Pet Shops, Pet Food and Supplies\nTop candidate: 5995 Pet Shops, Pet Food and Supplies — 6 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 6, top 6, runner-up 0, neither 0\nn1=6, n2=0, 2 * n2 = 0, n1 >= 8 is false → medium\nConfidence: medium",
+        "why": "The catalog is entirely pet accessories and care products matching the stated business type, with substantive merchant-written descriptions and policies. Applied review_criteria.md Section 2.1 and Section 3.1; catalog clears prohibited_list.md screening.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:31:39 PM",
+        "seconds": 15.2,
+        "tokensIn": 8586,
+        "tokensOut": 650,
+        "truncated": false,
+        "citations": {
+          "verified": 17,
+          "total": 17,
+          "notFound": []
+        }
+      },
+      "M-008": {
+        "disposition": "request documentation",
+        "sufficiency": "insufficient",
+        "mcc": "",
+        "match": "n/a",
+        "policy": "n/a",
+        "confidence": "n/a",
+        "trigger": "missing_data",
+        "ceilingBreach": false,
+        "field4": "n/a",
+        "why": "The storefront contains zero listings and no page content, so there is nothing to assess against the stated gift-and-novelty business type or screen for policy compliance. The deterministic sufficiency layer already ruled this FAIL and the documentation gap prevents all downstream assessment.",
+        "escalation": "missing_data",
+        "policyText": "n/a",
+        "request": "We require the following to proceed with your application:\n\n1. **Active storefront catalog.** Your storefront currently contains no product listings. Please populate your catalog with the specific items you intend to sell, including titles, descriptions, pricing, and images for each product.\n\n2. **Customer-facing policies.** Your About, Refund Policy, and Shipping Policy pages are currently blank. Please provide merchant-written content for each:\n   - About page: describe your business, what you sell, and any relevant background\n   - Refund policy: specific windows, conditions, and process\n   - Shipping policy: lead times, carrier details, and geographic coverage\n\n3. **Volume projection reconciliation.** You have projected $15,000 in monthly volume with an average ticket of $28, which implies approximately 535 transactions per month. Once your catalog is live, please confirm this projection is consistent with the scale and pricing of what you are actually selling.\n\nThe application cannot proceed to classification without an active catalog. Please submit the requested information through your merchant dashboard.",
+        "at": "8/5/2026, 8:31:55 PM",
+        "seconds": 15.4,
+        "tokensIn": 7920,
+        "tokensOut": 525,
+        "truncated": false,
+        "citations": {
+          "verified": 5,
+          "total": 5,
+          "notFound": []
+        }
+      },
+      "M-009": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5941",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "low",
+        "trigger": "low_confidence",
+        "ceilingBreach": false,
+        "field4": "5941 Sporting Goods Stores\nTop candidate: 5941 Sporting Goods Stores — 8 listings\nRunner-up: 5655 Sports and Riding Apparel Stores — 7 listings\nCounted: total 15, top 8, runner-up 7, neither 0\nn1=8, n2=7, 1.5 * n2 = 10.5, 8 < 10.5 → low\nConfidence: low",
+        "why": "The catalog splits almost evenly between sporting equipment (8 listings) and athletic apparel (7 listings), producing a margin too narrow to call reliably. Ladder rule 4 applies.",
+        "escalation": "low_confidence",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:32:12 PM",
+        "seconds": 17.5,
+        "tokensIn": 9291,
+        "tokensOut": 685,
+        "truncated": false,
+        "citations": {
+          "verified": 23,
+          "total": 23,
+          "notFound": []
+        }
+      },
+      "M-010": {
+        "disposition": "refuse — route to compliance",
+        "sufficiency": "n/a",
+        "mcc": "",
+        "match": "n/a",
+        "policy": "n/a",
+        "confidence": "n/a",
+        "trigger": "high_stakes",
+        "ceilingBreach": false,
+        "field4": "n/a",
+        "why": "The application record discloses a terminated-merchant-file match on the principal. TMF determinations are a compliance function and fall outside my authority to adjudicate. I am routing this file to the compliance reviewer without producing verdicts.",
+        "escalation": "REFUSED — high_stakes — terminated-merchant-file determinations are a compliance function outside my authority",
+        "policyText": "n/a",
+        "request": "n/a",
+        "at": "8/5/2026, 8:32:21 PM",
+        "seconds": 8.7,
+        "tokensIn": 9114,
+        "tokensOut": 274,
+        "truncated": false,
+        "citations": {
+          "verified": 2,
+          "total": 2,
+          "notFound": []
+        }
+      },
+      "M-011": {
+        "disposition": "request documentation",
+        "sufficiency": "pass",
+        "mcc": "5499",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "missing_data",
+        "ceilingBreach": false,
+        "field4": "5499 Miscellaneous Food Stores\nTop candidate: 5499 Miscellaneous Food Stores — 10 listings\nRunner-up: 5947 Gift, Card, Novelty and Souvenir Shops — 0 listings\nCounted: total 10, top 10, runner-up 0, neither 0\nn1=10, n2=0, 1.5 * n2 = 0, 10 >= 0 (not low); 10 >= 2*0 AND 10 >= 8 → high\nConfidence: high",
+        "why": "The bank account name does not match the registered legal name, and the projected monthly volume is implausible against the catalog scale and average ticket. Both are documentation gaps under review criteria Sections 1.2 and 4.1.",
+        "escalation": "missing_data",
+        "policyText": "clear",
+        "request": "We require the following documentation before we can complete our review of your application:\n\n1. **Bank account registration clarification.** Your application lists the bank account name as \"K.P. Holdings Ltd.\" but the registered business name is \"Kestrel Provisions Inc.\" Please provide documentation explaining this relationship — for example, a certificate of incorporation for the holding entity showing its ownership of the operating company, or bank records confirming the account is registered to Kestrel Provisions Inc. under a trading name structure.\n\n2. **Projected volume substantiation.** Your stated projected monthly volume of $185,000 appears high relative to your catalog scale (10 items, average ticket $47). This would require approximately 3,936 transactions per month. Please provide documentation supporting this projection — for example, sales records from another sales channel, a wholesale contract, or a detailed volume forecast showing the transaction basis for the projection.\n\n3. **Tax identification confirmation.** Your tax ID status is marked as pending. Please provide your completed tax identification documentation.\n\nPlease submit these items through your merchant dashboard. We will complete our review within 2 business days of receipt.",
+        "at": "8/5/2026, 8:32:45 PM",
+        "seconds": 24.5,
+        "tokensIn": 9034,
+        "tokensOut": 932,
+        "truncated": false,
+        "citations": {
+          "verified": 17,
+          "total": 17,
+          "notFound": []
+        }
+      },
+      "M-012": {
+        "disposition": "apply risk terms",
+        "sufficiency": "pass",
+        "mcc": "5712",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5712 Furniture, Home Furnishings and Equipment Stores\nTop candidate: 5712 Furniture, Home Furnishings and Equipment Stores — 8 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 0 listings\nCounted: total 8, top 8, runner-up 0, neither 0\nn1=8, n2=0, 2 * n2 = 0, 8 >= 0 AND 8 >= 8 → high\nConfidence: high",
+        "why": "This is a made-to-order furniture workshop with a disclosed 10-14 week lead time and high-ticket items. The catalog matches the stated business type exactly. Both the extended fulfilment window and the high average ticket trigger Section 2.2 and Section 2.4 of the elevated-risk list, which support risk terms, not a violation.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:33:01 PM",
+        "seconds": 15.9,
+        "tokensIn": 8799,
+        "tokensOut": 616,
+        "truncated": false,
+        "citations": {
+          "verified": 14,
+          "total": 14,
+          "notFound": []
+        }
+      },
+      "M-013": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5499",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "medium",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5499 Miscellaneous Food Stores\nTop candidate: 5499 Miscellaneous Food Stores — 6 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 4 listings\nCounted: total 10, top 6, runner-up 4, neither 0\nn1=6, n2=4, 2 * n2 = 8, 6 < 8, n1 < 8 → medium\nConfidence: medium",
+        "why": "Six of ten listings are roasted coffee sold by weight, supporting 5499 Miscellaneous Food Stores; the remaining four are brewing equipment and storage accessories, a coherent complement to a roastery catalog. The business is accurately described, processing history supports the projected volume, and no prohibited or elevated-risk goods are present.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 10:32:11 PM",
+        "seconds": 16.3,
+        "tokensIn": 9054,
+        "tokensOut": 775,
+        "truncated": false,
+        "citations": {
+          "verified": 22,
+          "total": 22,
+          "notFound": []
+        }
+      },
+      "M-014": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5995",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5995 Pet Shops, Pet Food and Supplies\nTop candidate: 5995 Pet Shops, Pet Food and Supplies — 11 listings\nRunner-up: 5499 Miscellaneous Food Stores — 0 listings\nCounted: total 11, top 11, runner-up 0, neither 0\nn1=11, n2=0, 2 * n2 = 0, n1 >= 8 TRUE, n1 >= 2 * n2 TRUE → high\nConfidence: high",
+        "why": "The catalog sells dog and cat food, accessories, grooming products and furniture across all eleven listings, matching the stated business type and the requested MCC 5995. No prohibited items, no misrepresentation signals, no elevated-risk factors. Processing history is established and volume is plausible for the catalog scale. The storefront cleared sufficiency and all policy screens.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:33:34 PM",
+        "seconds": 17.3,
+        "tokensIn": 9103,
+        "tokensOut": 715,
+        "truncated": false,
+        "citations": {
+          "verified": 19,
+          "total": 19,
+          "notFound": []
+        }
+      },
+      "M-015": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5942",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5942 Book Stores\nTop candidate: 5942 Book Stores — 8 listings\nRunner-up: 5947 Gift, Card, Novelty and Souvenir Shops — 2 listings\nCounted: total 10, top 8, runner-up 2, neither 0\nn1=8, n2=2, 2 * n2 = 4, 8 >= 4 AND 8 >= 8 → high\nConfidence: high",
+        "why": "The catalog is eight books across fiction, non-fiction and poetry, plus two book-adjacent accessories. This matches the stated business type of independent bookshop and the requested MCC 5942. No prohibited items, no misrepresentation signals, solid processing history, and the margin over the runner-up category is decisive.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 10:32:14 PM",
+        "seconds": 15,
+        "tokensIn": 8945,
+        "tokensOut": 745,
+        "truncated": false,
+        "citations": {
+          "verified": 23,
+          "total": 23,
+          "notFound": []
+        }
+      },
+      "M-016": {
+        "disposition": "clear",
+        "sufficiency": "pass",
+        "mcc": "5945",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5945 Hobby, Toy and Game Shops\nTop candidate: 5945 Hobby, Toy and Game Shops — 10 listings\nRunner-up: 5712 Furniture, Home Furnishings and Equipment Stores — 0 listings\nCounted: total 10, top 10, runner-up 0, neither 0\nn1=10, n2=0, 2 * n2 = 0, 10 >= 0 AND 10 >= 8 → high\nConfidence: high",
+        "why": "The catalog contains exclusively wooden toys for children across multiple play categories. This matches the stated business type and falls cleanly within MCC 5945 with no prohibited items and no elevated-risk factors.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:34:10 PM",
+        "seconds": 16.9,
+        "tokensIn": 8965,
+        "tokensOut": 791,
+        "truncated": false,
+        "citations": {
+          "verified": 25,
+          "total": 25,
+          "notFound": []
+        }
+      },
+      "M-017": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5941",
+        "match": "match",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "high_stakes",
+        "ceilingBreach": false,
+        "field4": "5941 Sporting Goods Stores\nTop candidate: 5941 Sporting Goods Stores — 13 listings\nRunner-up: 5655 Sports and Riding Apparel Stores — 0 listings\nCounted: total 13, top 13, runner-up 0, neither 0\nn1=13, n2=0, 2 * n2 = 0, n1 >= 8 and n1 >= 2 * n2 → high\nConfidence: high",
+        "why": "Projected monthly volume of $310,000 with no processing history triggers mandatory human review under the high-stakes threshold (review_criteria.md Section 4.4). The catalog is coherent institutional sporting equipment, correctly categorised, and carries no policy concerns.",
+        "escalation": "high_stakes",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:34:26 PM",
+        "seconds": 16.9,
+        "tokensIn": 9141,
+        "tokensOut": 618,
+        "truncated": false,
+        "citations": {
+          "verified": 17,
+          "total": 17,
+          "notFound": []
+        }
+      },
+      "M-018": {
+        "disposition": "refuse — route to compliance",
+        "sufficiency": "n/a",
+        "mcc": "",
+        "match": "n/a",
+        "policy": "n/a",
+        "confidence": "n/a",
+        "trigger": "legal_exposure",
+        "ceilingBreach": false,
+        "field4": "n/a",
+        "why": "The application discloses active civil litigation in the notes field. Legal exposure determinations are a compliance function outside my authority, and I am required to route such files without adjudicating them.",
+        "escalation": "REFUSED — legal_exposure — litigation references disclosed in the application are a compliance function outside my authority",
+        "policyText": "n/a",
+        "request": "n/a",
+        "at": "8/5/2026, 8:34:34 PM",
+        "seconds": 7.5,
+        "tokensIn": 9042,
+        "tokensOut": 244,
+        "truncated": false,
+        "citations": {
+          "verified": 1,
+          "total": 1,
+          "notFound": []
+        }
+      },
+      "M-019": {
+        "disposition": "route to further review",
+        "sufficiency": "pass",
+        "mcc": "5712",
+        "match": "mismatch",
+        "policy": "clear",
+        "confidence": "low",
+        "trigger": "low_confidence",
+        "ceilingBreach": false,
+        "field4": "5712 Furniture, Home Furnishings and Equipment Stores\nTop candidate: 5712 Furniture, Home Furnishings and Equipment Stores — 7 listings\nRunner-up: 5719 Miscellaneous Home Furnishing Specialty Stores — 5 listings\nCounted: total 12, top 7, runner-up 5, neither 0\nn1=7, n2=5, 2 * n2 = 10, 1.5 * n2 = 7.5, 7 < 7.5 → low, and 7 < 8 so cannot be high\nConfidence: low",
+        "why": "The catalog sits on the boundary between furniture (5712) and homeware (5719) with a margin too narrow to call reliably. Seven listings are furniture pieces; five are soft furnishings and decorative homeware. The low_confidence trigger fires, forcing escalation regardless of the otherwise clean file.",
+        "escalation": "low_confidence",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:34:53 PM",
+        "seconds": 18.7,
+        "tokensIn": 9240,
+        "tokensOut": 867,
+        "truncated": false,
+        "citations": {
+          "verified": 26,
+          "total": 26,
+          "notFound": []
+        }
+      },
+      "M-020": {
+        "disposition": "apply risk terms",
+        "sufficiency": "pass",
+        "mcc": "5641",
+        "match": "mismatch",
+        "policy": "clear",
+        "confidence": "high",
+        "trigger": "none",
+        "ceilingBreach": false,
+        "field4": "5641 Children's and Infants' Wear Stores\nTop candidate: 5641 Children's and Infants' Wear Stores — 11 listings\nRunner-up: 5945 Hobby, Toy and Game Shops — 5 listings\nCounted: total 16, top 11, runner-up 5, neither 0\nn1=11, n2=5, 1.5 * n2 = 7.5, 11 >= 7.5 (not low), 2 * n2 = 10, 11 >= 10 AND 11 >= 8 → high\nConfidence: high",
+        "why": "The catalog is predominantly children's and infants' clothing (11 of 16 listings), not toys and games as stated. The merchant applied under MCC 5945 but sells chiefly in 5641. This is a category mismatch supporting risk-terms pricing, not a violation — the goods are real and permitted, just miscategorised.",
+        "escalation": "none",
+        "policyText": "clear",
+        "request": "n/a",
+        "at": "8/5/2026, 8:35:11 PM",
+        "seconds": 18.6,
+        "tokensIn": 9611,
+        "tokensOut": 823,
+        "truncated": false,
+        "citations": {
+          "verified": 24,
+          "total": 24,
+          "notFound": []
+        }
+      }
+    },
+    "verdicts": {
+      "M-001": "Pass",
+      "M-002": "Needs work",
+      "M-003": "Pass",
+      "M-004": "Pass",
+      "M-005": "Pass",
+      "M-006": "Pass",
+      "M-007": "Pass",
+      "M-008": "Needs work",
+      "M-009": "Pass",
+      "M-010": "Pass",
+      "M-011": "Pass",
+      "M-012": "Pass",
+      "M-013": "Pass",
+      "M-014": "Pass",
+      "M-015": "Pass",
+      "M-016": "Pass",
+      "M-017": "Pass",
+      "M-018": "Pass",
+      "M-019": "Needs work",
+      "M-020": "Pass"
+    },
+    "notes": {
+      "M-002": "Policy screen lists 'Vape Device Lanyard' as prohibited. An accessory is not a nicotine product. Variable across runs.",
+      "M-008": "Drafted request signed off with an unfilled [Merchant Risk Team] placeholder — in a letter rejecting the merchant for template text. Intermittent: one run in two.",
+      "M-011": "Regraded Pass after the Field 10 fix. The drafted request now names all three gaps - bank-entity mismatch, pending tax ID, and volume against catalog scale - on both runs after the change. Same 6/6 exact-match score before and after; the letter is what improved.",
+      "M-019": "Claim comparison returned mismatch by comparing the requested MCC against the inferred one. The spec compares the stated business description, which is honest here."
+    },
+    "lastRun": "8/5/2026, 8:29:40 PM"
+  }
+}
